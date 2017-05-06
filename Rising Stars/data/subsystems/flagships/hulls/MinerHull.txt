@@ -11,7 +11,6 @@ Subsystem: MinerHull
 	AddShipModifier: MassFactor(1)
 	AddShipModifier: ShieldCapacityFactor(1.5)
 	AddShipModifier: ArmorHpFactor(1)
-	AddShipModifier: MaintCostFactor(0.1)
 	AddShipModifier: SupplyCapacityFactor(0.1)
 	AddShipModifier: MiningRateFactor(1.25)
 	AddShipModifier: CargoStorageFactor(1.25)
@@ -19,7 +18,7 @@ Subsystem: MinerHull
 	Module: Default
 		Sprite: HullSubsystems::6
 		DrawMode: 3
-	
+
 	Assert: TagCount.Weapon == 0
 		Message: #ERROR_CANNOT_HAVE_WEAPONS
 

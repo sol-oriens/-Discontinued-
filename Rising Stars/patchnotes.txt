@@ -1,0 +1,5 @@
+v1.1.2
+
+[*] Balance
+
+- Removed the 90% maintenance cost reduction for Miner Hull. Extensive mining infrastructures should have a cost and in addition it made possible to maintain any unarmed unsupported flagship (like scouts or slipstream ships) basically for free.

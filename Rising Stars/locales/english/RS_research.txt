@@ -1,4 +1,4 @@
-﻿R_SYS_SHIELDED_AMGEN_BLURB: In-Combat Resupply
+R_SYS_SHIELDED_AMGEN_BLURB: In-Combat Resupply
 R_SYS_SHIELDED_AMGEN_DESC: <<
 	[color=#aaa][i]New advances in shield compacting unlock the Shielded Antimatter Generator subsystem.[/i][/color]
 
@@ -273,11 +273,9 @@ R_BLD_SENATE_DESC: <<
 >>
 R_MINER_HULL: Dedicated Mining Architecture
 R_MINER_HULL_DESC: <<
-	[color=#aaa][i]Streamlining various support craft, such as miners, allows them to be more effective at a reduced cost.[/i][/color]
+	[color=#aaa][i]Unlocks the Miner Hull subsystem for flagships.[/i][/color]
 
-	Unlocks the Miner Hull subsystem for use on flagships.
-
-	[i][bbloc=#S_MINER_HULL_DESC/][/i]
+	[bbloc=#S_MINER_HULL_DESC/]
 >>
 R_SYS_JUGGERNAUT_HULL: Volatile Payload Delivery
 R_SYS_JUGGERNAUT_HULL_DESC: <<

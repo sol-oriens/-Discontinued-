@@ -1,4 +1,4 @@
-﻿// *********************************************************
+// *********************************************************
 // **************SUBSYSTEM CATEGORIES HERE!*****************
 // *********************************************************
 
@@ -283,7 +283,7 @@ S_MINER_HULL_DESC: <<
 	A specialized hull designed for the extraction and transportation of large quantities of ore from asteroids.
 
 	[img=Plus]Increases shield capacity by 50%.[/img]
-	[img=Plus]Reduces maintenance costs and supply capacity by 90%.[/img]
+	[img=Plus]Reduces supply capacity by 90%.[/img]
 	[img=Plus]Mining rate and cargo storage are increased by 25%.[/img]
 	[img=Minus]Cannot have weapons or support command.[/img]
 >>
