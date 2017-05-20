@@ -9,12 +9,15 @@ Technology: XMuonCannon
 	Icon: Railgun::2
 	Color: #8f2399
 
-	SkipOnUnlockedSubsystem(MuonBattery)
+	UnlockSubsystem(MuonCannon)
+	SkipOnUnlockedSubsystem(MuonCannon)
 
 	UnlockSubsystem(MuonBattery)
 
 	SecondaryMoneyCost(1000)
 	RequireEmpireAttributeGTE(InfiniteProjTech, 4, #R_LIFESTYLE_REQ:Ballistics:4)
+	AddModifier(RailgunBattery::AddMuonEnhancement(0.75, 0.0135, 0.5))
+	AddModifier(Railgun::AddMuonEnhancement(0.75, 0.01, 0.5))
 	ModAttribute(ProgenitorTechProgress, Add, 2.5)
 
 Technology: XFlakBattery
@@ -92,8 +95,8 @@ Technology: XParticleLance
 
 
 ///////////////////////////////////////
-//Proyectile WEAPONS SPECIAL UPGRADES/////////////
-////////////////////////////////////
+//Projectile WEAPONS SPECIAL UPGRADES//
+///////////////////////////////////////
 
 Technology: XProjTracking
 	Name: #R_ADVANCED_TRACKING

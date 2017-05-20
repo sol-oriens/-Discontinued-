@@ -13,13 +13,13 @@ Subsystem: Railgun
 	Size := HexSize * Hexes
 
 	Range := (Size*2) + 525
-	Damage := Size * if(MuonEnhanced > 0, 4.0, 3.25)
+	Damage := Size * 3.25
 	Reload := 2.05 * min(1.0 + Size/512, 2.0)
 	Speed := max(110, Range / 15)
-	Spread := if(MuonEnhanced > 0, 0.0125, 0.0225) / max(Range / 600, 1)
+	Spread := 0.0225 / max(Range / 600, 1)
 	Tracking := 0.8
 	FireArc := 0.5 * pi
-	Pierce := if(MuonEnhanced > 0, 1.5, 1.0)
+	Pierce := 1.0
 	SupplyCost := Size * 1.5
 
 	Hex.HP := 27 * HexSize
@@ -32,8 +32,10 @@ Subsystem: Railgun
 	Requires:
 		Command = 1
 
-	Modifier: SetMuonEnhanced(Factor)
-		MuonEnhanced := Factor
+	Modifier: AddMuonEnhancement(DamageBonus, SpreadMinus, PierceBonus)
+		Damage := Damage + DamageBonus
+		Spread := (0.0225 - SpreadMinus) / max(Range / 600, 1)
+		Pierce := Pierce + PierceBonus
 
 	Module: Default
 

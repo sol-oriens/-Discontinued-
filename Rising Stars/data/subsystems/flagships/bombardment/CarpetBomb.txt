@@ -6,7 +6,7 @@ Subsystem: CarpetBomb
 	Elevation: 2
 
 	Tags: BaseCost, Category:Weapons, Rotatable
-	Tags: ExteriorCore, Weapon, Bombardment
+	Tags: ExteriorCore, Weapon, DefaultUnlock, Bombardment
 	Hull: Flagship
 
 	Size := HexSize * Hexes
@@ -15,7 +15,7 @@ Subsystem: CarpetBomb
 	BombardStacks := max(floor(Size * 0.015), 1)
 	BombardDuration := Size * 3.0 / BombardStacks
 	Reload := 30
-	BombardCost := Size * 200
+	BombardCost := Size * 400
 
 	Hex.HP := 3 * HexSize
 	Hex.Mass := HexSize
