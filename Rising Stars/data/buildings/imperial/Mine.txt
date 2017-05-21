@@ -1,0 +1,16 @@
+Building: Mine
+	Name: #BLD_MINE
+	Description: #BLD_MINE_DESC
+	Sprite: Mine
+
+	Category: Production
+
+	Size: 3x3
+	Base Cost: 20
+	Tile Cost: 20
+	Base Maintenance: 150
+	Tile Maintenance: 15
+
+  TriggerPeriodic(AddCargo(Ore, 1), Interval = 6)
+
+	RequireNotTrait(Ancient)

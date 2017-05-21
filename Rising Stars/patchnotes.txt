@@ -4,6 +4,10 @@ v1.1.2
 
 - Removed the 90% maintenance cost reduction for Miner Hull. Extensive mining infrastructures should have a cost and in addition it made possible to maintain any unarmed unsupported flagship (like scouts or slipstream ships) basically for free.
 
+[*] Buildings
+
+- Added Mining Complex, available to non-Ancient races. Adds 6 ore per minute generation to the planet.
+
 [*] Subsystems
 
 - Added support Muon Cannon back to the mod and rebalanced it accordingly. Now Renamed to Muon Projector.
