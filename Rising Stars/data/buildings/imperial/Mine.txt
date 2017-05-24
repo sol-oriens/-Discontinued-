@@ -4,13 +4,17 @@ Building: Mine
 	Sprite: Mine
 
 	Category: Production
+	Build Affinity: Mountains
+	Maintenance Affinity: Mountains
 
 	Size: 3x3
-	Base Cost: 20
-	Tile Cost: 20
-	Base Maintenance: 150
-	Tile Maintenance: 15
-
-  TriggerPeriodic(AddCargo(Ore, 1), Interval = 6)
+	Base Cost: 240
+	Tile Cost: 10
+	Base Maintenance: 120
+	Tile Maintenance: 20
 
 	RequireNotTrait(Ancient)
+
+	TriggerPeriodic(AddCargo(Ore, 1), Interval = 6)
+
+	AddPressure(Labor, 2)
