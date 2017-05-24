@@ -29,7 +29,7 @@ Node@ getCullingNode(const vec3d& pos) {
 				return glx.cullingNode;
 		}
 	}*/
-	
+
 	return null;
 }
 
@@ -115,7 +115,7 @@ class MapGeneration {
 
 	void placeLinks() {
 	}
-	
+
 	void prepareSystem(SystemData@ data, SystemDesc@ desc) {
 		if(data.homeworlds !is null && data.mirrorSystem !is null)
 			data.ignoreAdjacencies = true;
@@ -130,7 +130,7 @@ class MapGeneration {
 
 	void generateSystems() {
 		bool systemCulling = systemData.length > 1;
-	
+
 		for(uint i = 0, cnt = systemData.length; i < cnt; ++i) {
 			prepareSystem(systemData[i], systems[i]);
 			generateSystem(systemData[i], systems[i], systemCulling);
@@ -218,7 +218,7 @@ class MapGeneration {
 
 		//Generate everything that was placed
 		generateSystems();
-		
+
 		for(uint i = 0, cnt = systems.length; i < cnt; ++i) {
 			SystemDesc@ sys = systems[i];
 			if(sys.object.isNebula && sys.object.macronebula is null) {
@@ -253,7 +253,7 @@ class MapGeneration {
 
 		generatedGalaxies.insertLast(gdat);
 	}
-	
+
 	//** {{{ Homeworlds
 	bool canHaveHomeworld(SystemData@ data, Empire@ emp) {
 		return data.canHaveHomeworld;
@@ -322,7 +322,7 @@ class MapGeneration {
 
 		return result;
 	}
-	
+
 	void markHomeworld(SystemData@ dat) {
 		//List this as a homeworld
 		homeworlds.insertLast(dat);
@@ -332,12 +332,12 @@ class MapGeneration {
 	//** {{{ Gas Generation
 	void prepGalaxyGas(double sideLen) {
 		gasSideLen = sideLen;
-		
+
 		gasses.length = 64;
 		for(uint i = 0; i < 64; ++i) {
 			int x = int(i) % 8;
 			int y = int(i) / 8;
-		
+
 			GasData data;
 			@data.gdat = gdat;
 			data.position = vec3d((double(x) - 3.5) * sideLen / 8.0, 0.0, (double(y) - 3.5) * sideLen / 8.0) + origin;
@@ -349,7 +349,7 @@ class MapGeneration {
 
 	void generateGas() {
 		Color innerBright, outerBright;
-		
+
 		switch(randomi(0,2)) {
 			case 0:
 				innerBright = Color(0xc08060ff);
@@ -364,7 +364,7 @@ class MapGeneration {
 				outerBright = Color(0x600060ff);
 				break;
 		}
-	
+
 		for(uint i = 0, cnt = systems.length; i < cnt; ++i) {
 			vec3d sysPos = systems[i].position;
 			double edgePct = sysPos.distanceTo(origin) / (radius * 0.6);
@@ -374,17 +374,17 @@ class MapGeneration {
 				Color col = innerBright.interpolate(outerBright, edgePct);
 				col.a = randomi(0x14,0x1c);
 				vec3d pos = sysPos + vec3d(randomd(-10000.0, 10000.0), randomd(-8000.0,8000.0) * (1.0 - edgePct * 0.75), randomd(-10000.0, 10000.0));
-				
+
 				createGalaxyGas(pos, 7500.0 - 2000.0 * edgePct, col, k == 0);
 			}
-			
+
 			int darkCount = 1 + int(3.0 * edgePct);
 			for(int k = 0; k < darkCount; ++k) {
 				//Color col = Color(0x200c1815).interpolate(Color(0x08060340), edgePct);
 				Colorf fcol;
 				fcol.fromHSV(randomd(0,360.0), randomd(0.0,0.2), randomd(0.0,0.2));
 				fcol.a = randomd(0.1,0.2);
-				
+
 				vec3d pos = sysPos + vec3d(randomd(-10000.0, 10000.0), randomd(-2000.0,2000.0), randomd(-10000.0, 10000.0));
 				createGalaxyGas(pos, 4200.0, Color(fcol), true);
 			}
@@ -423,6 +423,10 @@ class MapGeneration {
 	void generateAutomatedLinks(uint targLinks = 3) {
 		AngularItem[] items(16);
 		uint cnt = systemData.length;
+
+		//RS - Scaling
+		double DistFactor = 20.0;
+
 		for(uint i = 0; i < cnt; ++i) {
 			SystemData@ desc = systemData[i];
 			if(!desc.autoGenerateLinks)
@@ -442,16 +446,16 @@ class MapGeneration {
 
 				double angle = offset.radians() + twopi;
 				double dist = offset.length;
-				if(dist > 31000.0)
+				if(dist > 31000.0 * DistFactor)
 					continue;
 
 				//double sz = atan(other.radius / dist);
-				double sz = atan(1200.0 / dist); //TODO: Base this on something?
-				
+				double sz = atan(1200.0 * DistFactor / dist); //TODO: Base this on something?
+
 				int closest = int(angle / twopi * 16.0);
 				int firstBox = int((angle - sz) / twopi * 16.0);
 				int lastBox = int((angle + sz) / twopi * 16.0);
-				
+
 				for(int p = firstBox; p <= lastBox; ++p) {
 					AngularItem@ item = items[(p+16) % 16];
 					if(item.desc is null || item.dist > dist) {
@@ -464,7 +468,7 @@ class MapGeneration {
 
 			//Turn items into links
 			uint linksMade = desc.adjacent.length;
-			double distReq = 13000.0;
+			double distReq = 13000.0 * DistFactor;
 			do {
 				for(uint p = 0, n = randomi(0,15); p < 16; ++p) {
 					AngularItem@ item = items[n];
@@ -480,7 +484,7 @@ class MapGeneration {
 						}
 
 						++linksMade;
-						if(distReq > 13000.0 && linksMade >= targLinks)
+						if(distReq > 13000.0 * DistFactor && linksMade >= targLinks)
 							break;
 						@item.desc = null;
 					}
@@ -490,8 +494,8 @@ class MapGeneration {
 
 				//Slowly relax distance requirement until we have at least
 				//the target amount of links to work with.
-				distReq += 3000.0;
-			} while(linksMade < targLinks && distReq <= 31000.0);
+				distReq += 3000.0 + DistFactor;
+			} while(linksMade < targLinks && distReq <= 31000.0 * DistFactor);
 		}
 	}
 
@@ -684,25 +688,25 @@ class MapGeneration {
 			}
 		}
 	}
-	
+
 	array<const ResourceType@>@ getDistributedResources(uint count, int quality, double contestation) {
 		array<const ResourceType@> resources(count);
 		if(count == 0)
 			return resources;
-		
+
 		double score = 1.0;
 		for(uint i = 0; i < count; ++i) {
 			const ResourceType@ type = getDistributedResourceContest(contestation);
 			@resources[i] = type;
 			score /= type.rarityScore;
 		}
-		
+
 		array<const ResourceType@> prev = resources;
 		uint rolls = 0;
-		
+
 		if(quality != 0) {
 			double bestScore = score;
-			
+
 			array<const ResourceType@> reroll(count);
 			while(quality != 0) {
 				bool getBetter = false;
@@ -725,14 +729,14 @@ class MapGeneration {
 				else {
 					quality += 100;
 				}
-				
+
 				double rrScore = 1.0;
 				for(uint i = 0; i < count; ++i) {
 					const ResourceType@ type = getDistributedResourceContest(contestation);
 					@reroll[i] = type;
 					rrScore /= type.rarityScore;
 				}
-				
+
 				rolls += 1;
 				if(getBetter) {
 					if(rrScore > bestScore) {
@@ -748,7 +752,7 @@ class MapGeneration {
 				}
 			}
 		}
-		
+
 		return resources;
 	}
 	//}}}
@@ -777,7 +781,7 @@ class MapGeneration {
 			string name = sysNames.generate();
 			sysDesc.name = name;
 			sysDesc.position = data.position;
-			
+
 			//Hint the creation of the region, so we can reference its hint data in saves
 			LockHint hint();
 			Region@ region = cast<Region>(makeObject(sysDesc));
@@ -883,7 +887,7 @@ class MapGeneration {
 			snode.scale = region.radius + 128.0;
 			snode.rebuildTransform();
 		}
-		
+
 		//Clear unnecessary references
 		@region = null;
 		@star = null;
@@ -1143,7 +1147,7 @@ final class AngularItem {
 	double dist = 0.0;
 	SystemData@ desc;
 	bool blocked = false;
-	
+
 	void clear() {
 		@desc = null;
 		blocked = false;

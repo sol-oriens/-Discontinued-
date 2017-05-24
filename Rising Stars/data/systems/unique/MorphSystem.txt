@@ -2,7 +2,9 @@ System: MorphSystem
 	Frequency: 0.01
 	Unique: Global
 
-	MakeStar(Temperature = 5778, Radius = 75)
+	//RS - Scaling
+	MakeStar(Temperature = 5778, Radius = 750)
+	ExpandSystem(1000)
 
 	Repeat(3)
 		MakePlanet(AsteroidAffinity)

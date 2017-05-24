@@ -110,7 +110,9 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 	bool allowSatellites = false;
 
 	bool FreeRaiding = false;
-	double RaidRange = 1000.0;
+
+	//RS - Scaling: increased range
+	double RaidRange = 3000.0;
 
 	//Whether to automaticall pluck supports of planets
 	bool autoFill = true;
@@ -362,7 +364,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 
 		cnt = orderCount;
 		msg << cnt;
-		
+
 		Order@ ord = order;
 		while(ord !is null) {
 			ord.save(msg);
@@ -381,7 +383,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		for(uint i = 0; i < cnt; ++i)
 			msg << sightOrder[i];
 		msg << nextInstanceID;
-		
+
 	}
 
 	float getFleetEffectiveness() const {
@@ -457,7 +459,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 			cast<Ship>(obj).blueprint.delta = true;
 		delta = true;
 	}
-	
+
 	void set_engageRange(Object& obj, double radius) {
 		engagementRange = radius - getFormationRadius(obj);
 	}
@@ -481,23 +483,23 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 			return null;
 		return supports[index];
 	}
-	
+
 	void idleAllSupports() {
 		for(uint i = 0, cnt = supports.length; i < cnt; ++i)
 			supports[i].supportIdle();
 	}
-	
+
 	void standDownAllSupports() {
 		for(uint i = 0, cnt = supports.length; i < cnt; ++i)
 			supports[i].doRaids = false;
 	}
-	
+
 	void updateFleetStrength(Object& obj) {
 		double hp = 0.0, dps = 0.0, maxHP = 0.0, maxDPS = 0.0;
-		
+
 		//DOF
 		double ShieldBehaviorMod = 1.0;
-		
+
 		if(obj.isShip) {
 			Ship@ ship = cast<Ship>(obj);
 			auto@ bp = ship.blueprint;
@@ -506,7 +508,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 			//DOF
 			double DestroyerMod = bp.design.total(SV_HullStrengthMult); // Genericized this part of dolynick's code.
 			hp = (bp.currentHP * bp.hpFactor + (bp.design.total(SV_Repair)/3.0*pow(max(log10(bp.design.total(SV_Repair)/3.0),0.0),2))) * (1.0+log10(bp.design.size)*0.1) * DestroyerMod + ((1.0+max(log10(bp.design.total(SV_ShieldRegen))*2.0, 1.0)) * ship.Shield / (1.0 - bp.design.total(SV_Chance)) * (ship.Shield/max(ship.MaxShield, 1.0)));
-			
+
 			dps = ship.DPS * bp.shipEffectiveness;
 
 			//maxHP = bp.design.totalHP - bp.removedHP + ship.MaxShield;
@@ -541,7 +543,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 				maxDPS += ship.MaxDPS;
 			}
 		}
-		
+
 		fleetHP = hp;
 		fleetDPS = dps;
 		fleetMaxHP = maxHP;
@@ -552,11 +554,11 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		bonusDPS += amount;
 		delta = true;
 	}
-	
+
 	double getFleetHP() const {
 		return fleetHP;
 	}
-	
+
 	double getFleetDPS() const {
 		return fleetDPS + bonusDPS;
 	}
@@ -786,7 +788,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 			return 0;
 		return groupData[ind].amount;
 	}
-	
+
 	bool get_hasOrderedSupports() const {
 		return supplyOrdered > 0;
 	}
@@ -899,7 +901,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 			}
 		}
 	}
-	
+
 	bool get_hasOrders() {
 		return order !is null;
 	}
@@ -944,7 +946,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		else
 			return "";
 	}
-	
+
 	uint get_firstOrderType() {
 		return firstOrder;
 	}
@@ -1103,11 +1105,11 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		//Delete all orders we can, move any orders that persist to a new chain
 		if(order !is null) {
 			Order@ cur = order;
-			
+
 			Order@ chain = null;
 			@order = null;
 			firstOrder = OT_INVALID;
-		
+
 			while(cur !is null) {
 				Order@ next = cur.next;
 				if(!cur.cancel(obj)) {
@@ -1116,7 +1118,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 						@order = cur;
 					else //@chain !is null
 						@chain.next = cur;
-					
+
 					@chain = cur;
 				}
 				else {
@@ -1124,7 +1126,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 				}
 				@cur = next;
 			}
-			
+
 			orderDelta = true;
 		}
 		if(obj.hasMover && obj.isMoving)
@@ -1147,31 +1149,31 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		else
 			firstOrder = OT_INVALID;
 	}
-	
+
 	void insertOrder(Object& obj, Order@ ord, uint index) {
 		orderDelta = true;
-		
+
 		if(order is null) {
 			@order = ord;
 			return;
 		}
-		
+
 		if(index == 0) {
 			@order.prev = ord;
 			@ord.next = order;
 			@order = ord;
 			return;
 		}
-		
+
 		Order@ o = order;
 		while(index > 0 && o.next !is null) {
 			@o = o.next;
 			index--;
 		}
-		
+
 		@ord.next = o.next;
 		@ord.prev = o;
-		
+
 		if(o.next !is null)
 			@o.next.prev = ord;
 		@o.next = ord;
@@ -1185,7 +1187,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 	void addOrder(Object& obj, Order@ ord, bool append) {
 		autoState = AS_None;
 		orderDelta = true;
-		
+
 		if(!append || order is null) {
 			clearOrders(obj);
 			if(order is null) {
@@ -1193,7 +1195,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 				return;
 			}
 		}
-		
+
 		//If we only cancelled some orders, or we wanted to append, we append now
 		Order@ last = order;
 		while(last.next !is null)
@@ -1381,7 +1383,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		addOrder(obj, RefreshOrder(target), append);
 		obj.wake();
 	}
-	
+
 	void addAutoExploreOrder(Object& obj, bool useFTL, bool append) {
 		addOrder(obj, AutoExploreOrder(useFTL), append);
 		obj.wake();
@@ -1460,7 +1462,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 			prevOrbit.leaveFromOrbit(cast<Ship>(obj));
 		clearOrders(obj);
 	}
-	
+
 	void leaderRegionChanged(Object& obj) {
 		if(node !is null)
 			node.hintParentObject(obj.region, false);
@@ -1489,7 +1491,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 				ship.repairShip(per);
 		}
 	}
-	
+
 	void findTargets(Object& source, array<Object@>& targets, Object& obj, Empire@ emp, int depth = 3, double maxDistSQ = 1.0e6) {
 		for(uint i = 0; i < TARGET_COUNT; ++i) {
 			auto@ targ = obj.targets[i];
@@ -1503,7 +1505,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 				}
 			}
 		}
-		
+
 		if(depth > 0)
 			for(uint i = 0; i < TARGET_COUNT; ++i)
 				findTargets(source, targets, obj.targets[i], emp, depth-1, maxDistSQ);
@@ -1522,21 +1524,21 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 				}
 			}
 		}
-		
+
 		if(depth > 0)
 			for(uint i = 0; i < TARGET_COUNT; ++i)
 				findRegionTargets(region, targets, obj.targets[i], emp, depth-1);
 	}
-	
-	
+
+
 	bool inFleetFight = false;
 	Object@ cavalryTarget;
 	array<Object@> targs;
-	
+
 	void commandTick(Object& obj) {
 		if(supports.length == 0)
 			return;
-	
+
 		targs.length = 0;
 		Region@ reg = obj.region;
 		if((FreeRaiding || RaidRange < 0) && reg !is null)
@@ -1551,34 +1553,34 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		/*	standDownAllSupports();*/
 		/*}*/
 		/*inFleetFight = engage;*/
-		
+
 		if(!engage)
 			@cavalryTarget = null;
 		if(!engage || targs.length == 0)
 			return;
-		
+
 		if(targs.length > 0) {
 			if(cavalryTarget is null || !cavalryTarget.valid) {
 				@cavalryTarget = null;
 
 				for(uint i = 0, cnt = targs.length; i < cnt; ++i) {
 					auto@ targ = targs[i];
-					if(targ.isShip && targ.hasSupportAI) {	
+					if(targ.isShip && targ.hasSupportAI) {
 						@cavalryTarget = targ;
 						break;
 					}
 				}
-				
+
 				if(cavalryTarget !is null)
 					for(uint i = 0, cnt = supports.length; i < cnt; ++i)
 						supports[i].cavalryCharge(cavalryTarget);
 			}
-			
+
 			uint supportCount = supports.length;
 			for(uint i = 0, cnt = targs.length; i < cnt; ++i)
 				supports[randomi(0, supportCount-1)].supportInterfere(targs[i], obj);
 		}
-		
+
 		targs.length = 0;
 	}
 
@@ -1874,11 +1876,11 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		uint takeFromGhost = 0;
 		if(ind != -1)
 			takeFromGhost = min(groupData[ind].ghost, amount);
-		
+
 		uint capMax = 0;
 		if(supplyCapacity > supplyUsed)
 			capMax = (supplyCapacity - supplyUsed) / uint(ofDesign.size);
-		
+
 		amount = min(amount, capMax + takeFromGhost);
 		if(amount == 0)
 			return;
@@ -1993,7 +1995,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		}
 		return cost;
 	}
-	
+
 	void rebuildAllGhosts(Object& obj) {
 		for(uint i = 0, cnt = groupData.length; i < cnt; ++i) {
 			GroupData@ data = groupData[i];
@@ -2123,23 +2125,23 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 			return pl.OrbitSize;
 		return obj.radius * 10.0 + 20.0;
 	}
-	
+
 	double get_slowestSupportAccel() const {
 		double slowest = 0.0;
-		
+
 		for(uint i = 0, cnt = groupData.length; i < cnt; ++i) {
 			GroupData@ dat = groupData[i];
 			if(dat.amount == 0)
 				continue;
-			
+
 			auto design = dat.dsg;
-			
+
 			double mass = max(design.total(HV_Mass), 0.01f);
 			double accel = design.total(SV_Thrust) / mass;
 			if((accel < slowest || slowest == 0) && accel > 0.0)
 				slowest = accel;
 		}
-		
+
 		return slowest;
 	}
 
@@ -2381,7 +2383,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		Ship@ othership = cast<Ship>(support);
 		if(othership !is null) {
 			othership.supportIdle();
-		
+
 			const Design@ dsg = othership.blueprint.design;
 			int ind = getGroupDataIndex(dsg, false);
 			bool canGhost = false;
@@ -2713,7 +2715,7 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 //		print("modifySightModifier triggered calculateSightRange...");
 		calculateSightRange(obj);
 	}
-	
+
 	// Performs a binary search until it finds a location where it can fit in nicely.
 	void continueSortingSightPriority(uint position, array<uint>& orderArray, array<SightModifier@>& dataArray, uint pivot, double difference) {
 		// halfDiff is half of the previous difference, obviously.

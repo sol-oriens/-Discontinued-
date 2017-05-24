@@ -1,7 +1,8 @@
 System: Type1Nebula
 	Frequency: 0
 
-	ExpandSystem(1000)
+	//RS - Scaling
+	ExpandSystem(10000:20000)
 
 	Repeat(1:7)
 		MakeAnomaly()

@@ -6,8 +6,9 @@ class StarScript {
 	void syncInitial(Star& star, Message& msg) {
 		star.temperature = msg.read_float();
 
-		lightDesc.att_quadratic = 1.f/(2000.f*2000.f);
-		
+		RS - Scaling: increased light reach
+		lightDesc.att_quadratic = 1.f/(8000.f*8000.f);
+
 		double temp = star.temperature;
 		Node@ node;
 		double soundRadius = star.radius;
@@ -21,12 +22,12 @@ class StarScript {
 			cast<BlackholeNode>(node).establish(star);
 			soundRadius *= 10.0;
 		}
-		
+
 		if(node !is null)
 			node.hintParentObject(star.region);
 
 		star.readOrbit(msg);
-		
+
 		lightDesc.position = vec3f(star.position);
 		lightDesc.diffuse = node.color * 1.0f;
 		lightDesc.specular = lightDesc.diffuse;
@@ -36,7 +37,7 @@ class StarScript {
 			makeLight(lightDesc, node);
 		else
 			makeLight(lightDesc);
-		
+
 		addAmbientSource("star_rumble", star.id, star.position, soundRadius);
 		star.readStatuses(msg);
 	}

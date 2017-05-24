@@ -1,0 +1,14 @@
+v1.2
+
+[*] Systems
+
+- Increased scale of the galaxy based on dolynick's outstanding work with DOF, with some differences and additional balance to achieve a more realistic feel, slow expansion down and make the game a bit more system-centric.
+
+*** The increased scale of gas sprites might impact system performances when playing with lots of stars and / or nebulae. Consider turning galaxy gas off if you experience stuttering.
+
+- Increased scale of stars by a factor of 10.
+- Increased scale of planets by a factor of 10.
+- Increased scale of planet gravity wells by a factor relative to its planet's size
+- Decreased scale of ships by a factor of 0.5.
+- Increased default system spacing by a factor of 20.
+- Increased variance in planet count per system.

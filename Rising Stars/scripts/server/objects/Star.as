@@ -24,16 +24,17 @@ final class StarScript {
 		file << star.MaxShield;
 		file << cast<Savable>(star.Statuses);
 	}
-	
+
 	void load(Star& star, SaveFile& file) {
 		loadObjectStates(star, file);
 		file >> star.temperature;
-		
+
 		if(star.owner is null)
 			@star.owner = defaultEmpire;
 
-		lightDesc.att_quadratic = 1.f/(2000.f*2000.f);
-		
+		//RS - Scaling: increased light reach
+		lightDesc.att_quadratic = 1.f/(8000.f*8000.f);
+
 		double temp = star.temperature;
 		Node@ node;
 		double soundRadius = star.radius;
@@ -47,7 +48,7 @@ final class StarScript {
 			cast<BlackholeNode>(node).establish(star);
 			soundRadius *= 10.0;
 		}
-		
+
 		addAmbientSource(CURRENT_PLAYER, "star_rumble", star.id, star.position, soundRadius);
 
 		if(file >= SV_0028)
@@ -107,7 +108,7 @@ final class StarScript {
 			used = true;
 		else
 			msg.write0();
-		
+
 		return used;
 	}
 
@@ -118,7 +119,7 @@ final class StarScript {
 		if(node !is null)
 			node.hintParentObject(star.region, false);
 	}
-	
+
 	void postInit(Star& star) {
 		double soundRadius = star.radius;
 		maxHealth = star.MaxHealth;
@@ -128,7 +129,7 @@ final class StarScript {
 			soundRadius *= 10.0;
 		addAmbientSource(CURRENT_PLAYER, "star_rumble", star.id, star.position, soundRadius);
 	}
-	
+
 	void dealStarDamage(Star& star, double amount) {
 		dealStarDamage(star, amount, star.position);
 	}
@@ -138,8 +139,8 @@ final class StarScript {
 			shieldDelta = true;
 			if(maxShield <= 0.0)
 				maxShield = star.Shield;
-				
-			// This handles shield graphics.	
+
+			// This handles shield graphics.
 			if(star.position != attackerPosition) {
 				double dmgScale = 0;
 				dmgScale = (amount * star.Shield) / (maxShield * maxShield);
@@ -155,7 +156,7 @@ final class StarScript {
 					playParticleSystem("ShieldImpactHeavy", star.position + attackerPosition.normalized(star.radius * 1.05), quaterniond_fromVecToVec(vec3d_front(), attackerPosition), star.radius, star.visibleMask, networked=false);
 				}
 			}
-			
+
 			double tempVar = amount;
 			tempVar = max(amount - star.Shield, 0.f);
 			star.Shield -= amount;
@@ -177,19 +178,22 @@ final class StarScript {
 		if(!game_ending) {
 			double explRad = star.radius;
 			if(star.temperature == 0.0) {
-				explRad *= 20.0;
+				//RS - Scaling
+				explRad *= 200.0;
 
 				for(uint i = 0, cnt = systemCount; i < cnt; ++i) {
 					auto@ sys = getSystem(i);
 					double dist = star.position.distanceTo(sys.position);
-					if(dist < 100000.0) {
-						double factor = sqr(1.0 - (dist / 100000));
+
+					//RS - Scaling
+					if(dist < 1000000.0) {
+						double factor = sqr(1.0 - (dist / 1000000));
 						sys.object.addStarDPS(factor * star.MaxHealth * 0.08);
 					}
 				}
 			}
 			playParticleSystem("StarExplosion", star.position, star.rotation, explRad);
-			
+
 			//auto@ node = createNode("NovaNode");
 			//if(node !is null)
 			//	node.position = star.position;
@@ -200,13 +204,13 @@ final class StarScript {
 		star.destroyStatus();
 		leaveRegion(star);
 	}
-	
+
 	/*void damage(Star& star, DamageEvent& evt, double position, const vec2d& direction) {
 		evt.damage -= 100.0;
 		if(evt.damage > 0.0)
 			star.HP -= evt.damage;
 	}*/
-	
+
 	double tick(Star& obj, double time) {
 		updateRegion(obj);
 		obj.orbitTick(time);

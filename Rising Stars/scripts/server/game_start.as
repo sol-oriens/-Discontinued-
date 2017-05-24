@@ -20,9 +20,10 @@ vec3d mapLeft;
 vec3d mapRight;
 double galaxyRadius = 0;
 
-const double GALAXY_MIN_SPACING = 60000.0;
-const double GALAXY_MAX_SPACING = 120000.0;
-const double GALAXY_HEIGHT_MARGIN = 50000.0;
+//RS - Scaling
+const double GALAXY_MIN_SPACING = 2400000.0;
+const double GALAXY_MAX_SPACING = 4800000.0;
+const double GALAXY_HEIGHT_MARGIN = 150000.0;
 
 bool overlaps(Map@ from, vec3d point, Map@ to) {
 	return point.distanceTo(from.origin) < GALAXY_MIN_SPACING + from.radius + to.radius;
@@ -40,7 +41,7 @@ class HomeworldSearch {
 double findHomeworld(double time, ScriptThread& thread) {
 	HomeworldSearch@ search;
 	thread.getObject(@search);
-	
+
 	@search.result = search.map.findHomeworld(search.emp, search.goal);
 	thread.stop();
 	return 0;
@@ -54,11 +55,11 @@ class QualityCalculation {
 void calculateQuality(QualityCalculation@ data) {
 	uint homeworldCount = data.homeworlds.length;
 	array<double> dists(homeworldCount);
-	
+
 	for(uint g = 0, gcnt = data.galaxies.length; g < gcnt; ++g) {
 		Map@ mp = data.galaxies[g];
 		mp.calculateHomeworldDistances();
-		
+
 		for(uint i = 0, end = mp.systemData.length; i < end; ++i) {
 			SystemData@ system = mp.systemData[i];
 			mp.calculateQuality(system, data.homeworlds, dists);
@@ -148,7 +149,7 @@ void init() {
 
 	//Search for homeworld starting positions in multiple threads (one per empire)
 	array<SystemData@> globalHomeworlds;
-	{	
+	{
 		array<TeamSorter> sortedEmps;
 		for(uint i = 0, cnt = getEmpireCount(); i < cnt; ++i) {
 			Empire@ emp = getEmpire(i);
@@ -193,7 +194,7 @@ void init() {
 			else
 				@search.result = search.map.findHomeworld(search.emp, search.goal);
 		}
-		
+
 		for(uint i = 0; i < homeworlds.length; ++i) {
 			HomeworldSearch@ search = homeworlds[i];
 			while(search.thread !is null && search.thread.running) sleep(0);
@@ -220,7 +221,7 @@ void init() {
 				n += 1;
 			}
 			calculateQuality(calc);
-		}	
+		}
 	}
 
 	//Generate physics
@@ -498,15 +499,15 @@ void syncInitial(Message& msg) {
 	msg << cnt;
 	for(uint i = 0; i < cnt; ++i)
 		msg << galaxies[i].id;
-	
+
 	cnt = generatedGalaxyGas.length;
 	msg << cnt;
 	for(uint i = 0; i < cnt; ++i) {
 		GasData@ gas = generatedGalaxyGas[i];
-		
+
 		msg.writeSmallVec3(gas.position);
 		msg << float(gas.scale);
-		
+
 		if(gas.gdat.cullingNode !is null) {
 			msg.write1();
 			msg.writeSmallVec3(gas.gdat.cullingNode.position);
@@ -515,7 +516,7 @@ void syncInitial(Message& msg) {
 		else {
 			msg.write0();
 		}
-		
+
 		uint sCnt = gas.sprites.length;
 		msg.writeSmall(sCnt);
 		for(uint s = 0; s < sCnt; ++s) {
@@ -560,7 +561,7 @@ void tick(double time) {
 			if(name.length == 0)
 				continue;
 			if(!connectedSet.contains(pl.id)) {
-				string msg = format("[color=#aaa]"+locale::MP_CONNECT_EVENT+"[/color]", 
+				string msg = format("[color=#aaa]"+locale::MP_CONNECT_EVENT+"[/color]",
 					format("[b]$1[/b]", bbescape(name)));
 				sendChatMessage(msg, offset=30);
 				connectedPlayers.insertLast(pl);
@@ -581,7 +582,7 @@ void tick(double time) {
 				if(emp !is null)
 					color = emp.color;
 
-				string msg = format("[color=#aaa]"+locale::MP_DISCONNECT_EVENT+"[/color]", 
+				string msg = format("[color=#aaa]"+locale::MP_DISCONNECT_EVENT+"[/color]",
 					format("[b][color=$1]$2[/color][/b]", toString(color), bbescape(name)));
 				sendChatMessage(msg, offset=30);
 				connectedPlayers.removeAt(i);
@@ -735,9 +736,9 @@ class SystemGenerator : IsolateHook {
 
 		if(hook !is null)
 			hook.call(desc);
-		
+
 		// Refresh macronebula data on all adjacent systems.
-		// We're calling this after the SystemGenerateHook because the Expanse uses a SystemGenerateHook 
+		// We're calling this after the SystemGenerateHook because the Expanse uses a SystemGenerateHook
 		// to do system generation as opposed to using SystemGenerator's own code.
 		for(uint i = 0, cnt = desc.adjacent.length; i < cnt; ++i) {
 			SystemDesc@ other = getSystem(desc.adjacent[i]);

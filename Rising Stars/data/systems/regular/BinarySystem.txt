@@ -1,0 +1,16 @@
+System: BinarySystem
+	Inherit: BaseSystem
+	Frequency: 0.1
+
+	//RS - Scaling
+	MakeStar(Temperature = 7000:13000, Radius = 550:700, Suffix = A, Moves = True)
+	ExpandSystem(2000:2500)
+		SetupOrbit(Radius = 1500, Orbit Pct = 0.4)
+
+	//RS - Scaling
+	MakeStar(Temperature = 4000:9000, Radius = 350:600, Suffix = B, Moves = True)
+	ExpandSystem(4000)
+		SetupOrbit(Radius = 1500, Orbit Pct = 0.9)
+
+	RepeatModified(1:6, $PLANET_FREQUENCY)
+		MakePlanet()

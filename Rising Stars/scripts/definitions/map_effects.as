@@ -34,7 +34,10 @@ class MakeStar : MapHook {
 
 	Document doc("Creates a star in the system.");
 	Argument tempK("Temperature", AT_Range, doc="Star temperature in Kelvin.");
-	Argument rad("Radius", AT_Range, "100.0", doc="Raidus of the star");
+
+	//RS - Scaling
+	Argument rad("Radius", AT_Range, "1000.0", doc="Radius of the star");
+
 	Argument position("Position", AT_Position, "(0, 0, 0)", doc="Position relative to the center of the system to create the star.");
 	Argument suffix("Suffix", AT_Locale, "", doc="Suffix to append to the star name.");
 	Argument normalDist("NormalTempRange", AT_Boolean, "False", doc="Whether to use a normal or flat distribution for the star temperature.");
@@ -74,20 +77,24 @@ class MakeStar : MapHook {
 		star.finalizeCreation();
 		if(system !is null)
 			system.object.enterRegion(star);
-		
+
 		//Create star node
 		Node@ node = bindNode(star, "StarNode");
 		node.color = blackBody(temp, max((temp + 15000.0) / 40000.0, 1.0));
 		if(system !is null)
 			node.hintParentObject(system.object, false);
 
-		double hp = AVG_STAR_HEALTH * (radius / 75.0);
+		//RS - Scaling: rescale HP back to vanilla size ratio
+		double hp = AVG_STAR_HEALTH * (radius / 750.0);
 		star.Health = hp;
 		star.MaxHealth = hp;
 
 		//Create light
 		LightDesc lightDesc;
-		lightDesc.att_quadratic = 1.f/(2000.f*2000.f);
+
+		//RS - Scaling: increased light reach
+		lightDesc.att_quadratic = 1.f/(8000.f*8000.f);
+
 		lightDesc.position = vec3f(star.position);
 		lightDesc.diffuse = node.color * 1.0f;
 		lightDesc.specular = lightDesc.diffuse;
@@ -111,7 +118,10 @@ class MakeBlackhole : MapHook {
 	double BLACKHOLE_HEALTH = 200000000000;
 
 	Document doc("Creates a black hole in the system.");
-	Argument rad("Radius", AT_Range, "100.0", doc="Radius of the event horizon.");
+
+	//RS - Scaling
+	Argument rad("Radius", AT_Range, "1000.0", doc="Radius of the event horizon.");
+
 	Argument position("Position", AT_Position, "(0, 0, 0)", doc="Position relative to the center of the system to create the black hole.");
 
 #section server
@@ -138,7 +148,7 @@ class MakeBlackhole : MapHook {
 
 		star.Health = BLACKHOLE_HEALTH;
 		star.MaxHealth = BLACKHOLE_HEALTH;
-		
+
 		//Create star node
 		Node@ node = bindNode(star, "BlackholeNode");
 		node.color = blackBody(16000.0, max((16000.0 + 15000.0) / 40000.0, 1.0));
@@ -290,7 +300,7 @@ bool parseResourceSpec(array<const ResourceType@>@ resPossib, const string& v) {
 	}
 }
 
-//MakePlanet(<Resource> = Destributed, <Radius> = 6:14, <Orbit Spacing> = 125:275,
+//MakePlanet(<Resource> = Distributed, <Radius> = 6:14, <Orbit Spacing> = 125:275,
 //           <Grid Size> = (-1, -1))
 // Create a new planet with <Resource> and size <Radius>. Spaced in the orbit from
 // the last planet by <Orbit Spacing>.
@@ -303,8 +313,11 @@ class MakePlanet : MapHook {
 
 	Document doc("Create a new planet in the system.");
 	Argument resource(AT_Custom, "distributed", doc="The primary resource on the planet. 'distributed' to randomize.");
-	Argument radius(AT_Range, "6:14", doc="Size of the planet, can be a random range.");
-	Argument orbit_spacing(AT_Range, "125:275", doc="Distance from the previous planet.");
+
+	//RS - Scaling
+	Argument radius(AT_Range, "60:140", doc="Size of the planet, can be a random range.");
+	Argument orbit_spacing(AT_Range, "3600:6000", doc="Distance from the previous planet.");
+
 	Argument grid_size(AT_Position2D, "(-1, -1)", doc="Size of the planet's surface grid. (-1,-1) to randomize based on radius.");
 	Argument conditions(AT_Boolean, "True", doc="Whether to let the planet randomly generate a condition.");
 	Argument distribute_resource(AT_Boolean, "False", doc="Whether or not the selected resources should be frequency distributed.");
@@ -362,7 +375,7 @@ class MakePlanet : MapHook {
 
 		double angle = randomd(0,twopi);
 		vec3d offset(cos(angle) * pos, 0, sin(angle) * -pos);
-		
+
 		ObjectDesc planetDesc;
 		planetDesc.flags |= objNoDamage;
 		planetDesc.flags |= objMemorable;
@@ -382,13 +395,13 @@ class MakePlanet : MapHook {
 			appendRoman(data.planets.length + 1, planetDesc.name);
 		else
 			appendRoman(system.object.planetCount + 1, planetDesc.name);
-		
+
 		Planet@ planet = cast<Planet>(makeObject(planetDesc));
 		@planet.region = system.object;
 
 		if(data !is null)
 			data.planets.insertLast(planet);
-		
+
 		//Generate biomes
 		const Biome@ biome1;
 		if(resource is null) {
@@ -401,9 +414,14 @@ class MakePlanet : MapHook {
 		}
 		const Biome@ biome2 = getDistributedBiome();
 		const Biome@ biome3 = getDistributedBiome();
-		
+
 		//Figure out planet size
-		double sizeFact = clamp(radius / 10.0, 0.1, 5.0);
+		//RS - Scaling : rescale radius for grid size calculation
+		//min_planet_radius + 100 * (radius - min_planet_radius) / (max_planet_radius - min_planet_radius)
+		double scaledradius = 60 + 100 * (radius - 60) / 80;
+
+		double sizeFact = clamp(scaledradius / 100.0, 0.1, 5.0);
+
 		int gridW = round(AVG_PLANET_GRID_WIDTH * sizeFact);
 		int gridH = round(AVG_PLANET_GRID_HEIGHT * sizeFact);
 
@@ -416,19 +434,31 @@ class MakePlanet : MapHook {
 		//Figure out planet type
 		const PlanetType@ planetType = getBestPlanetType(biome1, biome2, biome3);
 		planet.PlanetType = planetType.id;
-		planet.OrbitSize = 100 + radius;
-		
+
+		//RS - Scaling: increased gravity well based on planet size
+		if (resource !is null && resource.name == "Ringworld")
+			//Ringworlds shouldn't have gravity wells as they have no center
+			//Gravity well is the star's
+			planet.OrbitSize = system.radius;
+		else
+		{
+			// Let's just say that planet volume governs gravity well size
+			double volume = pow(radius, 3.0) * 4 / 3 * pi;
+			// Apply a clever factor
+			planet.OrbitSize = pow(volume, 1.0/3.0) * 6;
+		}
+
 		//Setup orbit
 		planet.orbitAround(system.position, offset.length);
 		planet.orbitSpin(randomd(35.0, 90.0));
-		
-		//Create the planet surface;
+
+		//Create the planet surface
 		uint resId = uint(-1);
 		if(resource !is null)
 			resId = resource.id;
 		planet.initSurface(gridW, gridH, biome1.id, biome2.id, biome3.id, resId);
-			
-		//Make node		
+
+		//Make node
 		PlanetNode@ plNode = cast<PlanetNode>(bindNode(planet, "PlanetNode"));
 		plNode.establish(planet);
 		plNode.planetType = planet.PlanetType;
@@ -446,7 +476,7 @@ class MakePlanet : MapHook {
 		double health = AVG_PLANET_HEALTH * sizeFact;
 		planet.Health = health;
 		planet.MaxHealth = health;
-		
+
 		planet.finalizeCreation();
 
 		//Setup condition
@@ -877,7 +907,7 @@ class MakeAsteroid : MapHook {
 					else
 						@resource = resPossib[randomi(0, resPossib.length-1)];
 				}
-			
+
 				if(resource !is null) {
 					if(roid.getAvailableCostFor(resource.id) < 0.0)
 						roid.addAvailable(resource.id, resource.asteroidCost);
@@ -911,13 +941,13 @@ class MakeAsteroidBelt : MapHook {
 		double angle = randomd(0, twopi);
 		double totChance = config::ASTEROID_OCCURANCE + config::RESOURCE_ASTEROID_OCCURANCE;
 		double resChance = config::RESOURCE_ASTEROID_OCCURANCE;
-		
+
 		for(uint i = 0, cnt = arguments[0].integer; i < cnt; ++i) {
 			angle += twopi / double(cnt);
 			double ang = angle + randomd(-0.25,0.25) * twopi / double(cnt);
-		
+
 			vec3d pos = system.position + vec3d(cos(ang) * radius, randomd(-50.0, 50.0), sin(ang) * radius);
-			
+
 			Asteroid@ roid = createAsteroid(pos, system.object, delay=true);
 			roid.orbitAround(system.position);
 			roid.orbitSpin(randomd(20.0, 60.0));
@@ -1560,7 +1590,7 @@ void mapCopyRegion(SystemDesc@ from, SystemDesc@ to, uint typeMask = ~0) {
 		}
 		else if(obj.isPickup) {
 			Pickup@ base = cast<Pickup>(obj);
-			
+
 			Pickup@ pickup = createPickup(destPos, base.PickupType, defaultEmpire);
 			pickup.finalizeCreation();
 
