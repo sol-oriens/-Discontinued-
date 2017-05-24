@@ -6,7 +6,7 @@ v1.1.2
 
 [*] Buildings
 
-- Added Mining Complex, available to non-Ancient races. Adds 6 ore per minute generation to the planet.
+- Added Mining Complex, available to non-Ancient races. Adds 6 ore per minute generation to the planet and 2 labor pressure.
 
 [*] Subsystems
 
