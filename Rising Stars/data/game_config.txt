@@ -101,8 +101,11 @@ GFX_DISTANCE_MOD: 1.0
 //Time limit for the game
 GAME_TIME_LIMIT: 0
 
+//Whether quick start is activated
+QUICK_START: 0
+
 //Whether empires start with fleets
-DISABLE_STARTING_FLEETS: 0
+DISABLE_STARTING_FLEETS: 1
 
 //Whether the remnants are aggressive
 REMNANT_AGGRESSION: 0

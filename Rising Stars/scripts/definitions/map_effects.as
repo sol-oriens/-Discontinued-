@@ -971,6 +971,43 @@ class MakeAsteroidBelt : MapHook {
 #section all
 };
 
+//SetMine()
+// Set the previously generated asteroid as an owned mine for the current empire.
+class SetMine : MapHook {
+	#section server
+		void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
+			if (config::QUICK_START == 0)
+				return;
+			if(data.homeworlds is null || data.currentHomeworld is null)
+				return;
+
+			Empire@ emp = @data.currentHomeworld;
+			Object@ cur = current;
+			Asteroid@ roid = cast<Asteroid>(cur);
+			if (roid !is null) {
+				// Sometimes the resource is not yet created
+				// Wait a bit
+				sleep(1);
+				if (roid.getAvailableCount() > 0) {
+					setOnFirstResource(roid, emp);
+				}
+				else {
+					// Try again
+					sleep(5);
+					if (roid.getAvailableCount() > 0) {
+						setOnFirstResource(roid, emp);
+					}
+				}
+			}
+		}
+
+		void setOnFirstResource(Asteroid@ roid, Empire@ emp) {
+			uint resId = roid.getAvailable(0);
+			roid.setup(null, emp, resId);
+		}
+	#section all
+};
+
 //MakeAnomaly(<Type> = Distributed)
 // Generate a anomaly field in this system of type <Type>.
 class MakeAnomaly : MapHook {
@@ -1274,7 +1311,7 @@ class RepeatHomeworlds : BlockEffect {
 		if(data.homeworlds is null)
 			return;
 		for(uint n = 0, ncnt = data.homeworlds.length; n < ncnt; ++n) {
-			Empire@ emp = data.homeworlds[n];
+			Empire@ emp = @data.currentHomeworld = data.homeworlds[n];
 			for(uint i = 0, cnt = inner.length; i < cnt; ++i) {
 				auto@ cur = cast<IMapHook@>(inner[i]);
 				if(cur !is null)

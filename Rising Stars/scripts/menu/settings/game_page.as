@@ -32,6 +32,7 @@ class GamePage : GameSettingsPage {
 		Toggle(locale::NG_ENABLE_DREAD_PIRATE, "ENABLE_DREAD_PIRATE", halfWidth=true, tooltip=locale::NGTT_ENABLE_DREAD_PIRATE);
 		/*Toggle(locale::NG_ENABLE_CIVILIAN_TRADE, "ENABLE_CIVILIAN_TRADE", halfWidth=true);*/
 		Toggle(locale::NG_ENABLE_INFLUENCE_EVENTS, "ENABLE_INFLUENCE_EVENTS", halfWidth=true, tooltip=locale::NGTT_ENABLE_INFLUENCE_EVENTS);
+		Toggle(locale::NG_QUICK_START, "QUICK_START", halfWidth = true, tooltip=locale::NGTT_QUICK_START);
 		Toggle(locale::NG_DISABLE_STARTING_FLEETS, "DISABLE_STARTING_FLEETS", halfWidth=true, tooltip=locale::NGTT_DISABLE_STARTING_FLEETS);
 		Toggle(locale::NG_REMNANT_AGGRESSION, "REMNANT_AGGRESSION", halfWidth=true, tooltip=locale::NGTT_REMNANT_AGGRESSION);
 		Toggle(locale::NG_ALLOW_TEAM_SURRENDER, "ALLOW_TEAM_SURRENDER", halfWidth=true, tooltip=locale::NGTT_ALLOW_TEAM_SURRENDER);
@@ -71,7 +72,7 @@ class AdvancedGamePage : GameSettingsPage {
 			setMarkupTooltip(ele, tooltip, width=300);
 		options.insertLast(ele);
 		return ele;
-	}	
+	}
 
 	void makeSettings() {
 		color = colors::Orange;
@@ -79,11 +80,11 @@ class AdvancedGamePage : GameSettingsPage {
 		icon = Sprite(spritesheet::CardCategoryIcons, 5);
 
 		Description(locale::NG_ADVANCED_OPTIONS_DESC, 4);
-	
+
 		Title(locale::NG_UNIVERSE_GENERATION);
 		Occurance(locale::NG_PLANET_MOON_CHANCE, "PLANET_MOON_CHANCE", max = 0.5, tooltip=locale::NGTT_PLANET_MOON_CHANCE);
 		Occurance(locale::NG_PLANET_CONDITION_CHANCE, "PLANET_CONDITION_CHANCE", max = 1.0, tooltip=locale::NGTT_PLANET_CONDITION_CHANCE);
-		
+
 		emptyline();
 		Title(locale::NG_GAME_OPTIONS);
 		Toggle(locale::NG_HIDE_EMPIRE_RELATIONS, "HIDE_EMPIRE_RELATIONS", halfWidth=true, tooltip=locale::NGTT_HIDE_EMPIRE_RELATIONS);
@@ -121,7 +122,7 @@ class CrazyGamePage : GameSettingsPage {
 
 		emptyline();
 		Title(locale::NG_GAME_OPTIONS);
-		Number(locale::NG_ARTIFACTS_SEEDSHIP_DEATH, "ARTIFACTS_SEEDSHIP_DEATH", max=30, step=1, tooltip=locale::NGTT_ARTIFACTS_SEEDSHIP_DEATH); 
+		Number(locale::NG_ARTIFACTS_SEEDSHIP_DEATH, "ARTIFACTS_SEEDSHIP_DEATH", max=30, step=1, tooltip=locale::NGTT_ARTIFACTS_SEEDSHIP_DEATH);
 		Occurance(locale::NG_ASTEROID_COST_STEP, "ASTEROID_COST_STEP", max=3.0, tooltip=locale::NGTT_ASTEROID_COST_STEP);
 		Occurance(locale::NG_TERRAFORM_COST_STEP, "TERRAFORM_COST_STEP", max=3.0, tooltip=locale::NGTT_TERRAFORM_COST_STEP);
 		Occurance(locale::NG_ORBITAL_LABOR_COST_STEP, "ORBITAL_LABOR_COST_STEP", max=3.0, tooltip=locale::NGTT_ORBITAL_LABOR_COST_STEP);
