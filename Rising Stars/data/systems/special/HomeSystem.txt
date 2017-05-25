@@ -25,9 +25,14 @@ System: HomeSystem
 	MakePlanet(Water, Conditions = False, Moons = False)
 	MakePlanet(RandomLevel:1:Common, Conditions = False, Moons = False)
 		MakeMoon()
+	MakePlanet(RandomType:Food:Common, Conditions = False, Moons = False)
 
 	MakeAsteroid(Cargo = Ore, Cargo Amount = 6000)
+	MakeAsteroid(Cargo = Ore, Cargo Amount = 3500)
 	MakeAsteroid(Resource = Distributed)
+	MakeAsteroid(Resource = AsteroidFTLPermanent)
+
+	MakeAnomaly()
 
 	AddAdjacentArtifacts(2)
 	MakeAdjacentCreepCamp(SmallCamp, Place Far = True)

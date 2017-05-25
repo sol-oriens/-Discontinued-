@@ -12,3 +12,15 @@ v1.2
 - Decreased scale of ships by a factor of 0.5.
 - Increased default system spacing by a factor of 20.
 - Increased variance in planet count per system.
+- Home systems now have an additional food planet.
+- Home systems now have an additional ore asteroid.
+- Home systems now have an additional FTL crystals asteroid.
+- Home systems now have an additional anomaly.
+
+[*] Resources
+
+- FTL costs voluntarily unchanged to not disadvantage sublight races even more and force careful management of hyperspace travel.
+- Empires no longer start with any FTL generation or FTL storage regardless of FTL trait choice.
+- FTL shards asteroids now provide +1 FTL/s and permanently add 250 FTL storage.
+- Added FTL crystals asteroid: provides +1 FTL/s and add 250 FTL storage. Does not disappear (but can be captured). As noted above, empires start with one such asteroid in their home system.
+- FTL planets now provide +0.5/+1/+1.5/+2.5/+4/+7/+12 FTL/s.
