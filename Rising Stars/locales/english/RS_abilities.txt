@@ -5,22 +5,22 @@ ABL_SCUTTLEDERELICT_DESC: <<
 ABL_PROGENITOR_COMMANDCODES: Override Remnant Programming
 ABL_PROGENITOR_COMMANDCODES_DESC: <<
 	Using our command codes, we can access the control computers of Keeper fleets, overriding the ancient directives programmed by our ancestors so that they do our bidding.
-	
+
 	Properly reactivating the fleets will require some energy, though, and we do not have the codes for the great Guardians that watch over the Hubworlds.
 >>
 ABL_RECALL: Recall
 ABL_BOARDING_PARTY: Send Boarding Party
 ABL_BOARDING_PARTY_DESC: <<
 	Transports a boarding party to the target object, initiating a boarding action.
-	
+
 	Boarding takes between 10 (overwhelming force on either side) and 100 (completely equal numbers) seconds to complete. If the defenders are defeated, control of the object is immediately transferred to the attacking empire. If not, nothing happens.
-	
+
 	Only one boarding action can be running on an object at any given time, and Verdant-owned objects cannot be boarded. Boarding actions cannot be initiated by ships which are already being boarded. Asteroids and orbitals always have 100 boarding strength.
 >>
 ABL_RECALL_DESC: Opens a wormhole engulfing the target allied object and immediately depositing it in close proximity to the recalling object.
 ABL_PROTO_LEVEL3: Form Planet (Tier 3)
 ABL_PROTO_LEVEL3_DESC: Manipulate the planet's formation by expending a large amount of energy. The planet will produce a random tier 3 resource.
-ABL_TELESCOPEORE_DESC: Grants vision over the targeted system for 3 minutes. Can only target systems up to $1 units away.
+ABL_TELESCOPE_ARRAY_DESC: Grants vision over the targeted system for 3 minutes. Can only target systems up to $1 units away.
 ABL_REPAIR: Make Repairs
 ABL_REPAIR_DESC: Refits the ship, replacing damaged components to restore it to its original operational capacity.
 ABL_ADD_FLOATING_CONTINENT: Claim Floating Continent

@@ -974,38 +974,38 @@ class MakeAsteroidBelt : MapHook {
 //SetMine()
 // Set the previously generated asteroid as an owned mine for the current empire.
 class SetMine : MapHook {
-	#section server
-		void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
-			if (config::QUICK_START == 0)
-				return;
-			if(data.homeworlds is null || data.currentHomeworld is null)
-				return;
+#section server
+	void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
+		if (config::QUICK_START == 0)
+			return;
+		if(data.homeworlds is null || data.currentHomeworld is null)
+			return;
 
-			Empire@ emp = @data.currentHomeworld;
-			Object@ cur = current;
-			Asteroid@ roid = cast<Asteroid>(cur);
-			if (roid !is null) {
-				// Sometimes the resource is not yet created
-				// Wait a bit
-				sleep(1);
+		Empire@ emp = @data.currentHomeworld;
+		Object@ cur = current;
+		Asteroid@ roid = cast<Asteroid>(cur);
+		if (roid !is null) {
+			//Sometimes the resource is not yet created
+			//Wait a bit
+			sleep(1);
+			if (roid.getAvailableCount() > 0) {
+				setOnFirstResource(roid, emp);
+			}
+			else {
+				//Try again
+				sleep(5);
 				if (roid.getAvailableCount() > 0) {
 					setOnFirstResource(roid, emp);
 				}
-				else {
-					// Try again
-					sleep(5);
-					if (roid.getAvailableCount() > 0) {
-						setOnFirstResource(roid, emp);
-					}
-				}
 			}
 		}
+	}
 
-		void setOnFirstResource(Asteroid@ roid, Empire@ emp) {
-			uint resId = roid.getAvailable(0);
-			roid.setup(null, emp, resId);
-		}
-	#section all
+	void setOnFirstResource(Asteroid@ roid, Empire@ emp) {
+		uint resId = roid.getAvailable(0);
+		roid.setup(null, emp, resId);
+	}
+#section all
 };
 
 //MakeAnomaly(<Type> = Distributed)
