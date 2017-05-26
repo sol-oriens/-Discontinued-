@@ -5,6 +5,10 @@ v1.2
 - Added Quick Start: When toggled on, empires will be able to expand to other systems almost immediately instead of having to build a basic economy first. This reverts the now slower game start to more or less vanilla speed. This option is off by default.
 - Disable Starting Fleets is now on by default.
 
+[*] Orbitals
+- Subspace Telescope Array has been renamed to Quantum Telescope Array, has no maintenance cost anymore and can no longer move. Its Telescope ability now has a range of 1 million units and costs energy linearly relative to the target distance.
+- Added Telescope Array, which has 40% size, cost and Telescope power than the quantum version. Requires no ore but has a 40k maintenance cost. Primarily designed for early scouting, when interstellar travel is a problem, and border control.
+
 [*] Resources
 
 - FTL costs voluntarily unchanged to not disadvantage sublight races even more and force careful management of hyperspace travel.
