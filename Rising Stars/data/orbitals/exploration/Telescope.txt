@@ -24,7 +24,7 @@ Module: Telescope
 	ShowRange(400000, #00ff00)
 	GrantAbility(TelescopeArray)
 
-Module: Telescope
+Module: QuantumTelescope
 	Name: #ORB_QUANTUM_TELESCOPE
 	Blurb: #ORB_QUANTUM_TELESCOPE_BLURB
 	Description: #ORB_QUANTUM_TELESCOPE_DESC

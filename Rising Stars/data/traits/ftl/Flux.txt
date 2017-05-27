@@ -34,10 +34,9 @@ Trait: Flux
 
 	GrantVisionTradeRange()
 
-	SpawnOrbital(Telescope, Free = True)
+	SpawnOrbital(QuantumTelescope, Free = True)
 	RemoveTechnologyNodes(FlingBeacons)
 	RemoveTechnologyNodes(SS)
 	RemoveTechnologyNodes(GateTech)
 	RemoveTechnologyNodes(Hyperdrive)
 	RemoveTechnologyNodes(Jumpdrive)
-	AddFTLStorage(250)
