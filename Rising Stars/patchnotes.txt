@@ -2,11 +2,12 @@ v1.2
 
 [*] Game Options
 
-- Added Quick Start: When toggled on, empires will be able to expand to other systems almost immediately instead of having to build a basic economy first. This reverts the now slower game start to more or less vanilla speed. This option is off by default.
+- Added Quick Start: when toggled on, empires will be able to expand to other systems almost immediately instead of having to build a basic economy first. This reverts the now slower game start to more or less vanilla speed. This option is off by default.
 - Disable Starting Fleets is now on by default.
+- Added Supermassive Black Holes: when toggled on, black holes at the center of galaxies are supermassive and thus much bigger. Much. BIGGER. (And make an equally bigger boom.)
 
 [*] Orbitals
-- Subspace Telescope Array has been renamed to Quantum Telescope Array, has no maintenance cost anymore and can no longer move. Its Telescope ability now has a range of 1 million units and costs energy linearly relative to the target distance.
+- Subspace Telescope Array has been renamed to Quantum Telescope Array, has no maintenance cost anymore and can no longer move. Its Telescope ability now has a range of 1 million units and it now costs an amount of energy linearly relative to the target distance.
 - Added Telescope Array, which has 40% size, cost and Telescope power than the quantum version. Requires no ore but has a 40k maintenance cost. Primarily designed for early scouting, when interstellar travel is a problem, and border control.
 
 [*] Resources
@@ -20,15 +21,15 @@ v1.2
 [*] Systems
 
 - Increased scale of the galaxy based on dolynick's outstanding work with DOF, with some differences and additional balance to achieve a more realistic feel, slow expansion down and make the game a bit more system-centric.
-
-*** The increased scale of gas sprites might impact system performances when playing with lots of stars and / or nebulae. Consider turning galaxy gas off if you experience stuttering.
-
+*** The increased scale of gas sprites strongly impacts system performances when playing with lots of stars and / or nebulae. Consider turning galaxy gas off if you experience stuttering.
 - Increased scale of stars by a factor of 10.
 - Increased scale of planets by a factor of 10.
-- Increased scale of planet gravity wells by a factor relative to its planet's size
+- Increased scale of planet gravity wells by a factor relative to its planet's mass.
 - Decreased scale of ships by a factor of 0.5.
 - Increased default system spacing by a factor of 20.
-- Increased variance in planet count per system.
+- Increased variation in vertical spacing of systems in the core of spiral galaxies.
+- Increased variation in planet number per system.
+*** The massive scale of the supermassive black holes accretion disks slightly impacts system performances. Consider turning this option off if you experience stuttering.
 - Empires now have an additional food planet in their home system.
 - Empires now have an additional an additional ore asteroid in their home system.
 - Empires now have an additional an additional FTL crystals asteroid in their home system. A mine is prebuilt if the Quick Start game option is toggled on. This effectively reverts the starting FTL generation and FTL storage to vanilla values.

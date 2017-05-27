@@ -4,9 +4,11 @@ System: AncientSystem
 
 	//RS - Scaling
 	MakeStar(Temperature = 1000:2500, Radius = 1250:2000)
-	ExpandSystem(3000:3500)
+	ExpandSystem(1000:3000)
 
 	AddQuality(+100)
 
 	RepeatModified(1:4, $PLANET_FREQUENCY)
 		MakePlanet()
+
+	ExpandSystem(2000)

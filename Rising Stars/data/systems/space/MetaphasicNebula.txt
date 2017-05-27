@@ -2,7 +2,7 @@ System: MetaphasicNebula
 	Frequency: 0
 
 	//RS - Scaling
-	ExpandSystem(10000:20000)
+	ExpandSystem(10000:40000)
 
 	Repeat(1:6)
 		MakeAnomaly()

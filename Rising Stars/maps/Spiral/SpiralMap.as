@@ -61,8 +61,12 @@ class SpiralMap : Map {
 		double systemSpacing = modSpacing(getSetting(M_SystemSpacing, DEFAULT_SPACING));
 
 		//RS - Scaling
-		const double coreHeightVariation = flatten ? 0.0 : 20000.0;
+		const double coreHeightVariation = flatten ? 0.0 : 36000.0;
 		const double heightVariation = flatten ? 0.0 : 12000.0;
+
+		//RS - Scaling: apply a facor to system spacing to make room for the supermassive blackhole
+		if(systemCount > 50 && config::SUPERMASSIVE_BLACK_HOLES > 0)
+			systemSpacing *= 3;
 
 		const double spiralBase = systemSpacing * double(systemCount) / 75.0;
 		const double spiralCurve = 0.5;
@@ -78,7 +82,7 @@ class SpiralMap : Map {
 		coreSystems -= 1;
 		double coreRingDist = 0.0;
 
-		//Create a bar until we can create a ring with a nice thicknes/radius ratio
+		//Create a bar until we can create a ring with a nice thickness / radius ratio
 		{
 			const double barAngle = randomd(0,pi);
 
@@ -98,6 +102,11 @@ class SpiralMap : Map {
 				coreSystems -= 2;
 				minRadius += systemSpacing;
 				maxRadius = sqrt(goalArea/pi - minRadius*minRadius);
+			}
+
+			//RS - Scaling: return system spacing back to the original value
+			if(systemCount > 50 && config::SUPERMASSIVE_BLACK_HOLES > 0) {
+				systemSpacing /= 3;
 			}
 
 			uint ring = 1;

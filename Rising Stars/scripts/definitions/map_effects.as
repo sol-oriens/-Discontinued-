@@ -10,7 +10,7 @@ import pickups;
 import block_effects;
 import artifacts;
 import statuses;
-from map_systems import IMapHook, MapHook;
+from map_systems import IMapHook, MapHook, getSystemType;
 import generic_hooks;
 from resources import RARITY_DISTRIBUTION;
 import cargo;
@@ -120,7 +120,7 @@ class MakeBlackhole : MapHook {
 	Document doc("Creates a black hole in the system.");
 
 	//RS - Scaling
-	Argument rad("Radius", AT_Range, "1000.0", doc="Radius of the event horizon.");
+	Argument rad("Radius", AT_Range, "180.0:200.0", doc="Radius of the event horizon.");
 
 	Argument position("Position", AT_Position, "(0, 0, 0)", doc="Position relative to the center of the system to create the black hole.");
 
@@ -128,6 +128,14 @@ class MakeBlackhole : MapHook {
 	void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
 		double radius = arguments[0].fromRange();
 		vec3d pos = arguments[1].fromPosition();
+
+		// RS - Scaling: make supermassive black holes supermassive
+		double healthFactor = 1.0;
+		if(config::SUPERMASSIVE_BLACK_HOLES > 0 && getSystemType(data.systemType) is getSystemType("CoreBlackhole")) {
+			radius = radius * 50;
+			system.radius += 155000;
+			healthFactor = 50.0;
+		}
 
 		//Create star
 		ObjectDesc starDesc;
@@ -146,8 +154,8 @@ class MakeBlackhole : MapHook {
 		star.finalizeCreation();
 		system.object.enterRegion(star);
 
-		star.Health = BLACKHOLE_HEALTH;
-		star.MaxHealth = BLACKHOLE_HEALTH;
+		star.Health = BLACKHOLE_HEALTH * healthFactor;
+		star.MaxHealth = BLACKHOLE_HEALTH * healthFactor;
 
 		//Create star node
 		Node@ node = bindNode(star, "BlackholeNode");
@@ -316,7 +324,7 @@ class MakePlanet : MapHook {
 
 	//RS - Scaling
 	Argument radius(AT_Range, "60:140", doc="Size of the planet, can be a random range.");
-	Argument orbit_spacing(AT_Range, "3600:6000", doc="Distance from the previous planet.");
+	Argument orbit_spacing(AT_Range, "2800:4000", doc="Distance from the previous planet.");
 
 	Argument grid_size(AT_Position2D, "(-1, -1)", doc="Size of the planet's surface grid. (-1,-1) to randomize based on radius.");
 	Argument conditions(AT_Boolean, "True", doc="Whether to let the planet randomly generate a condition.");
@@ -416,7 +424,7 @@ class MakePlanet : MapHook {
 		const Biome@ biome3 = getDistributedBiome();
 
 		//Figure out planet size
-		//RS - Scaling : rescale radius for grid size calculation
+		//RS - Scaling: rescale radius for grid size calculation
 		//min_planet_radius + 100 * (radius - min_planet_radius) / (max_planet_radius - min_planet_radius)
 		double scaledradius = 60 + 100 * (radius - 60) / 80;
 
@@ -442,9 +450,10 @@ class MakePlanet : MapHook {
 			planet.OrbitSize = system.radius;
 		else
 		{
-			// Let's just say that planet volume governs gravity well size
+			// Planet volume is generally related to mass which governs gravity well size
+			// Get the planet volume
 			double volume = pow(radius, 3.0) * 4 / 3 * pi;
-			// Apply a clever factor
+			// Apply a cube root and a clever factor
 			planet.OrbitSize = pow(volume, 1.0/3.0) * 6;
 		}
 

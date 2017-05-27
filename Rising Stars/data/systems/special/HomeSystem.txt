@@ -5,7 +5,7 @@ System: HomeSystem
 		BonusHealth(20000000000)
 
 		//RS - Scaling
-		ExpandSystem(1850 : 2350)
+		ExpandSystem(1000:3000)
 
 	RepeatHomeworlds()
 
@@ -45,3 +45,5 @@ System: HomeSystem
 	GuaranteeAdjacentResource(RandomType:Food:Common, Distance = 2)
 	GuaranteeAdjacentResource(RandomType:Food:Common, Distance = 2)
 	GuaranteeAdjacentResource(Water, Distance = 2)
+
+	ExpandSystem(2000)

@@ -25,6 +25,7 @@ class GamePage : GameSettingsPage {
 		Occurance(locale::NG_CIVILIAN_TRADE, "CIVILIAN_TRADE_MULT", max=10.0, tooltip=locale::NGTT_CIVILIAN_TRADE);
 		Frequency(locale::NG_ARTIFACT_FREQUENCY, "ARTIFACT_FREQUENCY", min = 0.2, max = 3.0);
 		Frequency(locale::NG_SYSTEM_SIZE, "SYSTEM_SIZE", min = 0.2, max = 3.0);
+		Toggle(locale::NG_SUPERMASSIVE_BLACK_HOLES, "SUPERMASSIVE_BLACK_HOLES", halfWidth=true, tooltip=locale::NGTT_SUPERMASSIVE_BLACK_HOLES);
 
 		emptyline();
 		Title(locale::NG_GAME_OPTIONS);

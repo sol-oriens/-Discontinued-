@@ -2,7 +2,7 @@ System: MetreonNebula
 	Frequency: 0
 
 	//RS - Scaling
-	ExpandSystem(10000:20000)
+	ExpandSystem(10000:40000)
 
 	Repeat(2:5)
 		MakeAnomaly()

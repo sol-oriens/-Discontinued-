@@ -4,9 +4,11 @@ System: YoungSystem
 
 	//RS - Scaling
 	MakeStar(Temperature = 6000:29800, Radius = 850:1650, NormalTempRange = true)
-	ExpandSystem(2650:3150)
+	ExpandSystem(1000:3000)
 
 	AddQuality(-100)
 
 	RepeatModified(2:8, $PLANET_FREQUENCY)
 		MakePlanet()
+
+	ExpandSystem(2000)

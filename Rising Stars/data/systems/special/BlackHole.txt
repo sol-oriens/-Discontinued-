@@ -2,7 +2,7 @@ System: BlackHole
 	Frequency: 0
 
 	//RS - Scaling
-	MakeBlackhole(Radius = 200.0)
+	MakeBlackhole()
 	ExpandSystem(5000)
 
 	RepeatModified(1, $PLANET_FREQUENCY)

@@ -15,8 +15,8 @@ final class GasSprite {
 	GasSprite(const vec3d& pos, double Scale, uint col, bool structured, int baseAlpha = 0) {
 		position = pos;
 
-		//RS - Scaling
-		scale = Scale * 60.0;
+		//RS - Scaling: scale the galaxy gas a bit bigger than general scale to obtain a thicker gas plane
+		scale = Scale * 2.0 * 25.0;
 
 		baseCol = col & 0xffffff00;
 		trueAlpha = int(col & 0xff);

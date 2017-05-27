@@ -49,7 +49,7 @@ class ClustersMap : Map {
 		double nebulaFreq = getSetting(M_NebulaFreq, 0.2f);
 		bool hasAnomalies = nebulaFreq > 0.0;
 		bool flatten = getSetting(M_Flatten, 0.0) != 0.0;
-		
+
 		auto@ anomalyList = getSystemList("SpatialAnomaly");
 		hasAnomalies = hasAnomalies && anomalyList !is null;
 
@@ -59,8 +59,18 @@ class ClustersMap : Map {
 		uint sysPerRoom = max(double(systemCount) / double(roomCnt) - double(corridorLength), 4.0);
 		if(sysPerRoom % 2 != 0)
 			sysPerRoom -= 1;
+
 		double roomRadius = spacing * 1.5 * sqrt(double(sysPerRoom)) + spacing;
+
+		//RS - Scaling: apply a factor to center room radius to make room for the supermassive blackhole
+		double centerSpacing = spacing * 3;
+		double centerRoomRadius = roomRadius;
+		if(config::SUPERMASSIVE_BLACK_HOLES > 0)
+			centerRoomRadius = centerSpacing * 1.5 * sqrt(double(sysPerRoom)) + centerSpacing;
+
+		//RS - Scaling: this is not used, so no scaling needed
 		double glxRadius = roomRadius * sqrt(double(roomCnt));
+
 		double roomHeightVar = flatten ? 0.0 : roomRadius * 0.2;
 		double sysHeightVar = flatten ? 0.0 : spacing * 0.25;
 
@@ -127,6 +137,13 @@ class ClustersMap : Map {
 			}
 
 			//Proceed to next room position
+			//RS - Scaling: rescale the supermassive black hole system radius
+			double tmpRadius = 0.0;
+			if(roomCnt - i - 1 > 0 && config::SUPERMASSIVE_BLACK_HOLES > 0) {
+				tmpRadius = roomRadius;
+				roomRadius = centerRoomRadius;
+			}
+
 			angle += angleStep;
 			if(angle + angleStep > twopi) {
 				angle = 0.0;
@@ -143,6 +160,10 @@ class ClustersMap : Map {
 				@circleStart = null;
 				circleCnt = 0;
 			}
+
+			//RS - Scaling: return radius back to the original value
+			if(roomCnt - i - 1 > 0 && config::SUPERMASSIVE_BLACK_HOLES > 0)
+				roomRadius = tmpRadius;
 		}
 
 		//Generate systems
@@ -223,17 +244,27 @@ class ClustersMap : Map {
 				}
 
 				//Proceed to next system position
+				//RS - Scaling: rescale the supermassive black hole system spacing
+				double tmpSpacing = 0.0;
+				if(i == 0 && n == 0 && config::SUPERMASSIVE_BLACK_HOLES > 0) {
+					tmpSpacing = spacing;
+					spacing = centerSpacing;
+				}
+
 				angle += angleStep;
 				if(angle + angleStep > twopi) {
 					angle = 0.0;
 					radius += spacing;
 					startAngle = randomd(0.0, twopi);
-
 					anglePct = (spacing / (2.0 * pi * radius));
 					if(sysPerRoom - n - 1 > 0)
 						angleStep = max(anglePct * twopi, twopi / double(sysPerRoom - n - 1));
 					circle += 1;
 				}
+
+				//RS - Scaling: return system spacing back to the original value
+				if(i == 0 && n == 0 && config::SUPERMASSIVE_BLACK_HOLES > 0)
+					spacing = tmpSpacing;
 			}
 		}
 

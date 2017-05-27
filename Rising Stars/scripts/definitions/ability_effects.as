@@ -1243,7 +1243,7 @@ class SpawnStarAt : AbilityHook {
 	Document doc("Spawn a new star at the target position.");
 	Argument destination(TT_Point);
 
-	//RS - Scaling: For some reason this value has to be about x3 as large as it should be
+	//RS - Scaling: (dolynick) for some reason this value has to be about x3 as large as it should be
 	Argument system_radius(AT_Range, "22500", doc="Radius of the created system, if in open space.");
 
 #section server
