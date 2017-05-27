@@ -29,7 +29,7 @@ v1.2
 - Increased default system spacing by a factor of 20.
 - Increased variation in vertical spacing of systems in the core of spiral galaxies.
 - Increased variation in planet number per system.
-- Black holes in the core of spiral galaxies are now supermassive if the Supermassive Black Holes game option is toggled on.
+- Black holes in the core of spiral and cluster galaxies are now supermassive if the Supermassive Black Holes game option is toggled on.
 *** The massive scale of the supermassive black holes accretion disks slightly impacts system performances. Consider turning this option off if you experience stuttering.
 - Empires now have an additional food planet in their home system.
 - Empires now have an additional an additional ore asteroid in their home system.
