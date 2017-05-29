@@ -45,8 +45,13 @@ NGTT_FTL_MULT: <<
 NG_LEGACY_EXPLORATION: Legacy Exploration Mode
 NGTT_LEGACY_EXPLORATION: <<
 	When checked, entering a non-nebula system will immediately reveal everything inside, as if it were an unmodified game of Star Ruler 2.
-	
+
 	Sight range modifiers of all kinds will still take effect, though, making sensors useful when flying inside nebulae, flying a cloaked ship, or when searching for objects in interstellar space.
+>>
+
+NG_AUTO_CLAIM_NEBULAE: Automatically Claim Spatial Anomalies
+NGTT_AUTO_CLAIM_NEBULAE: <<
+	When toggled on, spatial anomalies in your tradable area will automatically be claimed into your territory.
 >>
 
 NG_ADVANCED_OPTIONS: Advanced Options
@@ -147,7 +152,7 @@ DOF_MISSING_STEAM: <<
 	[bbloc=#DOF_MISSING_BASE/]
 
 	You can download the library from the Steam Workshop [b](recommended)[/b] at
-	[b]http://steamcommunity.com/sharedfiles/filedetails/?id=505348416[/b], 
+	[b]http://steamcommunity.com/sharedfiles/filedetails/?id=505348416[/b],
 	or get the .zip file from dolynick's website at [b]http://www.olynick.net/sr2/mods/DOFShipsetCommonLibrary.zip[/b].
 >>
 DOF_MISSING_OTHER: <<

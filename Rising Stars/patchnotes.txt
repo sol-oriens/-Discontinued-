@@ -1,15 +1,21 @@
 v1.1.2
 
-[*] Balance
+[*] Artificial Intelligence
 
-- Removed the 90% maintenance cost reduction for Miner Hull. Extensive mining infrastructures should have a cost and in addition it made possible to maintain any unarmed unsupported flagship (like scouts or slipstream ships) basically for free.
+- Most AIs are now able to build outposts and expand beyond systems without planets. Some specific AIs (Star Children, Evangelists) cannot yet.
 
 [*] Buildings
 
 - Added Mining Complex, available to non-Ancient races. Adds 6 ore per minute generation to the planet and 2 labor pressure.
 
+[*] Game Options
+
+- Added Automatically Claim Spatial Anomalies: When toggled on, spatial anomalies in your tradable area will automatically be claimed into your territory. Toggled on by default.
+*** This adds the possibility to deactivate the script created by Dalo Lorn, which might not suit everyone and is still buggy. AI expansion will not be hindered as they can now build outposts.
+
 [*] Subsystems
 
+- Removed the 90% maintenance cost reduction for Miner Hull. Extensive mining infrastructures should have a cost and in addition it made possible to maintain any unarmed unsupported flagship (like scouts or slipstream ships) basically for free.
 - Added support Muon Cannon back to the mod and rebalanced it accordingly. Now Renamed to Muon Projector.
 - Muon Cannon Battery renamed to Muon Projector Battery.
 - Added Carpet Bomb back to the mod with supply cost doubled.

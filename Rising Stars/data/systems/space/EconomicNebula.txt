@@ -1,8 +1,8 @@
 System: EconomicNebula
 	Frequency: 0
-	
+
 	ExpandSystem(1000)
-	
+
 	Repeat(2:5)
 		MakeAnomaly()
 	Repeat(0:3)
@@ -13,12 +13,12 @@ System: EconomicNebula
 		MakeAsteroid(Resource = NativeGold:RareMetals)
 	Repeat(1:3)
 		MakeCreepCamp(Offset = 700)
-		
+
 	MakeNebula(#feadc4)
-	
+
 	AddRegionStatus(Economic)
 	ABEM_nebulae::SetGlobalSystemFlag(EconomicNebula)
 	ABEM_nebulae::SetGlobalSystemFlag(IsNebula)
-	
+
 	NoRegionVision()
 	SetStaticSeeableRange(1000*$SENSOR_RANGE_MULT)

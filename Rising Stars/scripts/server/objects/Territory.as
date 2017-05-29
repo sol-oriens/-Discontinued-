@@ -62,13 +62,15 @@ tidy class TerritoryScript {
 			Region@ region = regions[i];
 			node.addInner(region.id, region.position, region.radius);
 			inner.insert(region.id);
-			
-			if(region.isNebula && region.macronebula is null)
-				region.initMacronebula();
 
-			if(region.macronebula !is null && !nebulae.contains(region.macronebula.id)) {
-				//print("PostLoad: Adding macronebula " + region.macronebula.id);
-				addNebula(obj, region.macronebula);
+			if (config::AUTO_CLAIM_NEBULAE > 0) {
+				if(region.isNebula && region.macronebula is null)
+					region.initMacronebula();
+
+				if(region.macronebula !is null && !nebulae.contains(region.macronebula.id)) {
+					//print("PostLoad: Adding macronebula " + region.macronebula.id);
+					addNebula(obj, region.macronebula);
+				}
 			}
 
 			if(edges.contains(region.id)) {
@@ -86,11 +88,11 @@ tidy class TerritoryScript {
 					continue;
 				if(edges.contains(other.object.id))
 					continue;
-					
-				if(other.object.isNebula && other.object.macronebula is null)
+
+				if(config::AUTO_CLAIM_NEBULAE > 0 && other.object.isNebula && other.object.macronebula is null)
 					other.object.initMacronebula();
 
-				if(other.object.macronebula !is null && !nebulae.contains(other.object.macronebula.id)) {
+				if(config::AUTO_CLAIM_NEBULAE > 0 && other.object.macronebula !is null && !nebulae.contains(other.object.macronebula.id)) {
 					//print("PostLoad: Adding adjacent macronebula " + other.object.macronebula.id);
 					addNebula(obj, other.object.macronebula);
 					continue;
@@ -111,21 +113,21 @@ tidy class TerritoryScript {
 				node.addInner(region.id, region.position, region.radius);
 		}
 	}
-	
+
 	void addNebula(Territory& obj, Macronebula@ macronebula) {
 		nebulae.insert(macronebula.id);
 		macronebula.claimMacronebula(obj);
-		
+
 		for(uint i = 0, cnt = macronebula.nebulaCount; i < cnt; ++i) {
 			Region@ nebula = macronebula.nebulae[i];
 			//print("Adding nebula ID " + nebula.SystemId + " from macronebula ID " + macronebula.id + " to empire ID " + obj.owner.id + " (" + obj.owner.name + ").");
 			nebula.TradeMask |= obj.owner.mask;
 			add(obj, nebula);
 		}
-		
+
 		addNebulaEdges(obj, macronebula);
 	}
-	
+
 	void addNebulaEdges(Territory& obj, Macronebula@ macronebula) {
 		for(uint i = 0, cnt = macronebula.edgeCount; i < cnt; ++i) {
 			Region@ edge = macronebula.edges[i];
@@ -137,11 +139,11 @@ tidy class TerritoryScript {
 			node.addEdge(edge.id, edge.position, edge.radius);
 		}
 	}
-	
+
 	bool canRemoveNebula(Territory& obj, Macronebula@ macronebula) {
 		if(!nebulae.contains(macronebula.id))
 			return true; // We have already removed this nebula after an earlier canRemoveNebula() call, don't bother...
-	
+
 		for(uint i = 0, cnt = macronebula.edgeCount; i < cnt; ++i) {
 			Region@ edge = macronebula.edges[i];
 			SystemDesc@ desc = getSystem(edge.SystemId);
@@ -151,20 +153,20 @@ tidy class TerritoryScript {
 		}
 		return true; // None of the macronebula's edges are owned by the empire, we can safely wipe it out.
 	}
-	
+
 	void removeNebula(Territory& obj, Macronebula@ macronebula) {
 		nebulae.erase(macronebula.id);
 		macronebula.unclaimMacronebula(obj);
-		
+
 		removeNebulaEdges(obj, macronebula);
-		
+
 		for(uint i = 0, cnt = macronebula.nebulaCount; i < cnt; ++i) {
 			Region@ nebula = macronebula.nebulae[i];
 			nebula.TradeMask &= ~obj.owner.mask;
 			remove(obj, nebula);
 		}
 	}
-	
+
 	void removeNebulaEdges(Territory& obj, Macronebula@ macronebula) {
 		for(uint i = 0, cnt = macronebula.edgeCount; i < cnt; ++i) {
 			Region@ edge = macronebula.edges[i];
@@ -234,7 +236,7 @@ tidy class TerritoryScript {
 			node.removeEdge(region.id);
 			edges.erase(region.id);
 		}
-		
+
 		if(region.macronebula !is null) {
 			return; // Add the macronebula's edges through a more streamlined function.
 		}
@@ -250,7 +252,7 @@ tidy class TerritoryScript {
 			if(edges.contains(other.object.id))
 				continue;
 
-			if(other.object.macronebula !is null && !nebulae.contains(other.object.macronebula.id))
+			if(config::AUTO_CLAIM_NEBULAE > 0 && other.object.macronebula !is null && !nebulae.contains(other.object.macronebula.id))
 				addNebula(obj, other.object.macronebula);
 			else { // addNebula() will add this edge as well, no need to worry.
 				edges.insert(other.object.id);
@@ -271,7 +273,7 @@ tidy class TerritoryScript {
 		inner.erase(region.id);
 		regions.remove(region);
 		regionDelta = true;
-		
+
 		if(region.macronebula !is null)
 			return; // Remove the macronebula's edges through a more streamlined function. The macronebula itself can never be a territory edge, so the rest of this is irrelevant.
 
@@ -281,16 +283,16 @@ tidy class TerritoryScript {
 		for(uint i = 0, cnt = desc.adjacent.length; i < cnt; ++i) {
 			uint adj = desc.adjacent[i];
 			SystemDesc@ other = getSystem(adj);
-			
+
 			// This isn't necessarily true, but if we're not adjacent to -any- nebulae,
 			// then we want to ignore this condition, so...
 			bool adjacentNebulaIsUnowned = false;
-			
+
 			if(other.object.macronebula !is null) {
 				// We have already removed this system from the 'inner' list,
 				// and if no other edges are on that list we will know we can remove the nebula.
-				adjacentNebulaIsUnowned = canRemoveNebula(obj, other.object.macronebula); 
-				if(adjacentNebulaIsUnowned)
+				adjacentNebulaIsUnowned = canRemoveNebula(obj, other.object.macronebula);
+				if(config::AUTO_CLAIM_NEBULAE > 0 && adjacentNebulaIsUnowned)
 					removeNebula(obj, other.object.macronebula);
 			}
 

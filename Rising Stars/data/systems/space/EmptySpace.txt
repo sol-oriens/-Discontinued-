@@ -1,8 +1,8 @@
 System: EmptySpace
 	Frequency: 0
-	
+
 	ExpandSystem(1000)
-	
+
 	Repeat(1:4)
 		MakeAnomaly()
 	Repeat(0:2)
@@ -11,6 +11,7 @@ System: EmptySpace
 		MakeAsteroid(Cargo = Ore, Resource = Distributed)
 	Repeat(0:2)
 		MakeCreepCamp(Offset = 700)
-		
+
 	AddRegionStatus(EmptySpace)
+	ABEM_nebulae::SetGlobalSystemFlag(EmptySpace)
 	ABEM_nebulae::SetGlobalSystemFlag(IsNebula) // It's not technically a nebula, but it's a nebula. :P

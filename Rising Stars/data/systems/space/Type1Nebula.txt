@@ -16,6 +16,7 @@ System: Type1Nebula
 		MakeCreepCamp(Offset = 1200)
 
 	AddRegionStatus(Type1Nebula) // Hides stuff, but not as badly as a Mutara nebula.
+	ABEM_nebulae::SetGlobalSystemFlag(Type1Nebula)
 	ABEM_nebulae::SetGlobalSystemFlag(IsNebula)
 
 	NoRegionVision()

@@ -46,3 +46,5 @@ Module: TradeOutpost
 	ABEM_races::IfRace(OnEnable(SpawnOrbital(Temple)), Evangelical, #RACE_SAAR)
 	ABEM_races::IfRace(OnEnable(Destroy(Quiet = True)), Evangelical, #RACE_SAAR)
 	GiveTrade()
+
+	AI: RegisterForUse(TradeOutpost)
