@@ -6,7 +6,7 @@ v1.1.2
 
 [*] Buildings
 
-- Added Mining Complex, available to non-Ancient races. Adds 6 ore per minute generation to the planet and 2 labor pressure.
+- Added Mining Complex, available to non-Ancient races. Adds an Ore resource that can be exported and generates 10 ore per minute at its destination. Unlike the Ancient, ore is not moved on export. High build and maintenance costs.
 
 [*] Game Options
 

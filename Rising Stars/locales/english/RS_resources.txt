@@ -202,3 +202,11 @@ TECHNOFARM_DESC: <<
 
 	Cannot be exported.
 >>
+R_ORE_RATE: Ore
+R_ORE_RATE_DESC: <<
+	Generates 10 Ore per minute. Can be exported to other planets.
+>>
+R_ORE_RATE_ANCIENT: Ore
+R_ORE_RATE_ANCIENT_DESC: <<
+	Generates 60 Ore per minute. Can be exported to other planets.
+>>

@@ -7,15 +7,17 @@ Building: Mine
 	Build Affinity: Mountains
 	Maintenance Affinity: Mountains
 
-	Size: 3x3
+	Size: 6x3
 	Base Cost: 240
-	Tile Cost: 10
-	Build Time: 360
-	Base Maintenance: 120
-	Tile Maintenance: 20
+	Tile Cost: 20
+	Build Time: 720
+	Base Maintenance: 230
+	Tile Maintenance: 15
 
+	RequireNotStatus(Ringworld)
+	RequireNotStatus(ArtificialPlanetoid)
 	RequireNotTrait(Ancient)
 
-	TriggerPeriodic(AddCargo(Ore, 1), Interval = 6)
+	AddPlanetResource(OreRate)
 
 	AddPressure(Labor, 2)
