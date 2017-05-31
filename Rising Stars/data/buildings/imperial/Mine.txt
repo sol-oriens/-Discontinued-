@@ -9,10 +9,10 @@ Building: Mine
 
 	Size: 6x3
 	Base Cost: 240
-	Tile Cost: 20
-	Build Time: 720
-	Base Maintenance: 230
-	Tile Maintenance: 15
+	Tile Cost: 10
+	Build Time: 540
+	Base Maintenance: 160
+	Tile Maintenance: 10
 
 	RequireNotStatus(Ringworld)
 	RequireNotStatus(ArtificialPlanetoid)
@@ -21,3 +21,7 @@ Building: Mine
 	AddPlanetResource(OreRate)
 
 	AddPressure(Labor, 2)
+	IfNative(Aluminium, ImproveNativeResourcePressure(2))
+	IfNative(Iron, ImproveNativeResourcePressure(2))
+	IfNative(Titanium, ImproveNativeResourcePressure(2))
+	IfNative(Supercarbons, ImproveNativeResourcePressure(2))

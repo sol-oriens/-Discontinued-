@@ -1,9 +1,10 @@
 BLD_MINE: Mining Complex
 BLD_MINE_DESC: <<
-	[color=#aaa][i]An enormous installation blanketed with unending galleries and deep bore holes, some of them extending down to the core of the planet, used to extract ore and construction materials. While not nearly as effective as asteroid mining, planet mining is an order of magnitude easier from a logistical standpoint.[/i][/color]
+	[color=#aaa][i]An enormous installation blanketed with unending galleries and deep bore holes, some of them extending down to the core of the planet, used to extract ore, construction materials and any other useful resource. While not nearly as effective as asteroid mining, planet mining is an order of magnitude easier from a logistical standpoint.[/i][/color]
 
 	Adds an Ore resource that can be exported and generates [b]10 ore per minute[/b] at its destination.
 	Adds 2 labor pressure.
+	Increases the pressure given by native Aluminium, Iron, Titanium or Supercarbons by 2.
 >>
 BLD_LABORCAMP: Xenomanufacturing Center
 BLD_SLAVECAMP: Xenoindustrial Sector

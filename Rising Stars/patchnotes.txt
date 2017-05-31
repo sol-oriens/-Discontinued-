@@ -6,7 +6,8 @@ v1.1.2
 
 [*] Buildings
 
-- Added Mining Complex, available to non-Ancient races. Adds an Ore resource that can be exported and generates 10 ore per minute at its destination. Unlike the Ancient, ore is not moved on export. High build and maintenance costs.
+- Added Mining Complex, available to non-Ancient races. Adds an Ore resource that can be exported and generates 10 ore per minute at its destination. Also adds 2 labor pressure and
+increases the pressure given by native Aluminium, Iron, Titanium or Supercarbons by 2. Unlike the Ancient Strip Miner, ore stored on the planet is not moved on export. High build and maintenance costs.
 
 [*] Game Options
 
@@ -16,7 +17,7 @@ v1.1.2
 [*] Subsystems
 
 - Removed the 90% maintenance cost reduction for Miner Hull. Extensive mining infrastructures should have a cost and in addition it made possible to maintain any unarmed unsupported flagship (like scouts or slipstream ships) basically for free.
-- Added support Muon Cannon back to the mod and rebalanced it accordingly. Now Renamed to Muon Projector.
+- Re-added Muon Cannon and rebalanced it accordingly. Now Renamed to Muon Projector.
 - Muon Cannon Battery renamed to Muon Projector Battery.
-- Added Carpet Bomb back to the mod with supply cost doubled.
+- Re-added Carpet Bomb with supply cost doubled.
 - Railgun Battery is now enhanced in the same way as support Railgun when Muon Projectors are researched (bonus to damage, accuracy and armor penetration).
