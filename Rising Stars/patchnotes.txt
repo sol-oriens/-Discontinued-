@@ -2,7 +2,7 @@ v1.1.2
 
 [*] Artificial Intelligence
 
-- Most AIs are now able to build outposts and expand beyond systems without planets. Some specific AIs (Star Children, Evangelists) cannot yet.
+- Most AIs are now able to build and prioritize outposts to protect their territory or expand beyond systems without planets or resources (including nebulae). Some specific AIs (Star Children, Evangelists) cannot yet.
 
 [*] Buildings
 

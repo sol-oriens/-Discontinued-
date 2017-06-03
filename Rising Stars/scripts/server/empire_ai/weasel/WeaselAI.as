@@ -22,7 +22,7 @@ import AIComponent@ createEnergy() from "empire_ai.weasel.Energy";
 import IAIComponent@ createDiplomacy() from "empire_ai.weasel.Diplomacy";
 import AIComponent@ createConsider() from "empire_ai.weasel.Consider";
 import AIComponent@ createOrbitals() from "empire_ai.weasel.Orbitals";
-import AIComponent@ createConsolidation() from "empire_ai.weasel.Consolidation";
+import AIComponent@ createInfrastructure() from "empire_ai.weasel.Infrastructure";
 
 import AIComponent@ createHyperdrive() from "empire_ai.weasel.ftl.Hyperdrive";
 import AIComponent@ createGate() from "empire_ai.weasel.ftl.Gate";
@@ -377,7 +377,7 @@ final class AI : AIController, Savable {
 	IAIComponent@ diplomacy;
 	IAIComponent@ consider;
 	IAIComponent@ orbitals;
-	IAIComponent@ consolidation;
+	IAIComponent@ infrastructure;
 
 	IAIComponent@ ftl;
 	IAIComponent@ race;
@@ -408,7 +408,7 @@ final class AI : AIController, Savable {
 		@diplomacy = add(createDiplomacy());
 		@consider = add(createConsider());
 		@orbitals = add(createOrbitals());
-		@consolidation = add(createConsolidation());
+		@infrastructure = add(createInfrastructure());
 
 		//Make FTL component
 		if(empire.hasTrait(getTraitID("Hyperdrive")))

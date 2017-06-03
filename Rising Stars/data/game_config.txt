@@ -139,7 +139,7 @@ ENABLE_INFLUENCE_EVENTS: 1
 START_EXPLORED_MAP: 1
 
 //Whether nebulae are automatically added into territory when in tradable area
-AUTO_CLAIM_NEBULAE: 1
+AUTO_CLAIM_NEBULAE: 0
 
 //Increase in build cost from using a dry dock
 DRYDOCK_BUILDCOST_FACTOR: 1.25
