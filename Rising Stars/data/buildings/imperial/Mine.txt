@@ -14,6 +14,8 @@ Building: Mine
 	Base Maintenance: 160
 	Tile Maintenance: 10
 
+	ConsumeResearch(50)
+
 	RequireNotStatus(Ringworld)
 	RequireNotStatus(ArtificialPlanetoid)
 	RequireNotTrait(Ancient)
@@ -21,7 +23,7 @@ Building: Mine
 	AddPlanetResource(OreRate)
 
 	AddPressure(Labor, 2)
-	IfNative(Aluminium, ImproveNativeResourcePressure(2))
+	IfNative(Aluminum, ImproveNativeResourcePressure(2))
 	IfNative(Iron, ImproveNativeResourcePressure(2))
 	IfNative(Titanium, ImproveNativeResourcePressure(2))
 	IfNative(Supercarbons, ImproveNativeResourcePressure(2))
