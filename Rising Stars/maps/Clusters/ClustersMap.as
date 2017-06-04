@@ -63,7 +63,7 @@ class ClustersMap : Map {
 		double roomRadius = spacing * 1.5 * sqrt(double(sysPerRoom)) + spacing;
 
 		//RS - Scaling: apply a factor to center room radius to make room for the supermassive blackhole
-		double centerSpacing = spacing * 3;
+		double centerSpacing = spacing * 2;
 		double centerRoomRadius = roomRadius;
 		if(config::SUPERMASSIVE_BLACK_HOLES > 0)
 			centerRoomRadius = centerSpacing * 1.5 * sqrt(double(sysPerRoom)) + centerSpacing;

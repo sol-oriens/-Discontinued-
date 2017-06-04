@@ -129,12 +129,12 @@ class MakeBlackhole : MapHook {
 		double radius = arguments[0].fromRange();
 		vec3d pos = arguments[1].fromPosition();
 
-		// RS - Scaling: make supermassive black holes supermassive
+		//RS - Scaling: make supermassive black holes supermassive
 		double healthFactor = 1.0;
 		if(config::SUPERMASSIVE_BLACK_HOLES > 0 && getSystemType(data.systemType) is getSystemType("CoreBlackhole")) {
-			radius = radius * 50;
-			system.radius += 155000;
-			healthFactor = 50.0;
+			radius = radius * 25;
+			system.radius += 75000;
+			healthFactor = 25.0;
 		}
 
 		//Create star
@@ -844,7 +844,7 @@ class ForceUsefulSurface : MapHook {
 class MakeAsteroid : MapHook {
 	Document doc("Creates an asteroid in the system.");
 	Argument cargo(AT_Cargo, EMPTY_DEFAULT, doc="Type of cargo to create on the asteroid.");
-	Argument cargo_amount(AT_Range, "500:10000", doc="Amount of cargo for the asteroid to have.");
+	Argument cargo_amount(AT_Range, "50:1000", doc="Amount of cargo for the asteroid to have.");
 	Argument resource(AT_Custom, EMPTY_DEFAULT, doc="Resource to put on the asteroid.");
 	Argument distribution_chance(AT_Decimal, "0.4", doc="For distributed resources, chance to add additional resource. Repeats until failure.");
 
@@ -931,13 +931,13 @@ class MakeAsteroid : MapHook {
 
 class MakeAsteroidBelt : MapHook {
 	Document doc("Creates an asteroid belt in the system.");
-	Argument count("Count", AT_Integer, "8", doc="Number of asteroids in the belt.");
+	Argument count("Count", AT_Range, "30:60", doc="Number of asteroids in the belt.");
 	Argument cargo(AT_Cargo, "Ore", doc="Type of cargo to create on the asteroid belt.");
-	Argument cargo_amount(AT_Range, "500:10000", doc="Amount of cargo for the asteroids to have.");
+	Argument cargo_amount(AT_Range, "50:1000", doc="Amount of cargo for the asteroids to have.");
 	Argument distribution_chance(AT_Decimal, "0.4", doc="For distributed resources, chance to add additional resource. Repeats until failure.");
 
 	bool instantiate() {
-		if(arguments[0].integer <= 0)
+		if(arguments[0].fromRange() <= 0)
 			return false;
 		return MapHook::instantiate();
 	}
@@ -946,12 +946,13 @@ class MakeAsteroidBelt : MapHook {
 	void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
 		if(config::ASTEROID_OCCURANCE == 0 && config::RESOURCE_ASTEROID_OCCURANCE == 0)
 			return;
-		double radius = randomd(0.5,1.5) * system.radius;
+		double radius = randomd(0.3,1.3) * system.radius;
 		double angle = randomd(0, twopi);
 		double totChance = config::ASTEROID_OCCURANCE + config::RESOURCE_ASTEROID_OCCURANCE;
 		double resChance = config::RESOURCE_ASTEROID_OCCURANCE;
 
-		for(uint i = 0, cnt = arguments[0].integer; i < cnt; ++i) {
+		uint count = uint(arguments[0].fromRange());
+		for(uint i = 0, cnt = count; i < cnt; ++i) {
 			angle += twopi / double(cnt);
 			double ang = angle + randomd(-0.25,0.25) * twopi / double(cnt);
 

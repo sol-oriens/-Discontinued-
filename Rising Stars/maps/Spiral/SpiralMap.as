@@ -65,8 +65,9 @@ class SpiralMap : Map {
 		const double heightVariation = flatten ? 0.0 : 12000.0;
 
 		//RS - Scaling: apply a facor to system spacing to make room for the supermassive blackhole
+		double tempSpacing = systemSpacing;
 		if(systemCount > 50 && config::SUPERMASSIVE_BLACK_HOLES > 0)
-			systemSpacing *= 3;
+			systemSpacing *= 2;
 
 		const double spiralBase = systemSpacing * double(systemCount) / 75.0;
 		const double spiralCurve = 0.5;
@@ -106,7 +107,7 @@ class SpiralMap : Map {
 
 			//RS - Scaling: return system spacing back to the original value
 			if(systemCount > 50 && config::SUPERMASSIVE_BLACK_HOLES > 0) {
-				systemSpacing /= 3;
+				systemSpacing = tempSpacing;
 			}
 
 			uint ring = 1;
