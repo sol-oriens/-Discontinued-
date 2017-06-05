@@ -1,3 +1,12 @@
+BLD_ECX_FACTORY: Electronics Factory
+BLD_ECX_FACTORY_DESC: <<
+	[color=#aaa][i]A state-of-the art factory allowing planetary-wide mass production of electronic components.[/i][/color]
+
+	Adds an Electronics resource.
+
+	[bbloc=#TIP_CONSUME_ORE:8/]
+>>
+
 BLD_NRG_FACTORY: Fuel Facility
 BLD_NRG_FACTORY_DESC: <<
 	[color=#aaa][i]An advanced installation for fossil fuel extraction, processing and storage. Significantly increases energy income and money coming with it.[/i][/color]
@@ -5,7 +14,8 @@ BLD_NRG_FACTORY_DESC: <<
 	Adds 1 energy pressure and 1 money pressure.
 	Increases the pressure given by native Coal, Natural Gas or Oil by 1.
 >>
-﻿BLD_LABORCAMP: Xenomanufacturing Center
+
+BLD_LABORCAMP: Xenomanufacturing Center
 BLD_SLAVECAMP: Xenoindustrial Sector
 BLD_LABORCAMP_DESC: <<
 	Uses advanced equipment, exotic materials and alien prisoners to quickly manufacture large quantities of military equipment.

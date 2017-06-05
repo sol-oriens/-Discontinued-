@@ -3,6 +3,7 @@ v1.2
 [*] Buildings
 
 - Added Fuel Facility: Adds 1 energy pressure and 1 money pressure and increases the pressure given by native Coal, Natural Gas or Oil by 1. Base building and maintenance costs of 110 and 50k, respectively. Also costs 100 research to build.
+- Added Electronics Factory: Adds an Electronics resource. Consumes 8 ore per minute. Base building and maintenance costs of 50k. The building goes inactive and the resource is removed if there is no more ore left on the planet.
 
 [*] Game Options
 
@@ -28,6 +29,7 @@ v1.2
 - Added a 5% chance for systems to have one or more asteroid belts. These have a chance to contain resource asteroids equal to 1/30th of the resource asteroid chance.
 - Black holes now have a big, thick asteroid belt beyond their accretion disk.
 - Increased default resource asteroid chance to 60% (up from 45%).
+- Electronics resources are now classified as artificial and no longer naturally spawn on planets.
 
 [*] Systems
 
@@ -49,3 +51,7 @@ v1.2
 - Empires now have an additional an additional FTL crystals asteroid in an adjacent system.
 - Empires now have an additional anomaly in their home system.
 - The guaranteed moon around the level 1 planet in the home system has moved to the homeworld.
+
+[*] Known issues
+
+- Asteroid fields on Local Asteroid Field Planets are sometimes not rendered. This is a vanilla bug.

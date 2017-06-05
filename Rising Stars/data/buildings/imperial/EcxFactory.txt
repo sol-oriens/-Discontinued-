@@ -1,0 +1,17 @@
+Building: EcxFactory
+	Name: #BLD_ECX_FACTORY
+	Description: #BLD_ECX_FACTORY_DESC
+	Sprite: EcxFactory
+
+	Category: Production
+
+	Size: 3x3
+	Base Cost: 50
+	Tile Cost: 20
+	Build Time: 300
+	Base Maintenance: 50
+	Tile Maintenance: 10
+
+	RequireNotTrait(Ancient)
+
+  ActiveWhenCargoConsumed(Ore, 1, 7.5, AddPlanetResource(Electronics))

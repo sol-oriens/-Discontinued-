@@ -7,11 +7,16 @@ Material: RSBuilding
 
 	//Production
 
-	Material: NrgFactory
-		Inherit: Image2D
-		Texture: data/images/buildings/nrgfactory.png
+Material: NrgFactory
+	Inherit: Image2D
+	Texture: data/images/buildings/nrgfactory.png
 
 	//Artificial Resources
+
+Material: EcxFactory
+	Inherit: Image2D
+	Texture: data/images/buildings/ecxfactory.png
+
 Material: lvl1r
 	Inherit: RSBuilding
 	Texture: data/images/buildings/Lvl1Research.png
