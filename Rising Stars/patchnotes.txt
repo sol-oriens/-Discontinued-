@@ -10,13 +10,20 @@ v1.2
 - Subspace Telescope Array has been renamed to Quantum Telescope Array, has no maintenance cost anymore and can no longer move. Its Telescope ability now has a range of 1 million units and it now costs an amount of energy linearly relative to the target distance.
 - Added Telescope Array, which has 40% size, cost and Telescope power than the quantum version. Requires no ore but has a 40k maintenance cost. Primarily designed for early scouting, when interstellar travel is a problem, and border control.
 
+[*] Planets
+- Local Asteroid Field planets now have more and bigger asteroids orbiting closer to them.
+- Destroyed planets now yield more asteroid with less ore.
+
 [*] Resources
 
-- FTL costs voluntarily unchanged to not disadvantage sublight races even more and force careful management of hyperspace travel.
-- Empires no longer start with any FTL generation or FTL storage regardless of FTL trait choice.
-- Added FTL crystals asteroids: provide +1 FTL/s and add 250 FTL storage. These are not consumed when mined (but they can be captured...). As noted below, empires start with one such asteroid in their home system.
-- FTL shards asteroids now provide +1 FTL/s and permanently add 250 FTL storage.
+- Empires no longer start with any FTL generation or FTL storage regardless of FTL trait choice (but have an FTL crystals asteroid in their home system).
+- Added FTL crystals asteroids: provide +1 FTL/s and add 250 FTL storage. These are not consumed when mined (but they can be captured...).
+- FTL shards asteroids now permanently add 500 FTL storage (up from 100).
 - FTL planets now provide +0.5/+1/+1.5/+2.5/+4/+7/+12 FTL/s.
+- Available ore on asteroids has been reduced to anywhere from 50 to 1250 ore (down from 500 to 10000). Default ore asteroid chance per system has been changed to 90% (up from 45%). In addition, systems with ore asteroids are very likely to have a LOT of them.
+- Added a 5% chance for systems to have one or more asteroid belts. These have a chance to contain resource asteroids equal to 1/30th of the resource asteroid chance.
+- Black holes now have a big, thick asteroid belt beyond their accretion disk.
+- Increased default resource asteroid chance to 60% (up from 45%).
 
 [*] Systems
 
@@ -24,14 +31,17 @@ v1.2
 *** The increased scale of gas sprites strongly impacts system performances when playing with lots of stars and / or nebulae. Consider turning galaxy gas off if you experience stuttering.
 - Increased scale of stars by a factor of 10.
 - Increased scale of planets by a factor of 10.
-- Increased scale of planet gravity wells by a factor relative to its planet's mass.
+- Increased scale of planet gravity wells by a factor relative to its planet's 'mass'.
+- Increased scale of asteroids by a factor of 2.
 - Decreased scale of ships by a factor of 0.5.
 - Increased default system spacing by a factor of 20.
 - Increased variation in vertical spacing of systems in the core of spiral galaxies.
 - Increased variation in planet number per system.
 - Black holes in the core of spiral and cluster galaxies are now supermassive if the Supermassive Black Holes game option is toggled on.
 *** The massive scale of the supermassive black holes accretion disks slightly impacts system performances. Consider turning this option off if you experience stuttering.
-- Empires now have an additional food planet in their home system.
-- Empires now have an additional an additional ore asteroid in their home system.
+- Empires now have an additional food planet in their home system, but one less in adjacent systems.
+- Empires now have 6k worth of ore asteroids in their home system instead of one 6k ore asteroid.
 - Empires now have an additional an additional FTL crystals asteroid in their home system. A mine is prebuilt if the Quick Start game option is toggled on. This effectively reverts the starting FTL generation and FTL storage to vanilla values.
+- Empires now have an additional an additional FTL crystals asteroid in an adjacent system.
 - Empires now have an additional anomaly in their home system.
+- The guaranteed moon around the level 1 planet in the home system has moved to the homeworld.
