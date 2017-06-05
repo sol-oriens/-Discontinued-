@@ -1,3 +1,10 @@
+BLD_ARCOLOGY: Arcology
+BLD_ARCOLOGY_DESC: <<
+	[color=#aaa][i]The ultimate settlement. An arcology is a city-in-a-giant-building: residential areas, business and shopping centers, factories, parks, farms, water and waste processing units, all operating in a closed circuit. Nothing needs to enter an arcology to sustain it, and nothing needs to exit. Except taxes...[/i][/color]
+
+	Adds 10 population.
+>>
+
 BLD_ECX_FACTORY: Electronics Factory
 BLD_ECX_FACTORY_DESC: <<
 	[color=#aaa][i]A state-of-the art factory allowing planetary-wide mass production of electronic components.[/i][/color]

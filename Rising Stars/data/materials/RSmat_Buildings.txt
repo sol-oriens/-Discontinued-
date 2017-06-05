@@ -11,6 +11,11 @@ Material: NrgFactory
 	Inherit: Image2D
 	Texture: data/images/buildings/nrgfactory.png
 
+	//Infrastructure
+Material: BldArcology
+Inherit: Image2D
+Texture: data/images/buildings/arcology.png
+
 	//Artificial Resources
 
 Material: EcxFactory
