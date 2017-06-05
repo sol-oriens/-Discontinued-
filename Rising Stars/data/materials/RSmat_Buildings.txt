@@ -5,7 +5,11 @@ Material: RSBuilding
 	Mipmap: False
 	Lighting: False
 
+	//Production
 
+	Material: NrgFactory
+		Inherit: Image2D
+		Texture: data/images/buildings/nrgfactory.png
 
 	//Artificial Resources
 Material: lvl1r

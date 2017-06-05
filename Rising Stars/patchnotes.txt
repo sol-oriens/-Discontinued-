@@ -1,5 +1,9 @@
 v1.2
 
+[*] Buildings
+
+- Added Fuel Facility: Adds 1 energy pressure and 1 money pressure and increases the pressure given by native Coal, Natural Gas or Oil by 1. Base building and maintenance costs of 110 and 50k, respectively. Also costs 100 research to build.
+
 [*] Game Options
 
 - Added Quick Start: when toggled on, empires will be able to expand to other systems almost immediately instead of having to build a basic economy first. This reverts the now slower game start to more or less vanilla speed. This option is off by default.

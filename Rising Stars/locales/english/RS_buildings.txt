@@ -1,3 +1,10 @@
+BLD_NRG_FACTORY: Fuel Facility
+BLD_NRG_FACTORY_DESC: <<
+	[color=#aaa][i]An advanced installation for fossil fuel extraction, processing and storage. Significantly increases energy income and money coming with it.[/i][/color]
+
+	Adds 1 energy pressure and 1 money pressure.
+	Increases the pressure given by native Coal, Natural Gas or Oil by 1.
+>>
 ﻿BLD_LABORCAMP: Xenomanufacturing Center
 BLD_SLAVECAMP: Xenoindustrial Sector
 BLD_LABORCAMP_DESC: <<
