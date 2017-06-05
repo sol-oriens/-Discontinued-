@@ -36,7 +36,8 @@ System: HomeSystem
 	MakeAsteroid(Cargo = Ore, Cargo Amount = 250)
 	MakeAsteroid(Resource = Distributed)
 	MakeAsteroid(Resource = AsteroidFTLPermanent)
-		SetMineIfQuickStart()
+		IfQuickStart()
+			SetMine()
 	MakeAdjacentAsteroid(Resource = AsteroidFTLPermanent)
 
 	MakeAnomaly()

@@ -987,11 +987,9 @@ class MakeAsteroidBelt : MapHook {
 
 //SetMine()
 // Set the previously generated asteroid as an owned mine for the current empire.
-class SetMineIfQuickStart : MapHook {
+class SetMine : MapHook {
 #section server
 	void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
-		if (config::QUICK_START == 0)
-			return;
 		if(data.homeworlds is null || data.currentHomeworld is null)
 			return;
 
