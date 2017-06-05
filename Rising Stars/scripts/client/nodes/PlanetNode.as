@@ -172,20 +172,79 @@ final class PlanetNodeScript {
 		}
 
 		if(special == PS_Asteroids) {
+
+			//RS- Scaling: more asteroids, bigger and closer to the planet, for visibility and realism
 			material::AsteroidPegmatite.switchTo();
-			applyAbsTransform(vec3d(2.0,2.0,2.0), vec3d(0.01), quaterniond());
+			applyAbsTransform(vec3d(1.0,1.0,1.0), vec3d(0.02), quaterniond());
 			model::Asteroid1.draw();
 			undoTransform();
 
 			material::AsteroidMagnetite.switchTo();
-			applyAbsTransform(vec3d(2.3,1.5,1.95), vec3d(0.0125), quaterniond_fromAxisAngle(vec3d(0,0.32,-0.1).normalize(), 1.3));
+			applyAbsTransform(vec3d(1.3,0.5,0.95), vec3d(0.0225), quaterniond_fromAxisAngle(vec3d(0,0.32,-0.1).normalize(), 1.3));
 			model::Asteroid2.draw();
 			undoTransform();
 
 			material::AsteroidTonalite.switchTo();
-			applyAbsTransform(vec3d(2.4,2.8,2.1), vec3d(0.008), quaterniond_fromAxisAngle(vec3d(1).normalize(), 0.782));
+			applyAbsTransform(vec3d(1.2,1.2,1.1), vec3d(0.018), quaterniond_fromAxisAngle(vec3d(1).normalize(), 0.782));
 			model::Asteroid3.draw();
 			undoTransform();
+
+			double angle = 0.6;
+			double radius = 1.5;
+			double ang, step = 0;
+			for (uint i = 0, cnt = 12; i < cnt; ++i) {
+				//give some depth to the field by changing radius each time
+				switch (i % 4) {
+					case 0: radius += 0.1; break;
+					case 1: radius += 0.2; break;
+					case 2: radius -= 0.1; break;
+					case 3: radius -= 0.2;; break;
+				}
+				//angle += twopi / double(cnt);
+				//widen the angle each time to spread the points
+				angle += 0.01 / double(cnt);
+				//widen the angle more with a non linear progression
+				switch (i % 5) {
+					case 0: step += 0.06; break;
+					case 1: step += 0.07; break;
+					case 2: step += 0.09; break;
+					case 3: step += 0.11; break;
+					case 4: step += 0.13; break;
+				}
+				//positions are based on three circles around the planet
+				ang = angle + step * twopi / double(cnt);
+				vec3d pos1 = vec3d(cos(ang) * (radius - 0.2), cos(ang) * radius, sin(ang) * radius);
+				vec3d pos2 = vec3d(cos(ang) * radius, cos(ang) * (radius - 0.2), sin(ang) * (radius));
+				vec3d pos3 = vec3d(cos(ang) * radius, cos(ang) * (radius - 0.4), sin(ang) * radius);
+				//change asteroid model each time
+				switch (i % 3) {
+					case 0: material::AsteroidPegmatite.switchTo(); break;
+					case 1: material::AsteroidMagnetite.switchTo(); break;
+					case 2: material::AsteroidTonalite.switchTo(); break;
+				}
+				//apply a different transformation each time, more means less repetition and more realism
+				switch (i % 6) {
+					case 0: applyAbsTransform(pos1, vec3d(0.017), quaterniond()); break;
+					case 1: applyAbsTransform(pos1, vec3d(0.0159), quaterniond_fromAxisAngle(vec3d(0, 0.23, 0.1).normalize(), 1.5)); break;
+					case 2: applyAbsTransform(pos2, vec3d(0.015), quaterniond_fromAxisAngle(vec3d(0.5).normalize(), 0.378)); break;
+					case 3: applyAbsTransform(pos2, vec3d(0.0132), quaterniond_fromAxisAngle(vec3d(0, 0.18, -0.1).normalize(), 1.1)); break;
+					case 4: applyAbsTransform(pos2, vec3d(0.02), quaterniond_fromAxisAngle(vec3d(0.7).normalize(), 0.651)); break;
+					case 5: applyAbsTransform(pos3, vec3d(0.0146), quaterniond_fromAxisAngle(vec3d(0.83).normalize(), 0.426)); break;
+				}
+				//change asteroid model each time and place them at different 'circles'
+				switch (i % 9) {
+					case 0: model::Asteroid1.draw(); break;
+					case 1: model::Asteroid2.draw(); break;
+					case 2: model::Asteroid3.draw(); break;
+					case 3: model::Asteroid2.draw(); break;
+					case 4: model::Asteroid3.draw(); break;
+					case 5: model::Asteroid1.draw(); break;
+					case 6: model::Asteroid3.draw(); break;
+					case 7: model::Asteroid1.draw(); break;
+					case 8: model::Asteroid2.draw(); break;
+				}
+				undoTransform();
+			}
 		}
 		else if(special == PS_Ring) {
 			auto ringRot = node.abs_rotation.inverted() *

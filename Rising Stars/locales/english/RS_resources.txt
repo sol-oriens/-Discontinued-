@@ -204,13 +204,13 @@ TECHNOFARM_DESC: <<
 >>
 ASTEROID_FTL: FTL Shards
 ASTEROID_FTL_DESC: <<|
-	Generates 1 FTL per second for a limited time and permanently adds 250 FTL storage.
+	Generates 0.5 FTL per second for a limited time and permanently adds 500 FTL storage.
 
 	Does not need to be exported.
 >>
 ASTEROID_FTL_PERMANENT: FTL Crystals
 ASTEROID_FTL_PERMANENT_DESC: <<|
-	Generates 1 FTL per second and adds 250 FTL storage. Is not consumed.
+	Permanently generates 1 FTL per second and adds 250 FTL storage.
 
 	Does not need to be exported.
 >>

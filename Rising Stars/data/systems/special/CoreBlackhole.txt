@@ -4,7 +4,10 @@ System: CoreBlackhole
 	MakeBlackhole()
 	ExpandSystem(5000)
 
-	MakeAsteroidBelt(6)
+	MakeAsteroidBelt(30, Radius = 75000)
+	MakeAsteroidBelt(50, Radius = 76000)
+	MakeAsteroidBelt(70, Radius = 77000)
+	MakeAsteroidBelt(90, Radius = 78000)
 
 	//RS - Scaling
 	MakePlanet(Orbit Spacing = 3000)

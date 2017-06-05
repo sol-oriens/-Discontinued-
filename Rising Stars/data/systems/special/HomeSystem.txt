@@ -20,18 +20,24 @@ System: HomeSystem
 			OnPlanet( AddPressureCap(2) )
 			NoNeedPopulationForLevel()
 			ForceUsefulSurface(0.8, Forest)
+			MakeMoon()
 
 	MakePlanet(RandomType:Food:Common, Conditions = False, Moons = False)
 	MakePlanet(Water, Conditions = False, Moons = False)
 	MakePlanet(RandomLevel:1:Common, Conditions = False, Moons = False)
-		MakeMoon()
 	MakePlanet(RandomType:Food:Common, Conditions = False, Moons = False)
 
-	MakeAsteroid(Cargo = Ore, Cargo Amount = 6000)
-	MakeAsteroid(Cargo = Ore, Cargo Amount = 3500)
+	MakeAsteroid(Cargo = Ore, Cargo Amount = 1200)
+	MakeAsteroid(Cargo = Ore, Cargo Amount = 1200)
+	MakeAsteroid(Cargo = Ore, Cargo Amount = 1150)
+	MakeAsteroid(Cargo = Ore, Cargo Amount = 1050)
+	MakeAsteroid(Cargo = Ore, Cargo Amount = 685)
+	MakeAsteroid(Cargo = Ore, Cargo Amount = 465)
+	MakeAsteroid(Cargo = Ore, Cargo Amount = 250)
 	MakeAsteroid(Resource = Distributed)
 	MakeAsteroid(Resource = AsteroidFTLPermanent)
-		SetMine()
+		SetMineIfQuickStart()
+	MakeAdjacentAsteroid(Resource = AsteroidFTLPermanent)
 
 	MakeAnomaly()
 
@@ -42,7 +48,6 @@ System: HomeSystem
 	GuaranteeAdjacentResource(RandomType:Food:Common)
 	GuaranteeAdjacentResource(RandomLevel:1:Common)
 	GuaranteeAdjacentResource(RandomLevel:2:Common)
-	GuaranteeAdjacentResource(RandomType:Food:Common, Distance = 2)
 	GuaranteeAdjacentResource(RandomType:Food:Common, Distance = 2)
 	GuaranteeAdjacentResource(Water, Distance = 2)
 

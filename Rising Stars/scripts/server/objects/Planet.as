@@ -18,7 +18,7 @@ tidy class PlanetScript {
 	bool hpDelta = false;
 	uint ringStyle = 0;
 	array<MoonData@>@ moons;
-	
+
 	void init(Planet& planet) {
 		timer = -float(uint8(planet.id)) / 255.0;
 		planet.owner.recordStatDelta(stat::Planets, 1);
@@ -77,7 +77,7 @@ tidy class PlanetScript {
 			file.write0();
 		}
 	}
-	
+
 	void load(Planet& planet, SaveFile& file) {
 		timer = -float(uint8(planet.id)) / 255.0;
 		loadObjectStates(planet, file);
@@ -161,7 +161,7 @@ tidy class PlanetScript {
 		planet.resourcesPostLoad();
 		planet.surfacePostLoad();
 		planet.leaderPostLoad();
-		
+
 		Node@ node = planet.getNode();
 		if(node !is null)
 			node.hintParentObject(planet.region, false);
@@ -172,7 +172,7 @@ tidy class PlanetScript {
 		quietDestruction = true;
 		planet.destroy();
 	}
-	
+
 	void destroy(Planet& planet) {
 		if(!game_ending && !quietDestruction) {
 			playParticleSystem("PlanetExplosion", planet.position, planet.rotation, planet.radius, planet.visibleMask);
@@ -180,7 +180,7 @@ tidy class PlanetScript {
 			double totChance = config::ASTEROID_OCCURANCE + config::RESOURCE_ASTEROID_OCCURANCE;
 			double resChance = config::RESOURCE_ASTEROID_OCCURANCE;
 			if(totChance > 0) {
-				for(uint i = 0, cnt = randomi(0,4); i < cnt; ++i) {
+				for(uint i = 0, cnt = randomi(0,20); i < cnt; ++i) {
 					vec3d pos = planet.position;
 					pos += random3d(80 + planet.radius);
 
@@ -196,7 +196,7 @@ tidy class PlanetScript {
 					if(roll >= resChance) {
 						auto@ cargo = getCargoType("Ore");
 						if(cargo !is null)
-							roid.addCargo(cargo.id, randomd(500, 5000));
+							roid.addCargo(cargo.id, randomd(50, 1000));
 					}
 					else {
 						do {
@@ -205,10 +205,12 @@ tidy class PlanetScript {
 						}
 						while(randomd() < 0.4);
 					}
+
+					roid.initMesh();
 				}
 			}
 		}
-	
+
 		planet.destroyConstruction();
 		planet.destroyObjResources();
 		planet.destroySurface();
@@ -253,7 +255,7 @@ tidy class PlanetScript {
 			planet.activateMover();
 			planet.maxAcceleration = 0;
 		}
-		
+
 		auto@ node = cast<PlanetNode>(planet.getNode());
 		if(node !is null && planet.owner !is null)
 			node.colonized = planet.owner.valid;
@@ -313,7 +315,7 @@ tidy class PlanetScript {
 								@target = leader;
 						}
 					}
-					
+
 					//Order a random support to assist
 					uint cnt = obj.supportCount;
 					if(cnt > 0) {
@@ -327,7 +329,7 @@ tidy class PlanetScript {
 				}
 			}
 		}
-		
+
 		obj.updateFleetStrength();
 	}
 
@@ -374,7 +376,7 @@ tidy class PlanetScript {
 			planet.statusTick(time);
 			timer = 0.f;
 		}
-		
+
 		//Update biome population
 		planet.Population = planet.population;
 
@@ -407,7 +409,7 @@ tidy class PlanetScript {
 		msg.writeBit(planet.hasAbilities);
 		if(planet.hasAbilities)
 			planet.writeAbilities(msg);
-		
+
 		msg.writeBit(ringStyle != 0);
 		if(ringStyle != 0)
 			msg << ringStyle;
@@ -541,16 +543,16 @@ tidy class PlanetScript {
 			planet.removePopulation(popLost, 1.0);
 		}
 	}
-	
+
 	void giveHistoricMemory(Planet& planet, Empire@ emp) {
 		if(planet.memoryMask & emp.mask != 0)
 			return;
-		
+
 		planet.memoryMask |= emp.mask;
 		planet.giveBasicIconVision(emp);
 		//TODO: Make this force a vision update on the client
 	}
-	
+
 	void setRing(uint ring) {
 		ringStyle = ring;
 	}

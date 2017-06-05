@@ -844,7 +844,7 @@ class ForceUsefulSurface : MapHook {
 class MakeAsteroid : MapHook {
 	Document doc("Creates an asteroid in the system.");
 	Argument cargo(AT_Cargo, EMPTY_DEFAULT, doc="Type of cargo to create on the asteroid.");
-	Argument cargo_amount(AT_Range, "50:1000", doc="Amount of cargo for the asteroid to have.");
+	Argument cargo_amount(AT_Range, "50:1250", doc="Amount of cargo for the asteroid to have.");
 	Argument resource(AT_Custom, EMPTY_DEFAULT, doc="Resource to put on the asteroid.");
 	Argument distribution_chance(AT_Decimal, "0.4", doc="For distributed resources, chance to add additional resource. Repeats until failure.");
 
@@ -867,10 +867,7 @@ class MakeAsteroid : MapHook {
 
 	void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
 		vec2d rpos;
-		if(data !is null)
-			rpos = random2d(150.0, system.radius * 1.5 - 250.0);
-		else
-			rpos = random2d(150.0, system.radius * 0.8);
+		rpos = random2d(system.radius * 0.6, system.radius * 0.8);
 		vec3d pos = system.position + vec3d(rpos.x, randomd(-50.0, 50.0), rpos.y);
 		Asteroid@ roid = createAsteroid(pos, system.object, delay=true);
 		roid.orbitAround(system.position);
@@ -933,8 +930,9 @@ class MakeAsteroidBelt : MapHook {
 	Document doc("Creates an asteroid belt in the system.");
 	Argument count("Count", AT_Range, "30:60", doc="Number of asteroids in the belt.");
 	Argument cargo(AT_Cargo, "Ore", doc="Type of cargo to create on the asteroid belt.");
-	Argument cargo_amount(AT_Range, "50:1000", doc="Amount of cargo for the asteroids to have.");
+	Argument cargo_amount(AT_Range, "50:500", doc="Amount of cargo for the asteroids to have.");
 	Argument distribution_chance(AT_Decimal, "0.4", doc="For distributed resources, chance to add additional resource. Repeats until failure.");
+	Argument radius(AT_Decimal, "0", doc="Minimum radius of the belt.");
 
 	bool instantiate() {
 		if(arguments[0].fromRange() <= 0)
@@ -946,17 +944,23 @@ class MakeAsteroidBelt : MapHook {
 	void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
 		if(config::ASTEROID_OCCURANCE == 0 && config::RESOURCE_ASTEROID_OCCURANCE == 0)
 			return;
-		double radius = randomd(0.3,1.3) * system.radius;
+
+		//RS - Scaling: allow to specify a minimum radius for supermassive black holes
+		double beltRadius = 0;
+		if (radius.decimal == 0)
+			beltRadius = randomd(0.4, 1.5) * system.radius;
+		else
+			beltRadius = min(radius.decimal, 1.5 * system.radius);
 		double angle = randomd(0, twopi);
 		double totChance = config::ASTEROID_OCCURANCE + config::RESOURCE_ASTEROID_OCCURANCE;
-		double resChance = config::RESOURCE_ASTEROID_OCCURANCE;
+		double resChance = config::RESOURCE_ASTEROID_OCCURANCE / 30;
 
 		uint count = uint(arguments[0].fromRange());
 		for(uint i = 0, cnt = count; i < cnt; ++i) {
 			angle += twopi / double(cnt);
 			double ang = angle + randomd(-0.25,0.25) * twopi / double(cnt);
 
-			vec3d pos = system.position + vec3d(cos(ang) * radius, randomd(-50.0, 50.0), sin(ang) * radius);
+			vec3d pos = system.position + vec3d(cos(ang) * beltRadius, randomd(-50.0, 50.0), sin(ang) * beltRadius);
 
 			Asteroid@ roid = createAsteroid(pos, system.object, delay=true);
 			roid.orbitAround(system.position);
@@ -983,7 +987,7 @@ class MakeAsteroidBelt : MapHook {
 
 //SetMine()
 // Set the previously generated asteroid as an owned mine for the current empire.
-class SetMine : MapHook {
+class SetMineIfQuickStart : MapHook {
 #section server
 	void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
 		if (config::QUICK_START == 0)
@@ -1217,6 +1221,103 @@ class SetStaticSeeableRange : MapHook {
 				continue;
 			obj.seeableRange = range.decimal;
 		}
+	}
+#section all
+};
+
+//MakeAdjacentAsteroid(<Resource> = Distributed, <Distribution Chance> = 0.4)
+// Create a new asteroid with the given resource available in an adjacent system.
+// If <Resource> is set to Distributed, distribute some random resources
+// with <Distribution Chance>.
+class MakeAdjacentAsteroid : MapHook {
+	Document doc("Creates an asteroid in an adjacent system.");
+	Argument cargo(AT_Cargo, EMPTY_DEFAULT, doc="Type of cargo to create on the asteroid.");
+	Argument cargo_amount(AT_Range, "50:1250", doc="Amount of cargo for the asteroid to have.");
+	Argument resource(AT_Custom, EMPTY_DEFAULT, doc="Resource to put on the asteroid.");
+	Argument distribution_chance(AT_Decimal, "0.4", doc="For distributed resources, chance to add additional resource. Repeats until failure.");
+
+#section server
+	array<const ResourceType@> resPossib;
+	bool distribute = false;
+	bool noResource = false;
+
+	bool instantiate() {
+		if(resource.str.length != 0) {
+			if(resource.str.equals_nocase("distributed"))
+				distribute = true;
+			else if(resource.str.equals_nocase("none"))
+				noResource = true;
+			else if(!parseResourceSpec(resPossib, resource.str))
+				return false;
+		}
+		return MapHook::instantiate();
+	}
+	void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
+		if(system.adjacent.length == 0)
+			return;
+		if(data !is null && data.ignoreAdjacencies)
+			return;
+		int at = randomi(0, system.adjacent.length - 1);
+		SystemDesc@ other = getSystem(system.adjacent[at]);
+		vec2d rpos;
+
+		//RS - Scaling
+		rpos = random2d(other.radius * 0.6, other.radius * 0.8);
+
+		vec3d pos = other.position + vec3d(rpos.x, randomd(-50.0, 50.0), rpos.y);
+		Asteroid@ roid = createAsteroid(pos, other.object, delay=true);
+		roid.orbitAround(other.position);
+		roid.orbitSpin(randomd(20.0, 60.0));
+		@current = roid;
+
+		if(noResource) {
+			roid.initMesh();
+			return;
+		}
+
+		double totChance = config::ASTEROID_OCCURANCE + config::RESOURCE_ASTEROID_OCCURANCE;
+		double resChance = config::RESOURCE_ASTEROID_OCCURANCE;
+		double roll = randomd(0, totChance);
+
+		int cargoType = cargo.integer;
+		if(cargoType == -1) {
+			auto@ ore = getCargoType("Ore");
+			if(ore !is null)
+				cargoType = ore.id;
+		}
+
+		bool cargoSpec = cargo.integer != -1 && config::ASTEROID_OCCURANCE != 0;
+		bool resSpec = (resPossib.length != 0 || distribute) && config::RESOURCE_ASTEROID_OCCURANCE != 0;
+
+		if((cargoSpec && !resSpec) || ((cargoSpec == resSpec) && roll >= resChance)) {
+			roid.addCargo(cargoType, cargo_amount.fromRange());
+		}
+		else {
+			if(distribute || resPossib.length == 0) {
+				do {
+					const ResourceType@ type = getDistributedAsteroidResource();
+					if(roid.getAvailableCostFor(type.id) < 0.0)
+						roid.addAvailable(type.id, type.asteroidCost);
+				}
+				while(randomd() < distribution_chance.decimal);
+			}
+			else {
+				const ResourceType@ resource;
+				if(resPossib.length > 0) {
+					if(resPossib.length == 1)
+						@resource = resPossib[0];
+					else
+						@resource = resPossib[randomi(0, resPossib.length-1)];
+				}
+
+				if(resource !is null) {
+					if(roid.getAvailableCostFor(resource.id) < 0.0)
+						roid.addAvailable(resource.id, resource.asteroidCost);
+				}
+			}
+		}
+
+		roid.initMesh();
 	}
 #section all
 };

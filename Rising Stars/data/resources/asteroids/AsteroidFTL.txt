@@ -16,5 +16,5 @@ Resource: AsteroidFTL
 	Vanish Mode: Custom
 	VanishUnlessFTLFull()
 
-	AddFTLIncome(+1.0)
-	AddPermanentFTLStorage(+250)
+	AddFTLIncome(+0.5)
+	AddPermanentFTLStorage(+500)
