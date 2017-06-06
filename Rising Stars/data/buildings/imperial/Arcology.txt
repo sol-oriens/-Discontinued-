@@ -8,11 +8,12 @@ Building: Arcology
 	Size: 3x4
 	Base Cost: 1000
 
-  Labor Cost: 250
-	ConsumeCargo(Ore, 1500)
+  Labor Cost: 100
+	ConsumeCargo(Ore, 1000)
   ConsumeEnergy(500)
   ConsumeResearch(250)
 
-  AddMaxPopulation(10)
+  AddMaxPopulation(5)
+  ReplacesCities(5)
 
   RequireNotTrait(Ancient)

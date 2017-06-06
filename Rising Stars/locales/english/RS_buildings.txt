@@ -1,6 +1,6 @@
 BLD_ARCOLOGY: Arcology
 BLD_ARCOLOGY_DESC: <<
-	[color=#aaa][i]The ultimate settlement. An arcology is a city-in-a-giant-building: residential areas, business and shopping centers, factories, parks, farms, water and waste processing units, all operating in a closed circuit. Nothing needs to enter an arcology to sustain it, and nothing needs to exit. Except taxes...[/i][/color]
+	[color=#aaa][i]The ultimate settlement, designed for self-sufficiency. An arcology is a city-in-a-giant-building: residential areas, business and shopping centers, factories, parks, farms, water and waste processing units, all operating in a closed circuit. Nothing needs to enter an arcology to sustain it, and nothing needs to exit. Except tax...[/i][/color]
 
 	Adds 10 population.
 >>

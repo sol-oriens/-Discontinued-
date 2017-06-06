@@ -8,7 +8,7 @@ v1.2
 
 - Added Fuel Facility: Adds 1 energy pressure and 1 money pressure and increases the pressure given by native Coal, Natural Gas or Oil by 1. Base building and maintenance costs of 110 and 50k, respectively. Also costs 100 research to build.
 - Added Electronics Factory: Adds an Electronics resource. Consumes 8 ore per minute. Base building and maintenance costs of 50k. The building goes inactive and the resource is removed if there is no more ore left on the planet.
-- Added Arcology: Adds 10 population. Costs 1M, 1.5k ore, 500 energy, 250 research and 250 labor.
+- Added Arcology: Adds 5 population. Costs 1M, 1k ore, 500 energy, 250 research and 100 labor.
 
 [*] Game Options
 
