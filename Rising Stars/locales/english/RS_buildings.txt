@@ -2,7 +2,15 @@ BLD_ARCOLOGY: Arcology
 BLD_ARCOLOGY_DESC: <<
 	[color=#aaa][i]The ultimate settlement, designed for self-sufficiency. An arcology is a city-in-a-giant-building: residential areas, business and shopping centers, factories, parks, farms, water and waste processing units, all operating in a closed circuit. Nothing needs to enter an arcology to sustain it, and nothing needs to exit. Except tax...[/i][/color]
 
-	Adds 10 population.
+	Replaces up to 5 regular cities.
+	Adds 5 population.
+>>
+
+BLD_HEALTH_COMPLEX: Healthcare Complex
+BLD_HEALTH_COMPLEX_DESC: <<
+	[color=#aaa][i]Keeping people healthy leads to longer lifespans, ultimately increasing population. Featuring a top-notch hospital, a convalescent home and a disease research center, this complex greatly enhances a planet's capacity to keep local bacteria and viruses at bay and people at work.[/i][/color]
+
+	Adds 2 population.
 >>
 
 BLD_ECX_FACTORY: Electronics Factory

@@ -16,6 +16,10 @@ Material: BldArcology
 Inherit: Image2D
 Texture: data/images/buildings/arcology.png
 
+Material: BldHealthComplex
+Inherit: Image2D
+Texture: data/images/buildings/health_complex.png
+
 	//Artificial Resources
 
 Material: EcxFactory

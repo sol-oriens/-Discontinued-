@@ -1,0 +1,18 @@
+Building: Healthcare Complex
+	Name: #BLD_HEALTH_COMPLEX
+	Description: #BLD_HEALTH_COMPLEX_DESC
+	Sprite: BldHealthComplex
+
+	Category: Infrastructure
+
+	Size: 2x2
+	Base Cost: 200
+	Tile Cost: 20
+	Base Maintenance: 100
+	Tile Maintenance: 10
+
+  ConsumeResearch(100)
+
+  AddMaxPopulation(2)
+
+  RequireNotTrait(Ancient)
