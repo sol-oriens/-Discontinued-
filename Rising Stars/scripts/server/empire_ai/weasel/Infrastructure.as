@@ -74,22 +74,6 @@ final class NextAction {
     this.action = action;
     this.loc = loc;
   }
-
-  void save(Infrastructure& infrastructure, SaveFile& file) {
-    sys.save(infrastructure, file);
-    file << uint(action);
-    file << uint(loc);
-  }
-
-  void load(Infrastructure& infrastructure, SaveFile& file) {
-    uint a = 0, l = 0;
-    @sys = SystemCheck();
-    sys.load(infrastructure, file);
-    file >> a;
-    file >> l;
-    action = BuildAction(a);
-    loc = BuildLocation(l);
-  }
 };
 
 final class SystemCheck {
@@ -318,8 +302,6 @@ final class Infrastructure : AIComponent {
 		file << cnt;
 		for(uint i = 0; i < cnt; ++i)
 			outsideSystems[i].save(this, file);
-    if (next !is null)
-      next.save(this, file);
   }
 
   void load(SaveFile& file) {
@@ -337,8 +319,6 @@ final class Infrastructure : AIComponent {
 			sys.load(this, file);
       outsideSystems.insertLast(sys);
 		}
-    @next = NextAction();
-    next.load(this, file);
   }
 
   void start() {
@@ -429,7 +409,6 @@ final class Infrastructure : AIComponent {
       //ai.print("orders for outside system at index " + i + ": " + sys.orders.length);
       if (getTotalOrders() < maxOrdersTotal && sys.orders.length < maxOrdersPerSysOutside) {
         //Find out if we need an outpost
-        //if (shouldHaveOutpost(sys) && !orbitals.haveInSystem(ai.defs.TradeOutpost, sys.region)) {
         BuildLocation loc;
         if (!hasOutpost(sys.region) && shouldHaveOutpost(sys, SA_Tradable, loc) && !sys.isBuildingOrbital(ai.defs.TradeOutpost)) {
           if (w > bestWeightForOutpost) {
