@@ -10,10 +10,10 @@ Building: NrgFactory
 	Base Cost: 110
 	Tile Cost: 10
 	Build Time: 360
-	Base Maintenance: 50
+	Base Maintenance: 35
 	Tile Maintenance: 10
 
-	ConsumeResearch(100)
+	ConsumeResearch(50)
 
 	RequireNotStatus(Ringworld)
 	RequireNotStatus(ArtificialPlanetoid)

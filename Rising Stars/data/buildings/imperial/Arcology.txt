@@ -9,9 +9,9 @@ Building: Arcology
 	Base Cost: 1000
 
   Labor Cost: 100
-	ConsumeCargo(Ore, 1000)
-  ConsumeEnergy(500)
-  ConsumeResearch(250)
+	ConsumeCargo(Ore, 500)
+  ConsumeEnergy(250)
+  ConsumeResearch(100)
 
   AddMaxPopulation(5)
   ReplacesCities(5)

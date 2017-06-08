@@ -6,9 +6,9 @@ v1.2
 
 [*] Buildings
 
-- Added Fuel Facility: Adds 1 energy pressure and 1 money pressure and increases the pressure given by native Coal, Natural Gas or Oil by 1. Base building and maintenance costs of 110 and 50k, respectively. Also costs 100 research to build.
-- Added Electronics Factory: Adds an Electronics resource. Consumes 8 ore per minute. Base building and maintenance costs of 50k. The building goes inactive and the resource is removed if there is no more ore left on the planet.
-- Added Arcology: Adds 5 population. Costs 1M, 1k ore, 500 energy, 250 research and 100 labor.
+- Added Fuel Facility: Adds 1 energy pressure and 1 money pressure and increases the pressure given by native Coal, Natural Gas or Oil by 1. Base building and maintenance costs of 110 and 35k, respectively. Also costs 50 research to build.
+- Added Electronics Factory: Adds an non exportable Electronics resource. Consumes 8 ore per minute. Base building and maintenance costs of 50k. The building goes inactive and the resource is removed if there is no more ore left on the planet.
+- Added Arcology: Adds 5 population and replaces 5 cities. Costs 1M, 500 ore, 250 energy, 100 research and 100 labor.
 
 [*] Game Options
 
@@ -35,6 +35,7 @@ v1.2
 - Black holes now have a big, thick asteroid belt beyond their accretion disk.
 - Increased default resource asteroid chance to 60% (up from 45%).
 - Electronics resources are now classified as artificial and no longer naturally spawn on planets.
+- Welfare option base threshold is now 200k (down from 350k).
 
 [*] Systems
 

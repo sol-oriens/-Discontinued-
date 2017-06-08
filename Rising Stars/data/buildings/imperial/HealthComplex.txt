@@ -6,12 +6,12 @@ Building: Healthcare Complex
 	Category: Infrastructure
 
 	Size: 2x2
-	Base Cost: 200
-	Tile Cost: 20
-	Base Maintenance: 100
-	Tile Maintenance: 10
+	Base Cost: 100
+	Tile Cost: 10
+	Base Maintenance: 15
+	Tile Maintenance: 5
 
-  ConsumeResearch(100)
+  ConsumeResearch(25)
 
   AddMaxPopulation(2)
 
