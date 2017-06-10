@@ -375,6 +375,12 @@ class MakePlanet : MapHook {
 			radius = normald(arguments[1].decimal, arguments[1].decimal2);
 		double spacing = arguments[2].fromRange() * config::SYSTEM_SIZE;
 
+		//RS - Gas Giants: make gas giants giant
+		if (resource !is null && resource.ident == "RareGases") {
+			radius = radius * 2.0 + 70;
+			spacing += 500;
+		}
+
 		system.radius += spacing;
 
 		double pos = system.radius;
@@ -420,6 +426,7 @@ class MakePlanet : MapHook {
 			if(biome1 is null)
 				@biome1 = getDistributedBiome();
 		}
+
 		const Biome@ biome2 = getDistributedBiome();
 		const Biome@ biome3 = getDistributedBiome();
 
@@ -440,12 +447,19 @@ class MakePlanet : MapHook {
 			gridH = ceil(givenGrid.y);
 
 		//Figure out planet type
-		const PlanetType@ planetType = getBestPlanetType(biome1, biome2, biome3);
-		planet.PlanetType = planetType.id;
+		//RS - Gas Giants: lock planet type on gas biome
+		if (resource !is null && resource.ident == "RareGases") {
+			const PlanetType@ planetType = getBestPlanetType(biome1, null, null);
+			planet.PlanetType = planetType.id;
+		}
+		else {
+			const PlanetType@ planetType = getBestPlanetType(biome1, biome2, biome3);
+			planet.PlanetType = planetType.id;
+		}
 
 		//RS - Scaling: increased gravity well based on planet size
-		if (resource !is null && resource.name == "Ringworld")
-			//Ringworlds shouldn't have gravity wells as they have no center
+		if (resource !is null && resource.ident == "Ringworld")
+			//Ringworlds shouldn't have gravity wells as they have no core
 			//Gravity well is the star's
 			planet.OrbitSize = system.radius;
 		else
@@ -465,7 +479,14 @@ class MakePlanet : MapHook {
 		uint resId = uint(-1);
 		if(resource !is null)
 			resId = resource.id;
-		planet.initSurface(gridW, gridH, biome1.id, biome2.id, biome3.id, resId);
+		//RS - Gas Giants: force gas giants to their base biome only
+		if (resource !is null && resource.ident == "RareGases") {
+			//RS - TODO: Refactor surface creation to avoid this ugly hack
+			planet.initSurface(gridW, gridH, biome1.id, biome1.id, biome1.id, resId);
+		}
+		else {
+			planet.initSurface(gridW, gridH, biome1.id, biome2.id, biome3.id, resId);
+		}
 
 		//Make node
 		PlanetNode@ plNode = cast<PlanetNode>(bindNode(planet, "PlanetNode"));
@@ -495,6 +516,16 @@ class MakePlanet : MapHook {
 		}
 
 		//Setup moons
+		//RS - Gas Giants: gas giants should have at least 4 moons
+		if (resource !is null && resource.ident == "RareGases") {
+			//for (uint i = 0, cnt = randomi(4, 8); i < cnt; ++i) {
+			uint i = 0;
+			uint cnt = randomi(4, 8);
+			for (i = 0; i < cnt; ++i) {
+				planet.addMoon();
+				planet.addStatus(getStatusID("Moon"));
+			}
+		}
 		if(moons.boolean) {
 			while(randomd() < config::PLANET_MOON_CHANCE) {
 				planet.addMoon();

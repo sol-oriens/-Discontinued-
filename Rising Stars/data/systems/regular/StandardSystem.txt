@@ -6,7 +6,5 @@ System: StandardSystem
 	MakeStar(Temperature = 4000:12000, Radius = 650:850)
 	ExpandSystem(1000:3000)
 
-	RepeatModified(1:6, $PLANET_FREQUENCY)
+	RepeatModified(1:4, $PLANET_FREQUENCY)
 		MakePlanet()
-
-	ExpandSystem(2000)

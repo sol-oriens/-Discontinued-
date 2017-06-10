@@ -14,7 +14,5 @@ System: BinarySystem
 
 	ExpandSystem(1000:3000)
 
-	RepeatModified(1:6, $PLANET_FREQUENCY)
+	RepeatModified(1:4, $PLANET_FREQUENCY)
 		MakePlanet()
-
-	ExpandSystem(3000)

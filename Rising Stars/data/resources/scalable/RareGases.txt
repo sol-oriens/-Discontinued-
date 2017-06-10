@@ -1,0 +1,66 @@
+Resource: RareGases
+	Name: #RAREGASES
+	Blurb: #RAREGASES_BLURB
+	Description: #RAREGASES_DESC
+	Native Biome: Gas
+	Class: Scalable
+
+	Small Icon: ResourceIconsSmall::41*#af5a53
+	Pressure: 1 Energy
+
+	Distribution: 0
+
+	Limitless Level: True
+	Can Be Terraformed: False
+	Exportable: False
+	Icon: ResourceIconsSmall::41*#af5a53
+
+	IfLevel(1, AddPressure(Energy, 2))
+
+	IfLevel(2, AddPressure(Energy, 2))
+	IfLevel(2, AddPressure(Defense, 2))
+
+	IfLevel(3, AddPressure(Energy, 2))
+	IfLevel(3, AddPressure(Defense, 2))
+	IfLevel(3, AddPressure(Research, 2))
+
+	IfLevel(4, AddPressure(Energy, 2))
+	IfLevel(4, AddPressure(Defense, 2))
+	IfLevel(4, AddPressure(Research, 2))
+	IfLevel(4, AddPressure(Influence, 2))
+
+	IfLevel(5, AddPressure(Energy, 2))
+	IfLevel(5, AddPressure(Defense, 2))
+	IfLevel(5, AddPressure(Research, 2))
+	IfLevel(5, AddPressure(Influence, 2))
+	IfLevel(5, AddPressure(Money, 2))
+
+	IfLevel(6, AddPressure(Energy, 2))
+	IfLevel(6, AddPressure(Defense, 2))
+	IfLevel(6, AddPressure(Research, 2))
+	IfLevel(6, AddPressure(Influence, 2))
+	IfLevel(6, AddPressure(Money, 2))
+
+	IfLevel(1, EnableModifier(ThrustFactor(1.1)) )
+	IfLevel(1, EnableModifier(TurnThrustFactor(1.1)) )
+	IfLevel(1, EnableModifier(Hyperdrive::SpeedFactor(1.1)) )
+
+	IfLevel(2, EnableModifier(ThrustFactor(1.2)) )
+	IfLevel(2, EnableModifier(TurnThrustFactor(1.2)) )
+	IfLevel(2, EnableModifier(Hyperdrive::SpeedFactor(1.2)) )
+
+	IfLevel(3, EnableModifier(ThrustFactor(1.3)) )
+	IfLevel(3, EnableModifier(TurnThrustFactor(1.3)) )
+	IfLevel(3, EnableModifier(Hyperdrive::SpeedFactor(1.3)) )
+
+	IfLevel(4, EnableModifier(ThrustFactor(1.4)) )
+	IfLevel(4, EnableModifier(TurnThrustFactor(1.4)) )
+	IfLevel(4, EnableModifier(Hyperdrive::SpeedFactor(1.4)) )
+
+	IfLevel(5, EnableModifier(ThrustFactor(1.5)) )
+	IfLevel(5, EnableModifier(TurnThrustFactor(1.5)) )
+	IfLevel(5, EnableModifier(Hyperdrive::SpeedFactor(1.5)) )
+
+	IfLevel(6, EnableModifier(ThrustFactor(1.6)) )
+	IfLevel(6, EnableModifier(TurnThrustFactor(1.6)) )
+	IfLevel(6, EnableModifier(Hyperdrive::SpeedFactor(1.6)) )

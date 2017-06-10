@@ -26,6 +26,7 @@ System: HomeSystem
 	MakePlanet(Water, Conditions = False, Moons = False)
 	MakePlanet(RandomLevel:1:Common, Conditions = False, Moons = False)
 	MakePlanet(RandomType:Food:Common, Conditions = False, Moons = False)
+	MakePlanet(Resource = RareGases)
 
 	MakeAsteroid(Cargo = Ore, Cargo Amount = 1200)
 	MakeAsteroid(Cargo = Ore, Cargo Amount = 1200)

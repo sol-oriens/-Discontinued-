@@ -8,7 +8,5 @@ System: AncientSystem
 
 	AddQuality(+100)
 
-	RepeatModified(1:4, $PLANET_FREQUENCY)
+	RepeatModified(1:2, $PLANET_FREQUENCY)
 		MakePlanet()
-
-	ExpandSystem(2000)

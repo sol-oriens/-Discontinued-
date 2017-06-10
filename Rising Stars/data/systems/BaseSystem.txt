@@ -1,11 +1,22 @@
 System: BaseSystem
+	Inherit: BaseGasGiants
+	Inherit: BaseOuterRim
 	Inherit: BaseRemnants
 	Inherit: BaseAsteroids
 	Inherit: BaseAnomalies
 	Inherit: BaseArtifacts
 
+System: BaseGasGiants
+	RepeatChance(Chance = 0.5, Repeat Modifier = 0.94)
+		MakePlanet(Resource = RareGases)
+
+System: BaseOuterRim
+	RepeatChance(Chance = $ASTEROID_BELT_OCCURANCE, Repeat Modifier = 0.9999)
+		MakeAsteroidBelt()
+	ExpandSystem(2000)
+
 System: BaseAsteroids
-	RepeatChance(Chance = $ASTEROID_BELT_OCCURANCE, Repeat Modifier = 0.999999)
+	RepeatChance(Chance = $ASTEROID_BELT_OCCURANCE, Repeat Modifier = 0.9999)
 		MakeAsteroidBelt()
 	RepeatChance(Chance = $ASTEROID_OCCURANCE, Repeat Modifier = 0.999999)
 		MakeAsteroid(Cargo = Ore)
