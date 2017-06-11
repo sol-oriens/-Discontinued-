@@ -43,6 +43,7 @@ import bool hasInvasionMap() from "Invasion.InvasionMap";
 
 from buildings import BuildingType;
 from orbitals import OrbitalModule;
+from constructions import ConstructionType;
 import util.formatting;
 
 from empire import ai_full_speed;
@@ -338,6 +339,7 @@ final class AIDefs {
 	const BuildingType@ LaborStorage;
 	const OrbitalModule@ Shipyard;
 	const OrbitalModule@ TradeOutpost;
+	const ConstructionType@ MoonBase;
 };
 
 final class AI : AIController, Savable {

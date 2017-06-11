@@ -613,7 +613,7 @@ final class Infrastructure : AIComponent {
       int resId = planet.primaryResourceType;
       if (resId == -1)
         continue;
-      //const ResourceType@ type = getResource(resId);
+      
       const ResourceType@ type = getResource(resId);
       //The first scalable resource
       if (type.cls is scalableClass) {
