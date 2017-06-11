@@ -58,6 +58,7 @@ v1.2
 - Empires now have 6k worth of ore asteroids in their home system instead of one 6k ore asteroid.
 - Empires now have an additional an additional FTL crystals asteroid in their home system. A mine is prebuilt if the Quick Start game option is toggled on. This effectively reverts the starting FTL generation and FTL storage to vanilla values.
 - Empires now have an additional an additional FTL crystals asteroid in an adjacent system.
+- Empires now have an additional an additional Pekelm asteroid in an adjacent system.
 - Empires now have an additional anomaly in their home system.
 - The guaranteed moon around the level 1 planet in the home system has moved to the homeworld.
 

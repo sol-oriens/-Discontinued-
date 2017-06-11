@@ -5,6 +5,7 @@ Resource: Electronics
 
 	Icon: ResourceIcons::14
 	Small Icon: ResourceIconsSmall::5
+	Display Weight: -5
 
 	Level: 1
 	Exportable: False
