@@ -27,7 +27,7 @@ import void pinObject(Tab@ _tab, Object@ obj, bool floating) from "tabs.GalaxyTa
 import void zoomTabTo(Object@ obj) from "tabs.GalaxyTab";
 import void openOverlay(Object@ obj) from "tabs.GalaxyTab";
 import void openSupportOverlay(Object@ obj) from "tabs.GalaxyTab";
- 
+
 set_int selectedIDs;
 array<Object@> selection;
 array<array<Object@>> groups(9);
@@ -187,7 +187,7 @@ double pressedTime;
 void selectionClick(uint button, bool pressed) {
 	Object@ Hovered = hoveredObject;
 	bool doubleClicked = false;
-	
+
 	//Send clicks to the tab
 	if(!pressed) {
 		//Check for double clicks
@@ -271,7 +271,7 @@ SelectionType classifyRestrictive(array<Object@>& objs) {
 		Object@ obj = objs[i];
 		if(!obj.owner.controlled)
 			continue;
-		
+
 		uint newType = ST_Other;
 		switch(obj.type) {
 			case OT_Ship:
@@ -291,7 +291,7 @@ SelectionType classifyRestrictive(array<Object@>& objs) {
 		if(newType < type)
 			type = newType;
 	}
-	
+
 	return SelectionType(type);
 }
 
@@ -302,7 +302,7 @@ SelectionType classifyRelaxed(array<Object@>& objs) {
 		Object@ obj = objs[i];
 		if(!obj.owner.controlled)
 			return ST_Other;
-		
+
 		switch(obj.type) {
 			case OT_Ship:
 				//Nothing overrides ship selection
@@ -317,7 +317,7 @@ SelectionType classifyRelaxed(array<Object@>& objs) {
 				return ST_Other;
 		}
 	}
-	
+
 	return type;
 }
 
@@ -326,7 +326,7 @@ void filter(array<Object@>& objs, SelectionType type) {
 		return;
 
 	array<Object@> output;
-	
+
 	switch(type) {
 		case ST_Fleets:
 		for(uint i = 0, cnt = objs.length; i < cnt; ++i) {
@@ -356,29 +356,29 @@ void filter(array<Object@>& objs, SelectionType type) {
 		}
 		break;
 	}
-	
+
 	objs = output;
 }
 
 
 void dragSelect(const recti& box) {
 	array<Object@> objects = activeCamera.camera.boxSelect(box);
-	
+
 	SelectionType selType;
-	
+
 	//If we're adding to our current selection, filter by the current selection type
 	if(shiftKey)
 		selType = classifyRelaxed(selection);
 	else
 		selType = classifyRestrictive(objects);
-	
+
 	filter(objects, selType);
-	
+
 	if(!shiftKey)
 		clearSelection();
 	for(uint i = 0, cnt = objects.length; i < cnt; ++i)
 		addToSelection(objects[i]);
-	
+
 	updateBeams();
 }
 
@@ -405,11 +405,12 @@ void dragSelect(const recti& box) {
 	return 16000.0;
 }*/
 
+//RS - Scaling: icon selection max distance
 const double MAX_SUPPORT_SELECT_DIST = 1000.0;
-const double MAX_PLANET_SELECT_DIST = 52000.0;
-const double MAX_PLANET_PHYS_SEL_DIST = 2000.0;
-const double MAX_ORBITAL_SELECT_DIST = 52000.0;
-const double MAX_PICKUP_SELECT_DIST = 20000.0;
+const double MAX_PLANET_SELECT_DIST = 1560000.0;
+const double MAX_PLANET_PHYS_SEL_DIST = 20000.0;
+const double MAX_ORBITAL_SELECT_DIST = 520000.0;
+const double MAX_PICKUP_SELECT_DIST = 200000.0;
 const double MAX_COLSHIP_SELECT_DIST = 12000.0;
 const double MAX_CIVILIAN_SELECT_DIST = 1500.0;
 
@@ -437,7 +438,7 @@ void updateHoveredObject() {
 			Object@ obj = cur.object;
 			if(obj is null)
 				continue;
-			
+
 			double dist = cur.position.distanceTo(line.start) * config::GFX_DISTANCE_MOD;
 			double score = 1.0 / dist;
 			Empire@ owner = obj.owner;
@@ -452,7 +453,7 @@ void updateHoveredObject() {
 				if(!hoverFilter(obj))
 					score /= 10.0;
 			}
-			
+
 			switch(obj.type) {
 				case OT_Ship:
 					if(!obj.hasLeaderAI) {
@@ -496,14 +497,14 @@ void updateHoveredObject() {
 					score /= 6.0;
 					break;
 			}
-			
+
 			if(score * 4.0 < bestScore)
 				continue;
-			
+
 			score /= cur.position.distanceTo(line.getClosestPoint(cur.position, true));
 			if(score < bestScore)
 				continue;
-			
+
 			@best = cur;
 			bestScore = score;
 		}
@@ -516,11 +517,11 @@ void updateHoveredObject() {
 
 		//Update beam shown for hovered objects
 		updateHoverBeams();
-		
+
 		bestNodes.length = 0;
 		nodes.length = 0;
 	}
-	
+
 	//double end = getExactTime();
 	//error("Hovered update took " + int((end - start) * 1000.0) + "ms");
 }
@@ -568,13 +569,13 @@ void holdPosition(bool pressed) {
 void group_key(bool pressed, uint groupIndex) {
 	if(!pressed)
 		return;
-	
+
 	array<Object@>@ group = groups[groupIndex];
 	if(ctrlKey && shiftKey) {
 		//Add current selection to group
 		if(selection.length == 0)
 			return;
-	
+
 		set_int groupObjs;
 		for(uint i = 0, cnt = group.length; i < cnt; ++i)
 			groupObjs.insert(group[i].id);
@@ -585,14 +586,14 @@ void group_key(bool pressed, uint groupIndex) {
 			group.insertLast(obj);
 			groupObjs.insert(obj.id);
 		}
-		
+
 		sound::objselect.play(priority=true);
 	}
 	else if(shiftKey) {
 		//Add group to selection
 		for(uint i = 0, cnt = group.length; i < cnt; ++i)
 			addToSelection(group[i]);
-		
+
 		if(group.length != 0)
 			sound::objselect.play(priority=true);
 	}
@@ -616,7 +617,7 @@ void group_key(bool pressed, uint groupIndex) {
 				}
 			}
 		}
-		
+
 		if(sameGroup) {
 			if(selection.length != 0)
 				zoomTabTo(selection[0]);
@@ -667,7 +668,7 @@ void manage_support(bool pressed) {
 
 void init() {
 	addConsoleCommand("debug_cursor", DebugCursorCommand());
-	
+
 	keybinds::Global.addBind(KB_MANAGE, "manage_obj");
  	keybinds::Global.addBind(KB_MANAGE_SUPPORT, "manage_support");
 	keybinds::Global.addBind(KB_PIN, "pinObj");
@@ -675,7 +676,7 @@ void init() {
 	keybinds::Global.addBind(KB_PIN_FLOATING, "pinObjFloat");
 	keybinds::Global.addBind(KB_TOGGLE_FIREARCS, "toggleFireArcs");
 	hoverBeams.isHover = true;
-	
+
 	keybinds::Global.addBind(KB_GROUP_1, "group_1");
 	keybinds::Global.addBind(KB_GROUP_2, "group_2");
 	keybinds::Global.addBind(KB_GROUP_3, "group_3");
@@ -1073,7 +1074,7 @@ class BEAMS {
 			updateBeam(projectBeam, myPos, project.position, PROJECT_BEAM_COLOR);
 		else
 			hideBeam(projectBeam);
-		
+
 		if(obj.hasConstruction && obj.owner.controlled && obj.isRallying)
 			updateBeam(rallyBeam, myPos, obj.rallyPosition, RALLY_BEAM_COLOR);
 		else
@@ -1097,7 +1098,7 @@ class BEAMS {
 					if(originPrimary !is null && originPrimary is otherPrimary && otherPrimary.valid)
 						col = originPrimary.color;
 					col.a = 0x80;
-					
+
 					vec3d offset = origin.position - other.position;
 					offset.y = 0.0;
 					offset.normalize();
@@ -1114,14 +1115,14 @@ class BEAMS {
 			if(obj.hasResources) {
 				array<Resource> resources;
 				resources.syncFrom(obj.getNativeResources());
-				
+
 				uint nativeCnt = obj.nativeResourceCount;
-				
+
 				for(uint i = 0; i < resources.length; ++i) {
 					auto@ res = resources[i];
 					if(res.origin !is obj)
 						continue;
-				
+
 					Object@ dest = res.exportedTo;
 					if(dest is null)
 						@dest = obj.nativeResourceDestination[i];

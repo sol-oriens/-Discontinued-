@@ -114,7 +114,7 @@ const double ANIMATE_TIME = 0.45;
 
 //RS - Scaling
 const double FADE_DIST_MIN = 750; //Distance at which icon starts to appear
-const double FADE_DIST_MAX = 100000; //Distance at which icon completes appearing
+const double FADE_DIST_MAX = 1000; //Distance at which icon completes appearing
 
 class StrategicIconNodeScript : StrategicIcon {
 	bool ownerColor = true;

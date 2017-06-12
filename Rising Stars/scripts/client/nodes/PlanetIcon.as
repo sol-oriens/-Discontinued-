@@ -13,8 +13,7 @@ const double OUTSIDE_SIZE_MAX = 250000.0; //Distance at which icons start gettin
 const double ANIMATE_TIME = 0.45;
 
 //RS - Scaling
-const double GRAVITY_DISC_MAX_DIST = 6000.0; //Max distance at which the circle around the planet that displays it's max orbit will show
-
+const double GRAVITY_DISC_MAX_DIST = 6000.0; //Max distance at which the circle around the planet that displays it's gravity well will show
 
 const double FADE_DIST_MIN = 1000; //Distance at which icon starts to appear (multiplied by 10 in planets)
 const double FADE_DIST_MAX = 2000; //Distance at which icon completes appearing

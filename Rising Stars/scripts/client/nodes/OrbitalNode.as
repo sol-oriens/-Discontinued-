@@ -1,7 +1,7 @@
 import orbitals;
 from nodes.FleetPlane import SHOW_FLEET_PLANES;
 
-//RS - Scaling
+//RS - Scaling: icon size
 const double MAX_SIZE = 10000.0;
 
 final class OrbitalNodeScript {
@@ -29,7 +29,8 @@ final class OrbitalNodeScript {
 
 		if(fleetPlane != 0 && node.sortDistance < 2000.0 && node.sortDistance >= 150.0 && SHOW_FLEET_PLANES) {
 			Color color(0xffffff14);
-			if(node.sortDistance < 250.0)
+			//RS - Scaling
+			if(node.sortDistance < 500.0)
 				color.a = double(color.a) * (node.sortDistance - 150.0) / 100.0;
 			renderPlane(material::FleetCircle, node.abs_position, fleetPlane, color);
 		}

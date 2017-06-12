@@ -468,7 +468,7 @@ class MakePlanet : MapHook {
 			// Get the planet volume
 			double volume = pow(radius, 3.0) * 4 / 3 * pi;
 			// Apply a cube root and a clever factor
-			planet.OrbitSize = pow(volume, 1.0/3.0) * 6;
+			planet.OrbitSize = pow(volume, 1.0/3.0) * 5.5;
 		}
 
 		//Setup orbit

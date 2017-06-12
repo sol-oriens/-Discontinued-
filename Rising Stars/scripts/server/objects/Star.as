@@ -122,15 +122,18 @@ final class StarScript {
 
 	void postInit(Star& star) {
 		//RS - Scaling: scaled sound is too loud
-		double soundRadius = star.radius / 10;
+		double soundRadius = star.radius;
 		maxHealth = star.MaxHealth;
 		maxShield = star.MaxShield;
 		//Blackholes need a 'bigger' sound
-		if(star.temperature == 0.0)
+		if(star.temperature == 0.0) {
 		//RS - Scaling: supermassive black holes need reduced sound from their radius
-			if (soundRadius >= 180 * 25)
-				soundRadius /= 25;
+		//Minimum black hole radius / 10 * scaling factor
+			if (soundRadius >= 180 * 25) {
+					soundRadius /= 25;
+			}
 			soundRadius *= 10.0;
+		}
 		addAmbientSource(CURRENT_PLAYER, "star_rumble", star.id, star.position, soundRadius);
 	}
 
