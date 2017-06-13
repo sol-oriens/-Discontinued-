@@ -207,7 +207,7 @@ TECHNOFARM_DESC: <<
 >>
 RAREGASES: Rare Gases
 RAREGASES_BLURB: <<
-	[font=Small]Increases all ship engine thrust and hyperdrive speed by [levels=$1;#ffb4b6]0% / 10% / 30% / 60% / 100% / 150% / 210%[/levels]. Gains various pressures per level.[/font]
+	[font=Small]Increases all ship engine thrust and hyperdrive speed by a cumulative bonus of [levels=$1;#ffb4b6]0% / 20% / 40% / 60% / 80% / 100% / 120%[/levels]. Gains various pressures per level.[/font]
 	 Cannot be exported.
 >>
 RAREGASES_DESC: <<
@@ -215,12 +215,12 @@ RAREGASES_DESC: <<
 
 	[b]If this planet is Level 1 or higher:[/b]
 	[offset=30]The planet gains 2 Energy pressure per Level.[/offset]
-	[offset=30]Ships gain 10% extra acceleration.[/offset]
+	[offset=30]Ships gain 20% extra acceleration.[/offset]
 	[offset=30]Ships using hyperdrives gain 10% extra speed.[/offset]
 
 	[b]If this planet is Level 2 or higher:[/b]
 	[offset=30]The planet gains 2 Defense pressure per Level starting from Level 2.[/offset]
-	[offset=30]Ships gain 30% extra acceleration.[/offset]
+	[offset=30]Ships gain 40% extra acceleration.[/offset]
 	[offset=30]Ships using hyperdrives gain 30% extra speed.[/offset]
 
 	[b]If this planet is Level 3 or higher:[/b]
@@ -230,16 +230,16 @@ RAREGASES_DESC: <<
 
 	[b]If this planet is Level 4 or higher:[/b]
 	[offset=30]The planet gains 2 Influence pressure per Level starting from Level 4.[/offset]
-	[offset=30]Ships gain 100% extra acceleration.[/offset]
+	[offset=30]Ships gain 80% extra acceleration.[/offset]
 	[offset=30]Ships using hyperdrives gain 100% extra speed.[/offset]
 
 	[b]If this planet is Level 5 or higher:[/b]
 	[offset=30]The planet gains 2 Money pressure per Level starting from Level 5.[/offset]
-	[offset=30]Ships gain 150% extra acceleration.[/offset]
+	[offset=30]Ships gain 100% extra acceleration.[/offset]
 	[offset=30]Ships using hyperdrives gain 150% extra speed.[/offset]
 
 	[b]If this planet is Level 6:[/b]
-	[offset=30]Ships gain 210% extra acceleration.[/offset]
+	[offset=30]Ships gain 120% extra acceleration.[/offset]
 	[offset=30]Ships using hyperdrives gain 210% extra speed.[/offset]
 
 	[i][color=#aaa]This resource is a scalable resource and cannot be exported or used to level up. Its bonuses depend on the level of the planet.[/color][/i]
