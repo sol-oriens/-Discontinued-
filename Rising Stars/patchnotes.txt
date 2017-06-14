@@ -10,6 +10,16 @@ v1.2
 - Added Electronics Factory: Adds an non exportable Electronics resource. Consumes 8 ore per minute. Base building and maintenance costs of 50k. The building goes inactive and the resource is removed if there is no more ore left on the planet.
 - Added Arcology: Adds 5 population and replaces 5 cities. Costs 1M, 500 ore, 250 energy, 100 research and 100 labor.
 
+[*] FTL
+
+- Increased hyperdrive speed by a factor of 20 and distance cost by a factor of 1.5. Decreased initial activation cost by a factor of 2.
+- Increased fling beacon range by a factor of 2 and cost by a factor of 2.
+- Increased slipstream optimal range by a factor of 10.
+- Increased jump drive range by a factor of 10.
+- Increased gate upkeep to 0.25 FTL/s.
+
+*** FTL is roughly twice as less efficient compared to vanilla to make long distances matter more, especially in the beginning of a game. Hyperdrive speed ratio is identical to vanilla to make up for its decreased effectiveness over long distances. Costs are balanced to make FTL a luxury at first, but common later, as more FTL sources and free storage are available.
+
 [*] Game Options
 
 - Added Quick Start: when toggled on, empires will be able to expand to other systems almost immediately instead of having to build a basic economy first. This reverts the now slower game start to more or less vanilla speed. This option is off by default.
@@ -21,8 +31,8 @@ v1.2
 - Added Telescope Array, which has 40% size, cost and Telescope power than the quantum version. Requires no ore but has a 40k maintenance cost. Primarily designed for early scouting, when interstellar travel is a problem, and border control.
 
 [*] Planets
-- Added gas giants, using unused vanilla low resolution textures. Gas giants can be colonized (more or less) and feature a new scalable resource designed to balance the increased scale of the game by providing increased propulsion speed and various pressure boosts. They are commonly found in all kinds of systems, but they are difficult to level up due to their mostly useless biome: imperial buildings cannot be built on it and civilian tile development is extremely slow. They have however a large number of moons where bases can be constructed.
-- Local Asteroid Field planets now have more and bigger asteroids orbiting closer to them.
+- Added gas giants, using unused vanilla low resolution textures. Gas giants can be colonized (more or less) and feature a new scalable resource designed to balance the increased scale of the game by providing increased propulsion speed and various pressure boosts without blatantly scaling engine thrust. They are commonly found in all kinds of systems, but they are more difficult to level up due to their mostly useless biome: imperial buildings cannot be built on it and civilian tile development is extremely slow. They have however a large number of moons where bases can be constructed.
+- Local Asteroid Field planets now have more and bigger asteroids orbiting closer to them (this is a purely cosmetic change).
 - Destroyed planets now yield more asteroid with less ore.
 
 [*] Resources
@@ -30,8 +40,9 @@ v1.2
 - Empires no longer start with any FTL generation or FTL storage regardless of FTL trait choice (but have an FTL crystals asteroid in their home system).
 - Added FTL crystals asteroids: provide +1 FTL/s and add 250 FTL storage. These are not consumed when mined (but they can be captured...).
 - FTL shards asteroids now permanently add 500 FTL storage (up from 100).
-- FTL planets now provide +0.5/+1/+1.5/+2.5/+4/+7/+12 FTL/s.
-- Added Rare Gases, a new planetary scalable resource found on gas giants only. Increases all ship engine thrust and hyperdrive speed by 0% / 20% / 40% / 60% / 80% / 100% / 120%. Does not increase turn rate. Gains 2 Energy pressure per level starting from level 1, 2 Defense pressure per level starting from level 2, 2 Research pressure per level starting from level 3, 2 Influence pressure per level starting from level 4 and 2 Money pressure per level starting from level 5. Cannot be exported.
+- FTL planets now provide +0.5/+1/+1.5/+2/+3/+5/+10 FTL/s.
+- Added Rare Gases, a new planetary scalable resource found on gas giants only. Increases all ship engine thrust by 0%/20%/50%/100%/180%/300%/480%. Does not increase turn rate nor hyperdrive speed. Gains 2 Energy pressure per level starting from level 1, 2 Defense pressure per level starting from level 2, 2 Research pressure per level starting from level 3, 2 Influence pressure per level starting from level 4 and 2 Money pressure per level starting from level 5. Cannot be exported.
+*** Sublight species are strongly advised to heavily invest in developing those planets!
 - Available ore on asteroids has been reduced to anywhere from 50 to 1250 ore (down from 500 to 10000). Default ore asteroid chance per system has been changed to 90% (up from 45%). In addition, systems with ore asteroids are very likely to have a LOT of them.
 - Added a 5% chance for systems to have one or more asteroid belts. These have a chance to contain resource asteroids equal to 1/30th of the resource asteroid chance.
 - Black holes now have a big, thick asteroid belt beyond their accretion disk.
