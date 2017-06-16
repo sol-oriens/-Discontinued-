@@ -3,7 +3,7 @@ from regions.regions import getRegion;
 #section all
 import orbitals;
 
-const double HYPERDRIVE_COST = 0.12;
+const double HYPERDRIVE_COST = 0.1;
 const double HYPERDRIVE_START_COST = 12.5;
 const double HYPERDRIVE_CHARGE_TIME = 15.0;
 

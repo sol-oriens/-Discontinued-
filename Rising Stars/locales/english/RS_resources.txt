@@ -1,6 +1,4 @@
-ELECTRONICS_DESC: <<
-	Cannot be exported.
->>
+ELECTRONICS: Semiconductors
 PARADISE_NAME: Tropical Paradise
 RESOURCE_INTEL: Intelligence Hub
 TECHNOFARM_NAME: Technofarm
@@ -74,11 +72,11 @@ RAHTA_SULPHATE_DESC: <<
 	[i][color=#aaa]This resource is a scalable resource and cannot be exported or used to level up. Its bonuses depend on the level of the planet.[/color][/i]
 >>
 FTL_CRYSTALS_BLURB: <<
-	Produces [levels=$1;#00c0ff]0.5/1/1.5/2.5/4/7/12[/levels] [img=ResourceIcons::22;20/] FTL/s.
+	Produces [levels=$1;#00c0ff]0.5/1/1.5/2/3/5/10[/levels] [img=ResourceIcons::22;20/] FTL/s.
 	Gives special effects at [b]levels 4 and 5[/b].
 >>
 FTL_CRYSTALS_DESC: <<
-	Produces [levels=$1;#00c0ff]0.5/1/1.5/2.5/4/7/12[/levels] [img=ResourceIcons::22;20/] FTL per second.
+	Produces [levels=$1;#00c0ff]0.5/1/1.5/2/3/5/10[/levels] [img=ResourceIcons::22;20/] FTL per second.
 
 	[b]If this planet is Level 4 or higher:[/b]
 	[offset=30]Grants vision over all fleets currently in FTL anywhere.[/offset]

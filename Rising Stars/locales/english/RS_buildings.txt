@@ -15,9 +15,10 @@ BLD_HEALTH_COMPLEX_DESC: <<
 
 BLD_ECX_FACTORY: Electronics Factory
 BLD_ECX_FACTORY_DESC: <<
-	[color=#aaa][i]A state-of-the art factory allowing planetary-wide mass production of electronic components.[/i][/color]
+	[color=#aaa][i]A state-of-the art factory allowing mass production of electronic components.[/i][/color]
 
-	Adds an Electronics resource.
+	Can replace a Level 1 resource.
+	Adds 3 money pressure.
 
 	[bbloc=#TIP_CONSUME_ORE:8/]
 >>
