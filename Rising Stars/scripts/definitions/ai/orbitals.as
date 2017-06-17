@@ -3,6 +3,8 @@ import orbitals;
 
 import ai.consider;
 
+from traits import getTraitID;
+
 interface AIOrbitals : ConsiderComponent {
 	Empire@ get_empire();
 	Considerer@ get_consider();
@@ -39,8 +41,18 @@ class RegisterForUse : OrbitalAIHook {
 	Argument use(AT_Custom, doc="Specialized usage for this orbital.");
 
 	void register(AIOrbitals& orbitals, const OrbitalModule& type) const override {
+		Empire@ emp = orbitals.get_empire();
+
 		for(uint i = 0, cnt = OrbitalUseName.length; i < cnt; ++i) {
 			if(OrbitalUseName[i] == use.str) {
+				if(use.str == "TradeOutpost") {
+					//Evangelical lifestyle doesn't use outposts
+					if (type.ident == "TradeOutpost" && emp.hasTrait(getTraitID("Evangelical")))
+						continue;
+					//Non Evangelical lifestyles don't use temples
+					if (type.ident == "Temple" && !emp.hasTrait(getTraitID("Evangelical")))
+						continue;
+				}
 				orbitals.registerUse(OrbitalUse(i), type);
 				return;
 			}

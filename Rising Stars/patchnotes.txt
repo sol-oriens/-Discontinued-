@@ -2,7 +2,7 @@ v1.1.2
 
 [*] Artificial Intelligence
 
-- Most AIs are now able to build and prioritize outposts to protect their territory or expand beyond systems without planets or resources (including nebulae). Some specific AIs (Star Children, Evangelists) cannot yet.
+- AIs are now able to build and prioritize outposts to protect their territory or expand beyond systems without planets or resources (including nebulae). Evangelical lifestyles will build star temples instead.
 - AIs now build moon bases on planets with level 2, 3 and scalable resources (excepted, of course, Star Children).
 
 [*] Buildings

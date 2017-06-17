@@ -607,7 +607,7 @@ final class Infrastructure : AIComponent {
       //The homeworld if there is one
       @planet = cast<Planet>(ai.empire.Homeworld);
       if (planet !is null)
-        return planet;²
+        return planet;
     }
 
     for (uint i = 0, cnt = sys.ai.planets.length; i < cnt; ++i) {
