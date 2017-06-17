@@ -12,6 +12,7 @@ Technology: SysShieldGen
 
 	UnlockSubsystem(ShieldGen)
 	SkipOnUnlockedSubsystem(ShieldGen)
+	UnlockSubsystem(SupShieldGen)
 
 	SecondaryEnergyCost(750)
 

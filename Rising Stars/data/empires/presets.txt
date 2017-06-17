@@ -34,7 +34,7 @@ Preset: Hoonan
 	Trait: Hyperdrive
 	Trait: Linked
 	Trait: SpaceProgram
-	
+
 Preset: Rahta
 	Name: #RACE_BERSERKERS
 	Tagline: #RACE_BERSERKERS_TAGLINE
@@ -42,7 +42,7 @@ Preset: Rahta
 	Portrait: emp_portrait_berserker
 	Shipset: Gevron
 	Hard: True
-	
+
 	Trait: Empire
 	Trait: Slipstream
 	Trait: Berserkers
@@ -71,7 +71,7 @@ Preset: Saar
 	Trait: Hyperdrive
 	Trait: Evangelical
 	Trait: Charismatic
-	
+
 Preset: Fasshi
 	Name: #RACE_PACIFISTS
 	Tagline: #RACE_PACIFISTS_TAGLINE
@@ -79,7 +79,7 @@ Preset: Fasshi
 	Portrait: emp_portrait_slug
 	Shipset: Volkur
 	Hard: True
-	
+
 	Trait: Capitalism
 	Trait: Hyperdrive
 	Trait: Pacifists
@@ -124,7 +124,7 @@ Preset: Heralds
 	DLC: Heralds
 
 	Trait: Theocracy
-	Trait: Flux
+	Trait: Jumpdrive
 	Trait: Extragalactic
 	Trait: Animated
 
@@ -149,7 +149,7 @@ Preset: Progenitors
 	Portrait: emp_portrait_cloak
 	Shipset: Progenitor
 	Hard: True
-	
+
 	Trait: Communism
 	Trait: Gate
 	Trait: Progenitors
