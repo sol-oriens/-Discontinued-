@@ -27,3 +27,5 @@ Building: Mine
 	IfNative(Iron, ImproveNativeResourcePressure(2))
 	IfNative(Titanium, ImproveNativeResourcePressure(2))
 	IfNative(Supercarbons, ImproveNativeResourcePressure(2))
+	IfNative(NativeGold, ImproveNativeResourcePressure(1))
+	IfNative(Coal, ImproveNativeResourcePressure(1))

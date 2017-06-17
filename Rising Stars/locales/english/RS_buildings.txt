@@ -5,6 +5,7 @@ BLD_MINE_DESC: <<
 	Adds an Ore resource that can be exported and generates [b]10 ore per minute[/b] at its destination.
 	Adds 2 labor pressure.
 	Increases the pressure given by native Aluminium, Iron, Titanium or Supercarbons by 2.
+	Increases the pressure given by native Coal or Native Gold by 1.
 >>
 BLD_LABORCAMP: Xenomanufacturing Center
 BLD_SLAVECAMP: Xenoindustrial Sector
