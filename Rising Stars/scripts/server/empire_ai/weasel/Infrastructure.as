@@ -374,7 +374,6 @@ final class Infrastructure : AIComponent {
         //ai.print("orders for owned system at index " + i + ": " + sys.orders.length);
         if (getTotalOrders() < maxOrdersTotal && sys.orders.length < maxOrdersPerSys) {
           //Find out if we need an outpost
-          //TODO: handle Star Children & Evangelists
           BuildLocation loc;
           if (!hasOutpost(sys.region) && shouldHaveOutpost(sys, SA_Core, loc) && !sys.isBuildingOrbital(ai.defs.TradeOutpost)) {
             if (w > bestWeightForOutpost) {
@@ -601,19 +600,22 @@ final class Infrastructure : AIComponent {
   }
 
   Planet@ getBestPlanet(SystemCheck sys, const ResourceType@ resourceType) {
-    if (sys.region is ai.empire.HomeSystem) {
-      //The homeworld
-      return cast<Planet>(ai.empire.Homeworld);
-    }
-
     Planet@ bestPlanet, planet;
     ResourcePreference bestResource = RP_None;
+
+    if (sys.region is ai.empire.HomeSystem) {
+      //The homeworld if there is one
+      @planet = cast<Planet>(ai.empire.Homeworld);
+      if (planet !is null)
+        return planet;²
+    }
+
     for (uint i = 0, cnt = sys.ai.planets.length; i < cnt; ++i) {
       @planet = sys.ai.planets[i];
       int resId = planet.primaryResourceType;
       if (resId == -1)
         continue;
-      
+
       const ResourceType@ type = getResource(resId);
       //The first scalable resource
       if (type.cls is scalableClass) {
