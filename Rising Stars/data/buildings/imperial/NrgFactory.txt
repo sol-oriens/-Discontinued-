@@ -21,6 +21,5 @@ Building: NrgFactory
 
 	AddPressure(Energy, 1)
 	AddPressure(Money, 1)
-	IfNative(Coal, ImproveNativeResourcePressure(1))
 	IfNative(NaturalGas, ImproveNativeResourcePressure(1))
 	IfNative(Oil, ImproveNativeResourcePressure(1))
