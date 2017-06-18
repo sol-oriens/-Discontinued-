@@ -7,7 +7,7 @@ v1.1.2
 
 [*] Buildings
 
-- Added Mining Complex, available to non-Ancient races. Adds an Ore resource that can be exported and generates 10 ore per minute at its destination. Also adds 2 labor pressure and increases the pressure given by native Aluminum, Iron, Titanium or Supercarbons by 2 and Coal or Native Gold by 1. Unlike the Ancient Strip Miner, ore stored on the planet is not moved on export. Base and maintenance costs of 240k and 160k, respectively. Also costs 50 research to build.
+- Added Mining Complex, available to non-Ancient races. Adds an Ore resource that can be exported and generates 10 ore per minute at its destination. Also adds 2 labor pressure and increases the pressure given by native Aluminum, Iron, Titanium or Supercarbons by 2 and Coal or Native Gold by 1. Unlike the Ancient Strip Miner, ore stored on the planet is not moved on export. Base and maintenance costs of 190k and 120k, respectively. Also costs 50 research to build.
 
 [*] Game Options
 
