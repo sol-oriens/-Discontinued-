@@ -9,8 +9,8 @@ Building: NrgFactory
 	Size: 3x3
 	Base Cost: 110
 	Tile Cost: 10
-	Build Time: 360
-	Base Maintenance: 35
+	Build Time: 300
+	Base Maintenance: 50
 	Tile Maintenance: 10
 
 	ConsumeResearch(50)

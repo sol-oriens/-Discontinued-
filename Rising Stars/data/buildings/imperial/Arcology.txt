@@ -6,12 +6,11 @@ Building: Arcology
 	Category: Infrastructure
 
 	Size: 3x4
-	Base Cost: 1000
+	Base Cost: 850
 
-  Labor Cost: 100
+  Labor Cost: 50
 	ConsumeCargo(Ore, 500)
   ConsumeEnergy(250)
-  ConsumeResearch(100)
 
   AddMaxPopulation(5)
   ReplacesCities(5)

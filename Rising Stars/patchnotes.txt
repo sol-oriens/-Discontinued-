@@ -6,9 +6,10 @@ v1.2
 
 [*] Buildings
 
-- Added Fuel Facility: Adds 1 energy pressure and 1 money pressure and increases the pressure given by native Natural Gas or Oil by 1. Base building and maintenance costs of 110 and 35k, respectively. Also costs 50 research to build.
-- Added Electronics Factory: Can replace a Level 1 resource and adds 3 money pressure. Consumes 8 ore per minute. Base building and maintenance costs of 50k. The building becomes inactive if there is no more ore left on the planet.
-- Added Arcology: Adds 5 population and replaces 5 cities. Costs 1M, 500 ore, 250 energy, 100 research and 100 labor.
+- Added Fuel Facility: Adds 1 energy pressure and 1 money pressure and increases the pressure given by native Natural Gas or Oil by 1. Base building and maintenance costs of 110 and 50k, respectively. Also costs 50 research to build.
+- Added Electronics Factory: Can replace a Level 1 resource and adds 3 money pressure. Consumes 8 ore per minute. Base building and maintenance costs of 40k and 30k, respectively. The building becomes inactive if there is no more ore left on the planet.
+- Added Healthcare Complex: Adds 2 population. Base building and maintenance costs of 85k and 20k, respectively. Also costs 25 research to build
+- Added Arcology: Adds 5 population and replaces 5 cities. Costs 850k, 500 ore, 250 energy, and 50 labor.
 
 [*] FTL
 
@@ -45,6 +46,7 @@ v1.2
 - Added Rare Gases, a new scalable resource found on gas giants only. Increases all ship engine thrust (including colony ships) by 0%/10%/25%/50%/90%/150%/240%. Does not increase turn rate nor hyperdrive speed. Gains 2 Energy pressure per level starting from level 1, 2 Defense pressure per level starting from level 2, 2 Research pressure per level starting from level 3, 2 Influence pressure per level starting from level 4 and 2 Money pressure per level starting from level 5. Cannot be exported.
 *** Sublight species are strongly advised to heavily invest in developing those planets!
 - Available ore on asteroids has been reduced to anywhere from 50 to 1250 ore (down from 500 to 10000). Default ore asteroid chance per system has been changed to 90% (up from 45%). In addition, systems with ore asteroids are very likely to have a LOT of them.
+- Moderately increased resource asteroid chance. Slightly decreased Morphic Materials asteroid chance.
 - Added a 5% chance for systems to have one or more asteroid belts. These have a chance to contain resource asteroids equal to 1/30th of the resource asteroid chance.
 - Black holes now have a big, thick asteroid belt beyond their accretion disk.
 - Increased default resource asteroid chance to 60% (up from 45%).

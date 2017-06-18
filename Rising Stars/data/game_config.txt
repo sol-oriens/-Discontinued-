@@ -3,7 +3,7 @@
 LEVEL_DECAY_TIMER: 180
 
 //How much the labor cost of building an asteroid mining base increases per hop of distance.
-ASTEROID_COST_STEP: 0.5
+ASTEROID_COST_STEP: 1.0
 
 //The base frequency of permanent resources on asteroids.
 ASTEROID_PERMANENT_FREQ: 1.4
@@ -12,7 +12,7 @@ ASTEROID_PERMANENT_FREQ: 1.4
 TERRAFORM_COST_STEP: 1.0
 
 //How much the labor cost of constructing an orbital increases per hop of distance.
-ORBITAL_LABOR_COST_STEP: 0.5
+ORBITAL_LABOR_COST_STEP: 1.0
 
 //Time at which influence votes pass (seconds).
 INFLUENCE_PASS_THRES: 180

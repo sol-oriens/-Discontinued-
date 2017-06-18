@@ -6,10 +6,10 @@ Building: EcxFactory
 	Category: Production
 
 	Size: 3x3
-	Base Cost: 50
+	Base Cost: 40
 	Tile Cost: 20
-	Build Time: 300
-	Base Maintenance: 50
+	Build Time: 240
+	Base Maintenance: 30
 	Tile Maintenance: 10
 
 	RequireNotTrait(Ancient)
