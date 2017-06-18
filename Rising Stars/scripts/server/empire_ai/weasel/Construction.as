@@ -462,9 +462,11 @@ class BuildOrbital : AllocateConstruction {
 			else {
 				position = f.obj.position;
 				//vec2d offset = random2d(f.obj.radius + 10.0, f.obj.radius + 100.0);
-				vec2d offset = random2d(f.plAI.obj.OrbitSize * 0.8, f.plAI.obj.OrbitSize * 0.9);
-				position.x += offset.x;
-				position.z += offset.y;
+				if (f.plAI !is null) {
+					vec2d offset = random2d(f.plAI.obj.OrbitSize * 0.8, f.plAI.obj.OrbitSize * 0.9);
+					position.x += offset.x;
+					position.z += offset.y;
+				}
 			}
 		}
 		f.obj.buildOrbital(module.id, position);
