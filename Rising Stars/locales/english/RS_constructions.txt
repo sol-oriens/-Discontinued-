@@ -71,14 +71,19 @@ OUTPOST_WEAPONS_DESC: <<
 	Adds 10 missile tubes, each firing one missile per second for a damage of 50 per missile. May be modified by upgrades that improve stationary defense weapons. Subsequent missile launchers require increasingly large amounts of Ore to install.
 >>
 
+RESEARCH_LAB_HYPERCORE: Hypercore
+RESEARCH_LAB_HYPERCORE_DESC: <<
+	Fueling a nuclear fusion reactor with hyperfield particles produces a highly unstable form of energy stored in what is colloquially known as a hypercore.
+>>
+
 RESEARCH_LAB_CRYSTALLIZER: Hyperfield Crystallizer
 RESEARCH_LAB_CRYSTALLIZER_DESC: <<
-	This highly advanced device is able to isolate some of the molecules present in the hyperfield and crystallize agglomerates through a complex chain reaction.
+This highly advanced device is able to artificially reproduce the FTL crystal formation process at an accelerated rate through a complex chain reaction.
 
 	Unlocks the Synthetic FTL Crystals Project.
 >>
 
-RESEARCH_LAB_FTL: Synthetic FTL Crystals
+RESEARCH_LAB_FTL: FTL Crystals
 RESEARCH_LAB_FTL_DESC: <<
 	A method of creating limited quantities of FTL crystals at a high energy cost. Unfortunately, quantic instabilities make the process highly inaccurate and not likely to ever be industrialized.
 

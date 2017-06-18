@@ -248,3 +248,7 @@ ASTEROID_FTL_PERMANENT_DESC: <<|
 
 	Does not need to be exported.
 >>
+C_HYPERCORE: Hypercore
+C_HYPERCORE_DESC: <<
+	The product of hyperfield particles exposed to nuclear fusion, stored in a specialized container. Produces such an immense amount of energy that using it in a conventional way means pure and simple disintegration of any matter within tens of units.
+>>

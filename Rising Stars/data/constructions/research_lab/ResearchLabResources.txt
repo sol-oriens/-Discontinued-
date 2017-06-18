@@ -1,4 +1,20 @@
-Construction: SyntheticFTL
+Construction: GenerateHypercore
+  Name: #RESEARCH_LAB_HYPERCORE
+  Time Cost: 45
+  Icon: ResourceIconsSmall::81*#26a980
+
+  Category: Production
+	Description: #RESEARCH_LAB_HYPERCORE_DESC
+
+  Build Cost: 50
+  ConsumeEnergy(1000)
+  ConsumeFTL(200)
+
+  AddCargo(Hypercore, 1)
+
+  RequireOnOrbital(ResearchLab)
+
+Construction: GenerateFTL
 	Name: #RESEARCH_LAB_FTL
 	Time Cost: 12
   Icon: ResourceIcons::22
