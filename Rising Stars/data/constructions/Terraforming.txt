@@ -31,7 +31,7 @@ Construction: Terraform
 
 	Build Cost: 500
 	Labor Cost: 50
-	Category: Planetary Development
+	Category: Infrastructure
 	RequireNotStatus(TerraformStacks)
 	RequireNotStatus(FloatingContinent)
 	ConsumeCargo(Ore, 1000)
