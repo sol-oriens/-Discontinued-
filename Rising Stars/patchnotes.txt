@@ -29,6 +29,7 @@ v1.2
 [*] Orbitals
 - Subspace Telescope Array has been renamed to Quantum Telescope Array, has no maintenance cost anymore and can no longer move. Its Telescope ability now has a range of 1 million units and it now costs an amount of energy linearly relative to the target distance.
 - Added Telescope Array, which has 40% size, cost and Telescope power than the quantum version. Requires no ore but has a 40k maintenance cost. Primarily designed for early scouting, when interstellar travel is a problem, and border control.
+- Added Zero-G Lab. Gives 1 research generation and allows access to special projects.
 
 [*] Planets
 - Added gas giants, using unused vanilla low resolution textures. Gas giants can be colonized (more or less) and feature a new scalable resource designed to balance the increased scale of the game by providing increased propulsion speed and various pressure boosts without blatantly scaling engine thrust. They are commonly found in all kinds of systems, but they are more difficult to level up due to their mostly useless biome: imperial buildings cannot be built on it and civilian tile development is extremely slow. They have however a large number of moons where bases can be constructed.

@@ -1291,7 +1291,7 @@ class MakeAdjacentAsteroid : MapHook {
 		vec2d rpos;
 
 		//RS - Scaling
-		rpos = random2d(other.radius * 0.6, other.radius * 0.8);
+		rpos = random2d(other.radius * 0.7, other.radius * 0.9);
 
 		vec3d pos = other.position + vec3d(rpos.x, randomd(-50.0, 50.0), rpos.y);
 		Asteroid@ roid = createAsteroid(pos, other.object, delay=true);

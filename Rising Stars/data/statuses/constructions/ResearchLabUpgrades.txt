@@ -1,0 +1,3 @@
+Status: ResearchLabCrystallizer
+Collapses: True
+Visible To: Nobody

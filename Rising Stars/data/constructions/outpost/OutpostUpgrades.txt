@@ -3,7 +3,7 @@ Construction: OutpostArmor
 	Time Cost: 120
 	Icon: PlateArmor
 
-	Category: Outpost Upgrades
+	Category: Infrastructure
 	Description: #OUTPOST_ARMORING_DESC
 
 	OnStart(AddStatus(OutpostArmorCost))
@@ -16,7 +16,7 @@ Construction: OutpostArmor
 Construction: OutpostDefense
 	Name: #OUTPOST_DEFENSE
 	Time Cost: 120
-	Category: Outpost Upgrades
+	Category: Infrastructure
 	Icon: Fortified
 	Description: #OUTPOST_DEFENSE_DESC
 
@@ -30,7 +30,7 @@ Construction: OutpostDefense
 Construction: OutpostWeapons
 	Name: #OUTPOST_WEAPONS
 	Time Cost: 120
-	Category: Outpost Upgrades
+	Category: Infrastructure
 	Icon: techRocket
 	Description: #OUTPOST_WEAPONS_DESC
 

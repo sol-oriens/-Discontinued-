@@ -1,0 +1,14 @@
+Construction: SyntheticFTL
+	Name: #RESEARCH_LAB_FTL
+	Time Cost: 12
+  Icon: ResourceIcons::22
+
+	Category: Production
+	Description: #RESEARCH_LAB_FTL_DESC
+
+  ConsumeEnergy(750)
+
+  AddStoredFTL(100:200, Obey Capacity = True)
+
+	RequireOnOrbital(ResearchLab)
+  RequireStatus(ResearchLabCrystallizer)

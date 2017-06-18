@@ -7,14 +7,14 @@
 >>
 C_TERRAFORMING_DESC: <<
 	[color=#aaa][i]Modifying the climate or constructing the required support infrastructure to easily sustain large amounts of people or equipment within a certain area is usually a slow venture.
-	
+
 	An industrial-scale project sponsored by the empire can accelerate the process considerably, for a price.[/i][/color]
-	
+
 	Develops up to 15 randomly selected tiles.
 >>
 C_HABITATRING_DESC: <<
 	[color=#aaa][i]Constructing a large ring-shaped station encircling the planet provides more space for the construction of important infrastructure.[/i][/color]
-	
+
 	Adds a 4x8 chunk of fully-developed Artificial tiles to the planet. Can only be built once per planet.
 >>
 C_HABITATRING: Orbital Habitation Ring
@@ -69,4 +69,18 @@ OUTPOST_WEAPONS_DESC: <<
 	Install a swarm missile launcher on the orbital's exterior, improving its ability to hold off raiders or interrupt enemy trade.
 
 	Adds 10 missile tubes, each firing one missile per second for a damage of 50 per missile. May be modified by upgrades that improve stationary defense weapons. Subsequent missile launchers require increasingly large amounts of Ore to install.
+>>
+
+RESEARCH_LAB_CRYSTALLIZER: Hyperfield Crystallizer
+RESEARCH_LAB_CRYSTALLIZER_DESC: <<
+	This highly advanced device is able to isolate some of the molecules present in the hyperfield and crystallize agglomerates through a complex chain reaction.
+
+	Unlocks the Synthetic FTL Crystals Project.
+>>
+
+RESEARCH_LAB_FTL: Synthetic FTL Crystals
+RESEARCH_LAB_FTL_DESC: <<
+	A method of creating limited quantities of FTL crystals at a high energy cost. Unfortunately, quantic instabilities make the process highly inaccurate and not likely to ever be industrialized.
+
+	Generates up to 200 FTL energy.
 >>

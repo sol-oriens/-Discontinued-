@@ -1,0 +1,15 @@
+Construction: Crystallizer
+	Name: #RESEARCH_LAB_CRYSTALLIZER
+	Time Cost: 30
+  Icon: ResourceIconsSmall::47
+
+	Category: Infrastructure
+	Description: #RESEARCH_LAB_CRYSTALLIZER_DESC
+
+	Build Cost: 100
+	ConsumeCargo(Ore, 100))
+
+	AddStatus(ResearchLabCrystallizer)
+
+	RequireOnOrbital(ResearchLab)
+	RequireNotStatus(ResearchLabCrystallizer)

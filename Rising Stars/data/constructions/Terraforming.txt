@@ -3,7 +3,7 @@ Construction: TerraformIN
 	Build Cost: 700
 	Labor Cost: 50
 	Icon: DesignationIcons::10
-	Category: Planetary Development
+	Category: Infrastructure
 	Description: #C_EXPAND_SUBSURFACE_DESC
 
 	//RequireUnlockTag(TerraformSurface)
@@ -23,6 +23,7 @@ Construction: TerraformIN
 	RemoveStatusInstance(BuildingSubsurface)
 
 	RequireNotTrait(StarChildren)
+
 Construction: Terraform
 	Name: #C_SUBSURFACE_HABITATS
 	Icon: DesignationIcons::10

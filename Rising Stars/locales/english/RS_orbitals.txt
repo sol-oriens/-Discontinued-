@@ -90,3 +90,12 @@ ORB_QUANTUM_TELESCOPE_DESC: <<
 
 	[i][bbloc=#ABL_TELESCOPE_ARRAY_DESC:1000000/][/i]
 >>
+
+ORB_RESEARCH_LAB: Zero-G Lab
+ORB_RESEARCH_LAB_BLURB: Generates research points for the empire and gives access to special projects.
+ORB_RESEARCH_LAB_DESC: <<
+	[color=#aaa][i]A space based research and development laboratory taking advantage of zero-gravity conditions for specific projects.[/i][/color]
+
+	Gives 1 research generation.
+	Allows access to special projects.
+>>
