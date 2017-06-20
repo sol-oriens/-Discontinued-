@@ -6,9 +6,9 @@ v1.2
 
 [*] Buildings
 
-- Added Fuel Facility: Adds 1 energy pressure and 1 money pressure and increases the pressure given by native Natural Gas or Oil by 1. Base building and maintenance costs of 110 and 50k, respectively. Also costs 50 research to build.
-- Added Electronics Factory: Can replace a Level 1 resource and adds 3 money pressure. Consumes 8 ore per minute. Base building and maintenance costs of 40k and 30k, respectively. The building becomes inactive if there is no more ore left on the planet.
-- Added Healthcare Complex: Adds 2 population. Base building and maintenance costs of 85k and 20k, respectively. Also costs 25 research to build
+- Added Fuel Facility: Adds 1 energy pressure and 1 money pressure and increases the pressure given by native Natural Gas or Oil by 1. Base build and maintenance costs of 110 and 50k, respectively. Also costs 50 research to build.
+- Added Electronics Factory: Can replace a Level 1 resource and adds 3 money pressure. Consumes 8 ore per minute. Base build and maintenance costs of 40k and 30k, respectively. The building becomes inactive if there is no more ore left on the planet.
+- Added Healthcare Complex: Adds 2 population. Base build and maintenance costs of 85k and 20k, respectively. Also costs 25 research to build
 - Added Arcology: Adds 5 population and replaces 5 cities. Costs 850k, 500 ore, 250 energy, and 50 labor.
 
 [*] FTL
@@ -28,9 +28,11 @@ v1.2
 - Added Supermassive Black Holes: when toggled on, black holes at the center of galaxies are supermassive and thus much bigger. Much. BIGGER. (And make an equally bigger boom.)
 
 [*] Orbitals
+- Commerce Stations now give 50k income per friendly planet in the system excluding the owner's, up to 300k. Only one Commerce Station may now be built per system.
 - Subspace Telescope Array has been renamed to Quantum Telescope Array, has no maintenance cost anymore and can no longer move. Its Telescope ability now has a range of 1 million units and it now costs an amount of energy linearly relative to the target distance.
 - Added Telescope Array, which has 40% size, cost and Telescope power than the quantum version. Requires no ore but has a 40k maintenance cost. Primarily designed for early scouting, when interstellar travel is a problem, and border control.
-- Added Zero-G Lab. Gives 1 research generation and allows access to special projects.
+- Added Staging Hub. Allows trade through its system. Can import and sell resources and store cargo. Planets can be ordered to export their labor to this orbital. Designed to fill various support roles, notably for use as a proximity mining base, as the new balance makes tractoring ore asteroids a pain. Build and maintenance costs of 400k and 125k, respectively.
+- Added Zero-G Lab. Gives 1 research generation and allows access to special projects. Build and maintenance costs of 400k and 100k, respectively.
 
 [*] Planets
 - Added gas giants, using unused vanilla low resolution textures. Gas giants can be colonized (more or less) and feature a new scalable resource designed to balance the increased scale of the game by providing increased propulsion speed and various pressure boosts without blatantly scaling engine thrust. They are commonly found in all kinds of systems, but they are more difficult to level up due to their mostly useless biome: imperial buildings cannot be built on it and civilian tile development is extremely slow. They have however a large number of moons where bases can be constructed.

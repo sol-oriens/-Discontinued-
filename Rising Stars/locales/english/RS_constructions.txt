@@ -73,19 +73,26 @@ OUTPOST_WEAPONS_DESC: <<
 
 RESEARCH_LAB_HYPERCORE: Hypercore
 RESEARCH_LAB_HYPERCORE_DESC: <<
-	Fueling a nuclear fusion reactor with hyperfield particles produces a highly unstable form of energy stored in what is colloquially known as a hypercore.
+	[color=#aaa][i]Fueling a nuclear fusion reactor with hyperfield particles produces a highly unstable form of energy stored in what is colloquially known as a hypercore.[/i][/color]
 >>
 
 RESEARCH_LAB_CRYSTALLIZER: Hyperfield Crystallizer
 RESEARCH_LAB_CRYSTALLIZER_DESC: <<
-This highly advanced device is able to artificially reproduce the FTL crystal formation process at an accelerated rate through a complex chain reaction.
+	[color=#aaa][i]This highly advanced device is able to artificially reproduce the FTL crystal formation process at an accelerated rate through a complex chain reaction.[/i][/color]
 
 	Unlocks the Synthetic FTL Crystals Project.
 >>
 
 RESEARCH_LAB_FTL: FTL Crystals
 RESEARCH_LAB_FTL_DESC: <<
-	A method of creating limited quantities of FTL crystals at a high energy cost. Unfortunately, quantic instabilities make the process highly inaccurate and not likely to ever be industrialized.
+	[color=#aaa][i]A method of creating limited quantities of FTL crystals at a high energy cost. Unfortunately, quantic instabilities make the process highly inaccurate and not likely to ever be industrialized.[/i][/color]
 
 	Generates up to 200 FTL energy.
+>>
+
+STAGING_HUB_ASTEROID_MORPH: Core Mining
+STAGING_HUB_ASTEROID_MORPH_DESC: <<
+	[color=#aaa][i]It's no secret that asteroids usually are far richer in resources than planets. Unfortunately, the benefits of drilling deep enough to get access to their hidden treasures are as massive as the cost of setting a space-based infrastructure up to do so.[/i][/color]
+
+	The targeted Ore asteroid is transformed into an asteroid containing one or more resources available to build a mining base on.
 >>

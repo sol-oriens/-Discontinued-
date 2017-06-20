@@ -1,0 +1,45 @@
+Module: StagingHub
+	Name: #ORB_STAGING_HUB
+	Blurb: #ORB_STAGING_HUB_BLURB
+	Description: #ORB_STAGING_HUB_DESC
+	Icon: GuiOrbitalIcons::18
+	Strategic Icon: OrbitalIcons::18
+
+	Core: True
+	Standalone: True
+	Size: 12
+
+	Build Cost: 400
+	Maintenance: 125
+	Labor Cost: 30
+
+	Health: 5000
+	Armor: 1000
+
+	Model: Beacon
+	Material: GenericPBR_Beacon
+
+	AddFleetCommand(64)
+
+	AllowConstruction(Asteroids = True)
+
+	AddLaborFactor(-0.5)
+	AllowLaborImport()
+	ForbidLaborExport()
+
+	GiveTrade()
+
+	AllowResourceImport()
+	RepeatPressure(Labor, AddLaborIncome(1.0))
+	RepeatPressure(Influence, TriggerPeriodic(AddMoney(5), Interval = 60.0))
+	RepeatPressure(Energy, TriggerPeriodic(AddMoney(5), Interval = 60.0))
+	RepeatPressure(Research, TriggerPeriodic(AddMoney(5), Interval = 60.0))
+	RepeatPressure(Defense, TriggerPeriodic(AddMoney(5), Interval = 60.0))
+
+	AddCargoStorage(1000000)
+
+	RepeatPressure(Defense, TriggerPeriodic(AddCargo(DefenseCargo, 1), Interval = 6))
+	RepeatPressure(Research, TriggerPeriodic(AddCargo(ResearchCargo, 1), Interval = 6))
+	RepeatPressure(Energy, TriggerPeriodic(AddCargo(EnergyCargo, 1), Interval = 6))
+
+	RequireNotTrait(Ancient)

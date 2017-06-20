@@ -13,7 +13,7 @@ Module: ResearchLab
 	Labor Cost: 25
 
 	Health: 5000
-	Armor: 2000
+	Armor: 1000
 
   AddCargoStorage(1000000)
 

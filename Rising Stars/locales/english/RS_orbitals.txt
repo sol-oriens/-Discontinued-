@@ -1,4 +1,18 @@
-﻿ORB_SHIELD_CHARGER: Power Transmitter
+ORB_TRADE_STATION_DESC: <<|
+	A large and bustling station of commerce allows global resource trade
+	between any territories with commerce stations. Additional trade with
+	foreign empires also provides 50k income for each planet in the system
+	belonging to another empire you are at peace with, up to 300k.
+
+	In addition, on each commerce station you can purchase a quantity of
+	research, energy, influence or labor in exchange for money every 3 minutes.
+
+	[i]Normally, planets in separated territories cannot export resources to
+	each other. Construct a commerce station in both territories in order to
+	allow import and export of resources from planets in your distinct
+	territories. Only one commerce station can be constructed per system.[/i]
+>>
+ORB_SHIELD_CHARGER: Power Transmitter
 ORB_SHIELD_CHARGER_BLURB: Recharges the shields of allied fleets in the system.
 ORB_SHIELD_CHARGER_DESC: <<
 	A series of powerful generators and emitters transmits additional power to any ships in need of it. This power is then harnessed to charge up the ships' shield capacitors. However, shield activity disrupts the transmission beam, so combat will prevent continued charging.
@@ -74,7 +88,7 @@ ORB_EMBASSY_DESC: <<
 >>
 ORB_TELESCOPE: Telescope Array
 ORB_TELESCOPE_BLURB: Allows temporary vision of nearby star systems.
-ORB_TELESCOPE_DESC: <<
+ORB_TELESCOPE_DESC: <<|
 	[color=#aaa][i]Telescopes have been used for millennia to look at the stars around. This station is equipped with an array of the most advanced models available which can provide a high fidelity computer enhanced view of an entire system in the vicinity.[/i][/color]
 
 	Has the 'Telescope' ability. Costs energy based on target distance to activate.
@@ -83,19 +97,28 @@ ORB_TELESCOPE_DESC: <<
 >>
 ORB_QUANTUM_TELESCOPE: Quantum Telescope Array
 ORB_QUANTUM_TELESCOPE_BLURB: Allows temporary vision of nearby or distant star systems.
-ORB_QUANTUM_TELESCOPE_DESC: <<
+ORB_QUANTUM_TELESCOPE_DESC: <<|
 	[color=#aaa][i]The combination of huge telescopes and oversized quantic computer systems allows an almost perfect virtual rendering of very distant star systems.[/i][/color]
 
 	Has the 'Telescope' ability. Costs energy based on target distance to activate.
 
 	[i][bbloc=#ABL_TELESCOPE_ARRAY_DESC:1000000/][/i]
 >>
-
 ORB_RESEARCH_LAB: Zero-G Lab
 ORB_RESEARCH_LAB_BLURB: Generates research points for the empire and gives access to special projects.
-ORB_RESEARCH_LAB_DESC: <<
+ORB_RESEARCH_LAB_DESC: <<|
 	[color=#aaa][i]A space based research and development laboratory taking advantage of zero-gravity conditions for specific projects.[/i][/color]
 
 	Gives 1 research generation.
 	Allows access to special projects.
+>>
+ORB_STAGING_HUB: Staging Hub
+ORB_STAGING_HUB_BLURB: Allows trade through its system. Can import and sell resources and store cargo. Planets can be ordered to export their labor to this orbital.
+ORB_STAGING_HUB_DESC: <<|
+	[color=#aaa][i]This multipurpose station can act as a trading outpost as well as a remote base for mining operations or construction projects. It can also support a small fleet and stockpile resources to sell to private corporations.[/i][/color]
+
+	Has no innate labor, but planets can export their own labor to staging hubs within trade range at a 50% reduced rate.
+	Can construct mining bases on asteroids.
+	Can import labor resources and gain labor per minute equivalent to 50% of the imported pressure.
+	Can import influence, energy, research and defense resources and generate 5k per imported pressure as special funds every minute.
 >>

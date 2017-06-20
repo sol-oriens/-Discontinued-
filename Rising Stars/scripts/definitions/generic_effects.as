@@ -1540,7 +1540,7 @@ class DisableResourceExport : GenericEffect, TriggerableGeneric {
 #section all
 };
 
-//FriendlyPlanetMoney(<To Self> = 0, <To Other> = 0, <Count Self> = False)
+//FriendlyPlanetMoney(<To Self> = 0, <To Other> = 0, <Count Self> = False, <Max Money = False>)
 // For each friendly planet in the system, give <To Self> money to the owner of the effect
 // and <To Other> money to the owner of the planet.
 class FriendlyPlanetMoney : GenericEffect {
@@ -1548,11 +1548,15 @@ class FriendlyPlanetMoney : GenericEffect {
 	Argument to_self(AT_Integer, "0", doc="Amount of money to give to this effect's owner per friendly planet.");
 	Argument to_other(AT_Integer, "0", doc="Amount of money to give to the owners of the friendly planets.");
 	Argument count_self(AT_Boolean, "False", doc="Whether to count planets owned by the effect's owner as well as friendly empires.");
+	Argument max_money(AT_Integer, "-1", doc="Maximum amount of extra money income, regardless of the number of planets. -1 indicates no maximum extra money.");
 
 	bool getData(Orbital& obj, string& txt, bool enabled) const override {
 		if(!enabled)
 			return true;
+
 		int money = 0;
+		int maxMoney = arguments[3].integer;
+
 		Empire@ owner = obj.owner;
 		Region@ region = obj.region;
 		if(region !is null && owner !is null && owner.valid) {
@@ -1567,6 +1571,8 @@ class FriendlyPlanetMoney : GenericEffect {
 					planets = region.getPlanetCount(other);
 				money += planets * arguments[0].integer;
 			}
+			if (maxMoney > -1)
+				money = min(money, maxMoney);
 		}
 		txt = format("$1: [color=#d1cb6a]$2[/color]", locale::TRADE, formatMoney(money));
 		return true;
@@ -1581,6 +1587,8 @@ class FriendlyPlanetMoney : GenericEffect {
 	void tick(Object& obj, any@ data, double time) const override {
 		array<int>@ amounts;
 		data.retrieve(@amounts);
+
+		int maxMoney = arguments[3].integer;
 
 		Empire@ owner = obj.owner;
 		Region@ region = obj.region;
@@ -1599,6 +1607,8 @@ class FriendlyPlanetMoney : GenericEffect {
 
 				int prevAmount = amounts[other.index];
 				int newAmount = planets * arguments[1].integer;
+				if (maxMoney > -1)
+					newAmount = min(selfAmount, maxMoney);
 				if(newAmount != prevAmount) {
 					other.modTotalBudget(newAmount - prevAmount, MoT_Trade);
 					amounts[other.index] = newAmount;
@@ -1606,6 +1616,8 @@ class FriendlyPlanetMoney : GenericEffect {
 
 				selfAmount += planets * arguments[0].integer;
 			}
+			if (maxMoney > -1)
+				selfAmount = min(selfAmount, maxMoney);
 
 			int prevAmount = amounts[owner.index];
 			if(selfAmount != prevAmount) {
@@ -2324,7 +2336,7 @@ class AddLaborStorage : GenericEffect, TriggerableGeneric {
 
 class IsGate : GenericEffect {
 	Document doc("This object behaves as if it is a gate that connects to the gate network.");
-	
+
 #section server
 	void enable(Object& obj, any@ data) const override {
 		if(obj.owner !is null && obj.owner.valid)
@@ -2347,7 +2359,7 @@ class IsGate : GenericEffect {
 
 class IsFlingBeacon : GenericEffect {
 	Document doc("This object behaves like it is a fling beacon that ships can fling off of.");
-	
+
 #section server
 	void enable(Object& obj, any@ data) const override {
 		if(obj.owner !is null && obj.owner.valid)
@@ -3679,7 +3691,7 @@ class AddLocalDefense : GenericEffect {
 	void disable(Object& obj, any@ data) const override {
 		LocalData@ dat;
 		data.retrieve(@dat);
-		
+
 		Empire@ owner = obj.owner;
 		if(owner !is null && dat.global != 0) {
 			owner.modDefenseRate(-dat.global * global_factor.decimal);
@@ -3798,7 +3810,7 @@ class AddLocalDefenseAdjacentFlags : GenericEffect {
 	void disable(Object& obj, any@ data) const override {
 		LocalData@ dat;
 		data.retrieve(@dat);
-		
+
 		Empire@ owner = obj.owner;
 		if(owner !is null && dat.global != 0) {
 			owner.modDefenseRate(-dat.global * global_factor.decimal);
@@ -3964,7 +3976,7 @@ class AttributeAccelerationBonus : GenericEffect, TriggerableGeneric {
 	void disable(Object& obj, any@ data) const override {
 		double curAmount = 0;
 		data.retrieve(curAmount);
-		
+
 		if(curAmount != 0) {
 			obj.modAccelerationBonus(-curAmount);
 			curAmount = 0;
@@ -4013,7 +4025,7 @@ class AttributeFleetEffectiveness : GenericEffect, TriggerableGeneric {
 	void disable(Object& obj, any@ data) const override {
 		double curAmount = 0;
 		data.retrieve(curAmount);
-		
+
 		if(curAmount != 0) {
 			obj.modFleetEffectiveness(-curAmount);
 			curAmount = 0;
@@ -4170,16 +4182,16 @@ class AddStatusToOrbitingPlanet : GenericEffect {
 					@newObj = null;
 				}
 			}
-			
-			
+
+
 		}
-		
+
 		if(newObj !is null && newObj.hasSurfaceComponent) {
 			if(newObj.quarantined && !allow_quarantined.boolean) {
 				@newObj = null;
 			}
 		}
-		
+
 		if(newObj !is prevObj) {
 			Empire@ origEmp = null;
 			if(set_origin_empire.boolean)
@@ -4560,16 +4572,16 @@ class SpawnFreighters : GenericEffect {
 		double progress = 0;
 		data.retrieve(progress);
 		progress += amount(obj) * time / 180.0;
-		
+
 		while(progress >= 1.0) {
 			progress -= 1.0;
-			
+
 			ObjectDesc freightDesc;
 			freightDesc.type = OT_Freighter;
 			freightDesc.name = name.str;
 			freightDesc.radius = 4.0;
 			freightDesc.delayedCreation = true;
-			
+
 			@freightDesc.owner = obj.owner;
 			freightDesc.position = obj.position + random3d(obj.radius + 4.5);
 
@@ -4586,7 +4598,7 @@ class SpawnFreighters : GenericEffect {
 			colShip.Health *= obj.owner.ModHP.value;
 			colShip.finalizeCreation();
 		}
-		
+
 		data.store(progress);
 	}
 
