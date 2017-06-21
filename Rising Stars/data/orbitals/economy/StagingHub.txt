@@ -10,7 +10,7 @@ Module: StagingHub
 	Size: 12
 
 	Build Cost: 400
-	Maintenance: 125
+	Maintenance: 70
 	Labor Cost: 30
 
 	Health: 5000
@@ -37,9 +37,5 @@ Module: StagingHub
 	RepeatPressure(Defense, TriggerPeriodic(AddMoney(5), Interval = 60.0))
 
 	AddCargoStorage(1000000)
-
-	RepeatPressure(Defense, TriggerPeriodic(AddCargo(DefenseCargo, 1), Interval = 6))
-	RepeatPressure(Research, TriggerPeriodic(AddCargo(ResearchCargo, 1), Interval = 6))
-	RepeatPressure(Energy, TriggerPeriodic(AddCargo(EnergyCargo, 1), Interval = 6))
 
 	RequireNotTrait(Ancient)
