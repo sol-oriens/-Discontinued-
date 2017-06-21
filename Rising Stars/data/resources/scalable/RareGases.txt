@@ -50,11 +50,11 @@ Resource: RareGases
 	IfLevel(3, EnableModifier(ThrustFactor(1.5)) )
 	IfLevel(3, ModEmpireAttribute(ColonizerSpeed, AddFactor, 1.5)) )
 
-	IfLevel(4, EnableModifier(ThrustFactor(1.9)) )
-	IfLevel(4, ModEmpireAttribute(ColonizerSpeed, AddFactor, 1.9)) )
+	IfLevel(4, EnableModifier(ThrustFactor(1.85)) )
+	IfLevel(4, ModEmpireAttribute(ColonizerSpeed, AddFactor, 1.85)) )
 
-	IfLevel(5, EnableModifier(ThrustFactor(2.5)) )
-	IfLevel(5, ModEmpireAttribute(ColonizerSpeed, AddFactor, 2.5)) )
+	IfLevel(5, EnableModifier(ThrustFactor(2.3)) )
+	IfLevel(5, ModEmpireAttribute(ColonizerSpeed, AddFactor, 2.3)) )
 
-	IfLevel(6, EnableModifier(ThrustFactor(3.4)) )
-	IfLevel(6, ModEmpireAttribute(ColonizerSpeed, AddFactor, 3.4)) )
+	IfLevel(6, EnableModifier(ThrustFactor(2.85)) )
+	IfLevel(6, ModEmpireAttribute(ColonizerSpeed, AddFactor, 2.85)) )
