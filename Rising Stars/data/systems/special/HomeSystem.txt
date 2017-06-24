@@ -39,19 +39,22 @@ System: HomeSystem
 	MakeAsteroid(Resource = AsteroidFTLPermanent)
 		IfQuickStart()
 			SetMine()
-	MakeAdjacentAsteroid(Resource = AsteroidFTLPermanent)
-	MakeAdjacentAsteroid(Resource = Pekelm)
 
 	MakeAnomaly()
+
+	MakeAdjacentAsteroid(Resource = Pekelm)
+	MakeAdjacentAsteroid(Resource = AsteroidFTLPermanent, Distance = 2)
+	MakeAdjacentAsteroid(Resource = Explosives, Distance = 3)
+	MakeAdjacentAsteroid(Resource = Neutronium, Distance = 4)
 
 	AddAdjacentArtifacts(2)
 	MakeAdjacentCreepCamp(SmallCamp, Place Far = True)
 
-	GuaranteeAdjacentResource(Water)
-	GuaranteeAdjacentResource(RandomType:Food:Common)
-	GuaranteeAdjacentResource(RandomLevel:1:Common)
-	GuaranteeAdjacentResource(RandomLevel:2:Common)
-	GuaranteeAdjacentResource(RandomType:Food:Common, Distance = 2)
 	GuaranteeAdjacentResource(Water, Distance = 2)
+	GuaranteeAdjacentResource(RandomType:Food:Common, Distance = 2)
+	GuaranteeAdjacentResource(RandomLevel:1:Common, Distance = 2)
+	GuaranteeAdjacentResource(RandomLevel:2:Common, Distance = 2)
+	GuaranteeAdjacentResource(RandomType:Food:Common, Distance = 3)
+	GuaranteeAdjacentResource(Water, Distance = 3)
 
 	ExpandSystem(2000)

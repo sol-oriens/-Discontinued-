@@ -19,13 +19,14 @@ v1.2
 - Increased jump drive range by a factor of 10.
 - Increased gate maintenance cost to 0.25 FTL/s.
 
-*** FTL is roughly twice as less efficient compared to vanilla to make long distances matter more, especially in the beginning of a game. Hyperdrive speed ratio is identical to vanilla to make up for its decreased effectiveness over long distances. Costs are balanced to make FTL a luxury at first, but common later, as more FTL sources and free storage are available.
+*** FTL is roughly twice as less efficient compared to vanilla to make long distances matter more, especially in the beginning of a game. Hyperdrive speed ratio is identical to vanilla to make up for its decreased effectiveness over long distances. Costs are balanced to make FTL a luxury at first, but common later, as more FTL sources and free storage become available.
 
 [*] Game Options
 
 - Added Quick Start: when toggled on, empires will be able to expand to other systems almost immediately instead of having to build a basic economy first. This reverts the now slower game start to more or less vanilla speed. This option is off by default.
-- Disable Starting Fleets is now on by default.
 - Added Supermassive Black Holes: when toggled on, black holes at the center of galaxies are supermassive and thus much bigger. Much. BIGGER. (And make an equally bigger boom.)
+- Disable Starting Fleets is now on by default.
+- Default asteroid and orbital labor cost step increased to 100% (up from 50%).
 
 [*] Orbitals
 - Commerce Stations now give 50k income per friendly planet in the system excluding the owner's, up to 300k. Only one Commerce Station may now be built per system.
@@ -41,19 +42,28 @@ v1.2
 
 [*] Resources
 
-- Empires no longer start with any FTL generation or FTL storage regardless of FTL trait choice (but have an FTL crystals asteroid in their home system).
 - Added FTL crystals asteroids: provide +1 FTL/s and add 250 FTL storage. These are not consumed when mined (but they can be captured...).
 - FTL shards asteroids now permanently add 500 FTL storage (up from 100).
 - FTL planets now provide 0.5/1/1.5/2/3/5/10 FTL/s.
-- Added Rare Gases, a new scalable resource found on gas giants only. Increases all ship engine thrust (including colony ships) by 0%/10%/35%/85%/170%/300%/485%. Does not increase turn rate nor hyperdrive speed. Gains 2 Energy pressure per level starting from level 1, 2 Defense pressure per level starting from level 2, 2 Research pressure per level starting from level 3, 2 Influence pressure per level starting from level 4 and 2 Money pressure per level starting from level 5. Cannot be exported.
+- Added Rare Gases, a new scalable resource found on gas giants only. Increases all ship engine thrust (including colony ships) by a cumulative bonus of 0%/5%/15%/30%/60%/100%/175%. Does not increase turn rate nor hyperdrive speed. Gains 2 Energy pressure per level starting from level 1, 2 Defense pressure per level starting from level 2, 2 Research pressure per level starting from level 3, 2 Influence pressure per level starting from level 4 and 2 Money pressure per level starting from level 5. Cannot be exported.
 *** Sublight species are strongly advised to heavily invest in developing those planets!
 - Available ore on asteroids has been reduced to anywhere from 50 to 1250 ore (down from 500 to 10000). Default ore asteroid chance per system has been changed to 90% (up from 45%). In addition, systems with ore asteroids are very likely to have a LOT of them.
-- Moderately increased resource asteroid chance. Slightly decreased Morphic Materials asteroid chance.
+- Moderately increased resource asteroid chance. Slightly decreased Construction Materials and Morphic Materials asteroid chance.
 - Added a 5% chance for systems to have one or more asteroid belts. These have a chance to contain resource asteroids equal to 1/30th of the resource asteroid chance.
 - Black holes now have a big, thick asteroid belt beyond their accretion disk.
 - Increased default resource asteroid chance to 60% (up from 45%).
 - Renamed Electronics resource to Semiconductors.
 - Welfare option base threshold is now 200k (down from 350k).
+- Empires now have an additional food planet in their home system, but one less in adjacent systems.
+- Empires now have 6k worth of ore asteroids in their home system instead of one 6k ore asteroid.
+- Empires now have an additional an additional FTL crystals asteroid in their home system. A mine is prebuilt if the Quick Start game option is toggled on. This effectively reverts the starting FTL generation and FTL storage to vanilla values.
+- Empires now have an additional an additional Pekelm asteroid in an adjacent system.
+- Empires now have an additional an additional FTL crystals asteroid in a neighboring system.
+- Empires now have an additional an additional Explosives asteroid in a neighboring system.
+- Empires now have an additional an additional Neutronium asteroid in a neighboring system.
+- Empires now have an additional anomaly in their home system.
+- Empires no longer start with any FTL generation or FTL storage regardless of FTL trait choice.
+- Guaranteed resources on planets in systems adjacent to starting systems can now spawn farther in the neighborhood to counterbalance the addition of nebulae and planetless systems, which can deadlock the distribution.
 
 [*] Systems
 
@@ -70,12 +80,6 @@ v1.2
 - Increased variance in planet number per system. Planetless systems have greatly increased chance of hiding valuable asteroids and artifacts.
 - Black holes in the core of spiral and cluster galaxies are now supermassive if the Supermassive Black Holes game option is toggled on.
 *** The massive scale of the supermassive black holes accretion disks slightly impacts system performances. Consider turning this option off if you experience stuttering.
-- Empires now have an additional food planet in their home system, but one less in adjacent systems.
-- Empires now have 6k worth of ore asteroids in their home system instead of one 6k ore asteroid.
-- Empires now have an additional an additional FTL crystals asteroid in their home system. A mine is prebuilt if the Quick Start game option is toggled on. This effectively reverts the starting FTL generation and FTL storage to vanilla values.
-- Empires now have an additional an additional FTL crystals asteroid in an adjacent system.
-- Empires now have an additional an additional Pekelm asteroid in an adjacent system.
-- Empires now have an additional anomaly in their home system.
 - The guaranteed moon around the level 1 planet in the home system has moved to the homeworld.
 
 [*] Known issues

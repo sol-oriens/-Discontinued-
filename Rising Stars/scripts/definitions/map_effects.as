@@ -897,8 +897,7 @@ class MakeAsteroid : MapHook {
 	}
 
 	void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
-		vec2d rpos;
-		rpos = random2d(system.radius * 0.6, system.radius * 0.8);
+		vec2d rpos = get2dPos(system, 0.8);
 		vec3d pos = system.position + vec3d(rpos.x, randomd(-50.0, 50.0), rpos.y);
 		Asteroid@ roid = createAsteroid(pos, system.object, delay=true);
 		roid.orbitAround(system.position);
@@ -963,7 +962,7 @@ class MakeAsteroidBelt : MapHook {
 	Argument cargo(AT_Cargo, "Ore", doc="Type of cargo to create on the asteroid belt.");
 	Argument cargo_amount(AT_Range, "50:500", doc="Amount of cargo for the asteroids to have.");
 	Argument distribution_chance(AT_Decimal, "0.4", doc="For distributed resources, chance to add additional resource. Repeats until failure.");
-	Argument radius(AT_Decimal, "0", doc="Minimum radius of the belt.");
+	Argument radius(AT_Decimal, "0", doc="Radius of the belt. Random if 0.");
 
 	bool instantiate() {
 		if(arguments[0].fromRange() <= 0)
@@ -976,7 +975,7 @@ class MakeAsteroidBelt : MapHook {
 		if(config::ASTEROID_OCCURANCE == 0 && config::RESOURCE_ASTEROID_OCCURANCE == 0)
 			return;
 
-		//RS - Scaling: allow to specify a minimum radius for supermassive black holes
+		//RS - Scaling: allow to specify a fixed radius for supermassive black holes
 		double beltRadius = 0;
 		if (radius.decimal == 0)
 			beltRadius = randomd(0.4, 1.5) * system.radius;
@@ -1075,7 +1074,7 @@ class MakeAnomaly : MapHook {
 		if(gen is null)
 			@gen = getDistributedAnomalyType();
 
-		vec2d rpos = random2d(150.0, system.radius - 250.0);
+		vec2d rpos = get2dPos(system, 0.8);
 		vec3d pos = system.position + vec3d(rpos.x, randomd(-50.0, 50.0), rpos.y);
 		Anomaly@ anomaly = createAnomaly(pos, gen.id);
 		@current = anomaly;
@@ -1095,7 +1094,7 @@ class SpawnRandomRemnants : MapHook {
 		int sz = size.integer;
 		sz += round(gametime_size.fromRange() * gameTime / 60.0);
 
-		vec2d campPos = random2d(200.0, (system.radius - offset.decimal) * 0.95);
+		vec2d campPos = get2dPos(system, 0.95, offset.decimal);
 		vec3d pos = system.position + vec3d(campPos.x, 0, campPos.y);
 
 		spawnRemnantFleet(pos, sz, occupation.fromRange());
@@ -1135,7 +1134,7 @@ class MakeCreepCamp : MapHook {
 		if(type is null)
 			@type = getDistributedCreepCamp();
 
-		vec2d campPos = random2d(200.0, (system.radius - offset.decimal) * 0.95);
+		vec2d campPos = get2dPos(system, 0.95, offset.decimal);
 		vec3d pos = system.position + vec3d(campPos.x, 0, campPos.y);
 
 		makeCreepCamp(pos, type, system.object);
@@ -1264,6 +1263,7 @@ class MakeAdjacentAsteroid : MapHook {
 	Argument cargo_amount(AT_Range, "50:1250", doc="Amount of cargo for the asteroid to have.");
 	Argument resource(AT_Custom, EMPTY_DEFAULT, doc="Resource to put on the asteroid.");
 	Argument distribution_chance(AT_Decimal, "0.4", doc="For distributed resources, chance to add additional resource. Repeats until failure.");
+	Argument distance(AT_Integer, "1", doc="System hop distance within which to allow the resource.");
 
 #section server
 	array<const ResourceType@> resPossib;
@@ -1286,13 +1286,15 @@ class MakeAdjacentAsteroid : MapHook {
 			return;
 		if(data !is null && data.ignoreAdjacencies)
 			return;
-		int at = randomi(0, system.adjacent.length - 1);
-		SystemDesc@ other = getSystem(system.adjacent[at]);
-		vec2d rpos;
 
-		//RS - Scaling
-		rpos = random2d(other.radius * 0.7, other.radius * 0.9);
-
+		int at = randomi(0, data.adjacentData.length - 1);
+		SystemData adjacent = data.adjacentData[at];
+		for(uint i = 0, cnt = distance.integer - 1; i < cnt; ++i) {
+			at = randomi(0, adjacent.adjacentData.length - 1);
+			adjacent = adjacent.adjacentData[at];
+		}
+		SystemDesc@ other = getSystem(adjacent.sysIndex);
+		vec2d rpos = get2dPos(other, 0.8);
 		vec3d pos = other.position + vec3d(rpos.x, randomd(-50.0, 50.0), rpos.y);
 		Asteroid@ roid = createAsteroid(pos, other.object, delay=true);
 		roid.orbitAround(other.position);
@@ -1384,8 +1386,7 @@ class MakeAdjacentCreepCamp : MapHook {
 			return;
 		int at = randomi(0, system.adjacent.length-1);
 		SystemDesc@ other = getSystem(system.adjacent[at]);
-
-		vec2d campPos = random2d(200.0, other.radius);
+		vec2d campPos = get2dPos(other, 0.8);
 		if(arguments[1].boolean) {
 			vec3d off = (other.position - system.position).normalized(other.radius * 0.8);
 			campPos = vec2d(off.x, off.z);
@@ -1432,7 +1433,7 @@ Artifact@ makeArtifact(SystemDesc@ system, uint type = uint(-1)) {
 		@gen = getDistributedArtifactType();
 	else
 		@gen = getArtifactType(type);
-	vec2d rpos = random2d(150.0, system.radius - 250.0);
+	vec2d rpos = get2dPos(system, 1.0, 2500);//random2d(150.0, system.radius - 250.0);
 	vec3d pos = system.position + vec3d(rpos.x, randomd(-50.0, 50.0), rpos.y);
 	Artifact@ obj = createArtifact(pos, gen, system.object);
 	obj.orbitAround(system.position);
@@ -1488,8 +1489,8 @@ class AddAdjacentAnomalies : MapHook {
 		uint cnt = arguments[0].fromRange();
 		for(uint i = 0; i < cnt; ++i) {
 			int at = randomi(0, system.adjacent.length-1);
-			SystemDesc@ other = getSystem(system.adjacent[at]);
-			maker.trigger(null, other, current);
+			SystemDesc@ other = getSystem(data.adjacentData[at].sysIndex);
+			maker.trigger(data.adjacentData[at], other, current);
 		}
 	}
 #section all
@@ -1512,8 +1513,8 @@ class AddAdjacentArtifacts : MapHook {
 		uint cnt = arguments[0].fromRange();
 		for(uint i = 0; i < cnt; ++i) {
 			int at = randomi(0, system.adjacent.length-1);
-			SystemDesc@ other = getSystem(system.adjacent[at]);
-			maker.trigger(null, other, current);
+			SystemDesc@ other = getSystem(data.adjacentData[at].sysIndex);
+			maker.trigger(data.adjacentData[at], other, current);
 		}
 	}
 #section all
@@ -1846,3 +1847,12 @@ class ForceMakeCreepCamp : MapHook {
 	}
 #section all
 };
+
+//RS - Scaling: get a random point in the system but outside the radius of the star
+vec2d get2dPos(SystemDesc@ system, double radiusFactor = 1.0, double edgeOffset = 0.0) {
+	double minRadius = 2500.0;
+
+	//Star radius data apparently is unreliable so a fixed value is mandatory
+	//minRadius = system.object.starRadius + 500.0;
+	return random2d(minRadius, max(minRadius, (system.radius - edgeOffset) * radiusFactor));
+}
