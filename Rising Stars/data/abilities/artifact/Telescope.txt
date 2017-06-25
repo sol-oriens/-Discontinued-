@@ -35,6 +35,7 @@ Ability: TelescopeArrayDistant
 	Activate Sound: telescope_activate
 
 	DistanceEnergyCost(targ, 0.0005)
+	ConsumeDistanceFTL(targ, Base Cost = 10, Distance Cost = 0.00015)
 
 	Target: targ = Object
 	Range: 1000000

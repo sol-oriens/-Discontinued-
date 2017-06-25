@@ -100,7 +100,7 @@ ORB_QUANTUM_TELESCOPE_BLURB: Allows temporary vision of nearby or distant star s
 ORB_QUANTUM_TELESCOPE_DESC: <<|
 	[color=#aaa][i]The combination of huge telescopes and oversized quantic computer systems allows an almost perfect virtual rendering of very distant star systems.[/i][/color]
 
-	Has the 'Telescope' ability. Costs energy based on target distance to activate.
+	Has the 'Telescope' ability. Costs energy and FTL energy based on target distance to activate.
 
 	[i][bbloc=#ABL_TELESCOPE_ARRAY_DESC:1000000/][/i]
 >>
