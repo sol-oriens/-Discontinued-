@@ -53,6 +53,7 @@ v1.2
 - Black holes now have a big, thick asteroid belt beyond their accretion disk.
 - Increased default resource asteroid chance to 60% (up from 45%).
 - Renamed Electronics resource to Semiconductors.
+- Deuterium and Neutronium can now very rarely spawn as an asteroid resource.
 - Welfare option base threshold is now 200k (down from 350k).
 - Empires now have an additional food planet in their home system, but one less in adjacent systems.
 - Empires now have 6k worth of ore asteroids in their home system instead of one 6k ore asteroid.

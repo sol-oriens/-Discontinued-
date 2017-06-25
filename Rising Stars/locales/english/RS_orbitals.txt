@@ -121,4 +121,6 @@ ORB_STAGING_HUB_DESC: <<|
 	Can construct mining bases on asteroids.
 	Can import labor resources and gain labor per minute equivalent to 50% of the imported pressure.
 	Can import influence, energy, research and defense resources and generate 5k per imported pressure as special funds every minute.
+
+	[i]Can be built in systems you do not own planets in, expanding your empire border.[/i]
 >>
