@@ -2,8 +2,8 @@ Module: StagingHub
 	Name: #ORB_STAGING_HUB
 	Blurb: #ORB_STAGING_HUB_BLURB
 	Description: #ORB_STAGING_HUB_DESC
-	Icon: GuiOrbitalIcons::18
-	Strategic Icon: OrbitalIcons::18
+	Icon: GuiOrbitalIcons::15
+	Strategic Icon: OrbitalIcons::15
 
 	Core: True
 	Standalone: True

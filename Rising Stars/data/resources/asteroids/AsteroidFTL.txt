@@ -9,7 +9,7 @@ Resource: AsteroidFTL
 	Exportable: False
 
 	Distribution: 0
-	Asteroid Frequency: 0.5
+	Asteroid Frequency: 0.3
 	Asteroid Labor: 30
 
 	Vanish Time: 540
