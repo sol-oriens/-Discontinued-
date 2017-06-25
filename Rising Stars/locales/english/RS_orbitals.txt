@@ -120,7 +120,7 @@ ORB_STAGING_HUB_DESC: <<|
 	Has no innate labor, but planets can export their own labor to staging hubs within trade range at a 50% reduced rate.
 	Can construct mining bases on asteroids.
 	Can import labor resources and gain labor per minute equivalent to 50% of the imported pressure.
-	Can import influence, energy, research and defense resources and generate 5k per imported pressure as special funds every minute.
+	Can import influence, energy, research and defense resources and generate 10k per imported pressure as special funds every minute.
 
 	[i]Can be built in systems you do not own planets in, expanding your empire border.[/i]
 >>

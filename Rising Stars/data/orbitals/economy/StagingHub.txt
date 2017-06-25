@@ -16,8 +16,8 @@ Module: StagingHub
 	Health: 5000
 	Armor: 1000
 
-	Model: Beacon
-	Material: GenericPBR_Beacon
+	Model: CommerceStation
+	Material: GenericPBR_CommerceStation
 
 	AddFleetCommand(64)
 
