@@ -7,7 +7,7 @@ Attitude: Progressive
 	ProgressFromAttribute(ResearchUnlocksDone)
 	Conflict(Stable)
 	Conflict(Progressive_Geniocracy)
-	
+
 	Level:
 		Description: #ATT_PROGRESSIVE_L1
 		Icon: ResourceIcon::4
@@ -27,7 +27,7 @@ Attitude: Progressive
 		Icon: ActionBarIcons::5
 		Threshold: 7
 
-		GainResearchWhenAttributeUps(FTLEnergySpent, 4.0)
+		GainResearchWhenAttributeUps(FTLEnergySpent, 1.0)
 
 	Level:
 		Description: #ATT_PROGRESSIVE_L4

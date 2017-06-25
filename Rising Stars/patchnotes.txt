@@ -4,6 +4,10 @@ v1.2
 
 - Renamed Arcology to Sky City.
 
+[*] Attitudes
+
+- Progressive level 3 effect now grants four times as less research points to compensate for higher FTL energy amounts spent overall.
+
 [*] Buildings
 
 - Added Fuel Facility: Adds 1 energy pressure and 1 money pressure and increases the pressure given by native Natural Gas or Oil by 1. Base build and maintenance costs of 110 and 50k, respectively. Also costs 50 research to build.

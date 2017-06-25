@@ -28,7 +28,7 @@ Attitude: Progressive_Geniocracy
 		Icon: ActionBarIcons::5
 		Threshold: 5
 
-		GainResearchWhenAttributeUps(FTLEnergySpent, 4.0)
+		GainResearchWhenAttributeUps(FTLEnergySpent, 1.0)
 
 	Level:
 		Description: #ATT_PROGRESSIVE_L4
