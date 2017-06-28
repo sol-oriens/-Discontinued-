@@ -2606,12 +2606,13 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		}
 
 		double sightRange = 0;
-		if(obj.isShip) {
+		//Not used anymore: ship and station base sight ranges are set in base hulls
+		/*if(obj.isShip) {
 			sightRange = SHIP_BASESIGHTRANGE;
 			if(cast<Ship>(obj).isStation)
 				sightRange *= STATION_SIGHTMULTIPLIER;
 		}
-		else if(obj.isOrbital)
+		else */if(obj.isOrbital)
 			sightRange = ORBITAL_BASESIGHTRANGE;
 		else if(obj.isPlanet)
 			sightRange = PLANET_BASESIGHTRANGE;

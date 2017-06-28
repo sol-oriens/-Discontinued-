@@ -70,6 +70,9 @@ v1.2
 - Empires no longer start with any FTL generation or FTL storage regardless of FTL trait choice.
 - Guaranteed resources on planets in systems adjacent to starting systems can now spawn farther in the neighborhood to counterbalance the addition of nebulae and planetless systems, which can deadlock the distribution.
 
+[*] Subsystems
+- Added Phasing Sensor. Increases sight range by a moderate amount, decreasing as the subsystem's size increases. High initial Power cost, decreasing as the subsystem's size increases. Requires increasingly high amounts of Control as the subsystem's size increases. Sinew halves the Control requirements.
+
 [*] Systems
 
 - Increased scale of the galaxy based on dolynick's outstanding work with DOF, with some differences and additional balance to achieve a more realistic feel, slow expansion down and make the game a bit more system-centric.

@@ -57,6 +57,14 @@ Subsystem: StationHull
 	AddShipModifier: FireArcFactor(2.0)
 	AddShipModifier: TrackingFactor(2.0)
 
+	SensorRange := 7500 + ShipSize * 2.5
+	SensorPriority := 1
+
+	Modifier: SensorFactor(factor)
+		SensorRange := SensorRange * factor
+
+	Hook: ABEM_sensors::AddSightModifier(SensorPriority, 1.0, SensorRange)
+
 	Modifier: IncreaseHexLimit(Hexes)
 		HexLimit := HexLimit + Hexes
 		FreeHexLimit := FreeHexLimit + Hexes

@@ -45,11 +45,9 @@ S_BOARDSUBSYS: Boarding Strength
 STT_BOARDSUBSYS: <<
 	The strength this subsystem contributes to a boarding defense. Only Boarding Parties contribute to an offensive boarding action; their offensive strength is the same as their defensive strength.
 >>
-S_SENSORRANGE: Base Sensor Range
+S_SENSORRANGE: Sensor Range
 STT_SENSORRANGE: <<
-	How far the ship can see, prior to the application of any multiplying effects such as entering a nebula, and prior to modification by the game's Global Sensor Multiplier.
-	
-	This does not necessarily have to be the actual range of the ship's sensors, but it might provide a good idea of how big that range will be.
+	How far sensors on the ship allow identification of objects around it, prior to the application of any multiplying effects such as entering a nebula, and prior to modification by the game's Global Sensor Multiplier. Sensors are integrated in the hull and wired to Control, but they can be enhanced by more advanced sensors.
 >>
 S_STRENGTH: Base Combat Strength
 STT_STRENGTH: <<
@@ -61,7 +59,7 @@ S_HULLSTRENGTH: Base Toughness
 STT_HULLSTRENGTH: <<
 	How well the ship should withstand hostile attacks. This is based on a variety of factors such as repair rate, shield strength and hull strength - regardless, major design flaws such as exposed control cores may cause this value to be drastically higher than it realistically should be.
 
-	This is not necessarily an accurate value - various effects that alter the ship's maximum health can change its Toughness. 
+	This is not necessarily an accurate value - various effects that alter the ship's maximum health can change its Toughness.
 >>
 S_PLANETMININGRATE: Mining Rate
 STT_PLANETMININGRATE: The rate at which this ship can mine materials from planets and put them into cargo storage.
@@ -134,7 +132,7 @@ S_PIERCING_DRONES_DESC: <<
 S_PROGENITORCOMPUTER: Progenitor Control Computer
 S_PROGENITORCOMPUTER_DESC: <<
 	A resilient autonomous computer of Progenitor design, capable of controlling an incredible amount of subsystems.
-	
+
 	[img=ActionBarIcons::0;22;#00ff80]Provides a very large amount of [b][color=#00ff80]Control[/color][/b] to operate other subsystems.[/img]
 	[img=QuickbarIcons::6;22]For the first 60 seconds of any combat, the strength of the entire fleet is boosted by a considerable percentage dependent on the size of the Control Computer.[/img]
 	[img=Plus]Slowly repairs the vessel.[/img]
@@ -231,7 +229,7 @@ S_ROCKETPOD_DESC: <<
 S_MATTERDISRUPTOR: Matter Disruptor
 S_MATTERDISRUPTOR_DESC: <<
 	An energy weapon which abuses the gravitational attraction between the parts of its target to deal additional damage.
-	
+
 	[img=Plus]Deals up to 400% of listed damage based on the relative sizes of the ship and its target. Scaling cuts off at 400% size.[/img]
 	[img=Minus]Deals as little as 50% of listed damage if the target is smaller than the ship. Scaling cuts off at 50% size.[/img]
 	[img=Minus]Fires 10 times slower than a Railgun Battery, and deals only 5 times as much damage per shot as a Railgun Battery does.[/img]
@@ -240,7 +238,7 @@ S_MATTERDISRUPTOR_DESC: <<
 S_VOIDRAY: Adaptive Laser
 S_VOIDRAY_DESC: <<
 	Advanced sensors attached to a laser allow for the beam to be automatically tuned to deal more damage to a target.
-	
+
 	[img=Plus]Deals up to 150% of listed damage based on how long it has been firing at a target.[/img]
 	[img=Minus]Base damage is 25% lower than that of a Laser.[/img]
 	[img=MenuIcons::3;20]Takes around 10 seconds of activity to reach maximum damage output.[/img]
@@ -506,9 +504,32 @@ S_FERROFLUIDARMOR_DESC: <<
 NANOMESH_NAME: Nanomesh
 NANOMESH_DESC: <<
 	A finely weaved mesh of nanobots strengthen the integrity of nearby subsystems.
-	
+
 	[img=Plus]Increases the [b][color=#80ff80]health[/color][/b] of surrounding hexes.[/img]
 	[img=Plus]Health bonus is improved by armor health research.[/img]
 	[img=Minus]Always uses internal space.[/img]
 	[img=Minus]The nanomesh itself has no health.[/img]
+>>
+S_SENSOR_PHASING: Phasing Sensors
+S_SENSOR_PHASING_DESC: <<
+	Technology can only extend the useful range of identification of active sensors so far. By literally putting molecular "skip drives" on emitted particles, it is possible to cheat and send them farther with millions of micro-jumps.
+
+	[img=Plus]Increases sight range by a moderate amount, decreasing as the subsystem's size increases.[/img]
+	[img=Plus]Sensors on the outside of the ship do not use up interior space.[/img]
+	[img=MenuIcons::3;20]Completely covering sensors with armor or other sensors will cause them to use interior space again. The opposite is also true, so covering armor with sensors will cause the armor to use interior space.[/img]
+	[img=Minus]High initial Power cost, decreasing as the subsystem's size increases. Requires increasingly high amounts of Control as the subsystem's size increases. Sinew halves the Control requirements.[/img]
+	[img=Minus]Sensor core must be external.[/img]
+>>
+S_SENSOR_TACHYON: Tachyon Sensors
+S_SENSOR_TACHYON_DESC: <<
+	A modulating tachyon sensor grid that reveals objects within a significant area around the ship.
+
+	[img=Plus]Increases sight range by a high amount.[/img]
+	[img=Plus]Sensors on the outside of the ship do not use up interior space.[/img]
+	[img=MenuIcons::3;20]Completely covering sensors with armor or other sensors will cause them to use interior space again. The opposite is also true, so covering armor with sensors will cause the armor to use interior space.[/img]
+	[img=MenuIcons::3;20]Is not a contiguous subsystem - only one Tachyon Sensor core can be present on a ship, but that core does not have to be connected to all the other Tachyon Sensor hexes in the ship.[/img]
+	[img=MenuIcons::3;20]Is immune to some of the sight-impairing effects of nebulae, but interference from subspace eddies negates the sight boost from Empty Space.[/img]
+	[img=Minus]Requires increasingly high amounts of Control as the subsystem's size increases. Sinew halves the Control requirements.[/img]
+	[img=Minus]Has a significantly higher maintenance cost compared to Basic Sensors, and requires more Control than an equal-sized Basic Sensor.[/img]
+	[img=Minus]Sensor core must be external.[/img]
 >>

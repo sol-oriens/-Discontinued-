@@ -44,6 +44,14 @@ Subsystem: FlagshipHull
 	FTLBuildCost := 0
 	AddPostModifier: AddFTLBuildCost(if(HasFTLCost, ShipSize*0.65, 0)))
 
+	SensorRange := 7500 + ShipSize * 2.5
+	SensorPriority := 1
+
+	Modifier: SensorFactor(factor)
+		SensorRange := SensorRange * factor
+
+	Hook: ABEM_sensors::AddSightModifier(SensorPriority, 1.0, SensorRange)
+
 	Modifier: IncreaseHexLimit(Hexes)
 		HexLimit := HexLimit + Hexes
 		FreeHexLimit := FreeHexLimit + Hexes

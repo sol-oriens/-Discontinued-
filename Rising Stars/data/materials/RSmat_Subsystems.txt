@@ -8,7 +8,6 @@ Material: RSSubsystem
 // *********************************************************
 // ***************POWER AND SUPPLY TECHNOLOGY***************
 // *********************************************************
-
 Material: SAmatter
 	Inherit: RSSubsystem
 	Texture: data/images/subsystems/SAmmater.png
@@ -24,7 +23,6 @@ Material: SingularityCore
 Material: SolarCell
 	Inherit: RSSubsystem
 	Texture: data/images/subsystems/SolarCell.png
-
 Material: RSSupply
 	Inherit: RSSubsystem
 	Texture: data/images/subsystems/supply_normal.png
@@ -94,11 +92,10 @@ Material: ArmorArt6
 Material: ArmorArt7
 	Inherit: RSSubsystem
 	Texture: data/images/subsystems/armor7.png
-	
+
 // *********************************************************
-// **********************WEAPONS**************************
+// **********************WEAPONS****************************
 // *********************************************************
-	
 SpriteSheet: AdaptiveLaser
 	Inherit: RSSubsystem
 	Texture: data/images/subsystems/laser6.png
@@ -112,9 +109,18 @@ SpriteSheet: MatterDisruptor
 	Spacing: 2
 
 // *********************************************************
+// **********************SENSORS****************************
+// *********************************************************
+Material:PhasingSensor
+Inherit: RSSubsystem
+Texture: data/images/subsystems/phasingsensor.png
+Material:TachyonSensor
+Inherit: RSSubsystem
+Texture: data/images/subsystems/tachyonsensor.png
+
+// *********************************************************
 // **********************MODIFIERS**************************
 // *********************************************************
-
 Material: CoolantModifier
 	Inherit: RSSubsystem
 	Texture: data/images/subsystems/Coolant.png
@@ -122,15 +128,15 @@ Material: CoolantModifier
 // *********************************************************
 // ******************ABILITY SUBSYSTEMS*********************
 // *********************************************************
-
 Material: BoardingParty
 	Inherit: RSSubsystem
 	Texture: data/images/subsystems/boardingparty.png
 Material: SecurityStation
 	Inherit: RSSubsystem
 	Texture: data/images/subsystems/securityparty.png
+
 // *********************************************************
-// ******************OTHER SUBSYSTEMS*********************
+// ******************OTHER SUBSYSTEMS***********************
 // *********************************************************
 Material: ABEMShuttle
 	Inherit: RSSubsystem
