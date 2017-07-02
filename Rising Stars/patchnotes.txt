@@ -71,7 +71,10 @@ v1.2
 - Guaranteed resources on planets in systems adjacent to starting systems can now spawn farther in the neighborhood to counterbalance the addition of nebulae and planetless systems, which can deadlock the distribution.
 
 [*] Subsystems
-- Added Phasing Sensor. Increases sight range by a moderate amount, decreasing as the subsystem's size increases. High initial Power cost, decreasing as the subsystem's size increases. Requires increasingly high amounts of Control as the subsystem's size increases. Sinew halves the Control requirements.
+
+- Added sensors back to the mod with a completely different approach. All ship and station hulls now have integrated basic sensors. Sight range is low and slightly scaled with size. Specific sensor subsystems can be added to designs to further enhance sight range but their design is now focused on handling high costs rather than competing with armor.
+- Added Sensor Dish. Increases sight range by a small amount. Adding more than one dish doesn't increase sight range more and only gives redundancy benefits.
+- Added Phasing Sensor. Increases sight range by a moderate amount, decreasing as the subsystem's size increases. High Power cost. Requires increasingly high amounts of Control as the subsystem's size increases. Sinew halves the Control requirements.
 - Increased most weapon ranges by a factor of 2. Energy Bomb, Plasma Thrower, Pulse Bolt and Subspace Shredder ranges are unchanged.
 - Increased Fleet Computer raiding range bonus (and base raiding range) by a factor of 3.
 

@@ -510,14 +510,24 @@ NANOMESH_DESC: <<
 	[img=Minus]Always uses internal space.[/img]
 	[img=Minus]The nanomesh itself has no health.[/img]
 >>
+S_SENSOR_DISH: Sensor Dish
+S_SENSOR_DISH_DESC: <<
+	An enormous rotating dish concentrating sensor waves, extending effective range.
+
+	[img=Plus]Increases sight range by a small amount.[/img]
+	[img=Plus]Requires no Control.[/img]
+	[img=MenuIcons::3;20]Completely covering sensors with armor or other sensors will cause them to use interior space again. The opposite is also true, so covering armor with sensors will cause the armor to use interior space.[/img]
+	[img=Minus]Adding more than one dish doesn't increase sight range more and only gives redundancy benefits.[/img]
+	[img=Minus]Dishes must be external.[/img]
+>>
 S_SENSOR_PHASING: Phasing Sensors
 S_SENSOR_PHASING_DESC: <<
-	Technology can only extend the useful range of identification of active sensors so far. By literally putting molecular "skip drives" on emitted particles, it is possible to cheat and send them farther with millions of micro-jumps.
+	Regular technology can only extend the useful range of identification of active sensors so far. By literally putting molecular "skip drives" on emitted particles, it is possible to cheat and send them much farther with millions of micro-jumps. Having more than one sensor on the same design allows to focus higher amounts of energy on specific regions and to cover more space overall.
 
 	[img=Plus]Increases sight range by a moderate amount, decreasing as the subsystem's size increases.[/img]
 	[img=Plus]Sensors on the outside of the ship do not use up interior space.[/img]
 	[img=MenuIcons::3;20]Completely covering sensors with armor or other sensors will cause them to use interior space again. The opposite is also true, so covering armor with sensors will cause the armor to use interior space.[/img]
-	[img=Minus]High initial Power cost, decreasing as the subsystem's size increases. Requires increasingly high amounts of Control as the subsystem's size increases. Sinew halves the Control requirements.[/img]
+	[img=Minus]High Power cost. Requires increasingly high amounts of Control as the subsystem's size increases. Sinew halves the Control requirements.[/img]
 	[img=Minus]Sensor core must be external.[/img]
 >>
 S_SENSOR_TACHYON: Tachyon Sensors

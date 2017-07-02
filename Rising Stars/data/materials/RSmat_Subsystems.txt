@@ -111,6 +111,9 @@ SpriteSheet: MatterDisruptor
 // *********************************************************
 // **********************SENSORS****************************
 // *********************************************************
+Material:SensorDish
+Inherit: RSSubsystem
+Texture: data/images/subsystems/sensordish.png
 Material:PhasingSensor
 Inherit: RSSubsystem
 Texture: data/images/subsystems/phasingsensor.png

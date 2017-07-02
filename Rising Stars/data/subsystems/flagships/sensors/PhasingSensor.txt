@@ -9,8 +9,8 @@ Subsystem: PhasingSensor
 	Hull: Flagship, Station
 
 	Size := HexSize * Hexes
-	SensorPower := sqrt(Size)
-	SensorRange := SensorPower * 10000
+	SensorPower := sqrt(Size) * 1000
+	SensorRange := 1000 + HexSize * 100 + SensorPower
 	SensorPriority := 100
 	Hex.Mass := HexSize / 2
 	Hex.Resistance := 0.1
@@ -18,16 +18,16 @@ Subsystem: PhasingSensor
 
 	Ship.ExternalHexes := Ship.ExternalHexes + ExteriorHexes
 
-	Control := max(1, round(ShipSize / 1000)) + round(pow(Size / ShipSize * 5, 3) * 100 / (Sum.HasSinew + 1))
-	PowerUse := ShipSize / 10 + SensorPower * 10
+	Control := (1 + round(pow(Size * 2 / ShipSize, 3) * 100)) / (Sum.HasSinew + 1)
+	PowerUse := 5 + Size * 6.5 * (0.08 / (HexSize / ShipSize))
 
 	Modifier: SensorFactor(factor)
 		SensorRange := SensorRange * factor
 
 	Hook: ABEM_sensors::AddSensor(SensorPriority, 1.0, SensorRange)
 
-	Hex.LaborCost := 0.5 * HexSize
-	Hex.BuildCost := 5 * HexSize
+	Hex.LaborCost := 1.25 * HexSize
+	Hex.BuildCost := 2.5 * HexSize
 
 	Requires:
 		Command = Control
