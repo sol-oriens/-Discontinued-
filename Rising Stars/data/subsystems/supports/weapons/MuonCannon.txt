@@ -24,9 +24,6 @@ Subsystem: MuonCannon
 	Hex.HP := 18 * HexSize
 	Hex.Resistance := 0.2
 	Hex.Mass := HexSize
-	Hex.BuildCost := 0.75 * HexSize
-	Hex.MaintainCost := 0
-	Hex.LaborCost := 0.07 * HexSize
 
 	Requires:
 		Command = 1
