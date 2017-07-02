@@ -72,6 +72,8 @@ v1.2
 
 [*] Subsystems
 - Added Phasing Sensor. Increases sight range by a moderate amount, decreasing as the subsystem's size increases. High initial Power cost, decreasing as the subsystem's size increases. Requires increasingly high amounts of Control as the subsystem's size increases. Sinew halves the Control requirements.
+- Increased most weapon ranges by a factor of 2. Energy Bomb, Plasma Thrower, Pulse Bolt and Subspace Shredder ranges are unchanged.
+- Increased Fleet Computer raiding range bonus (and base raiding range) by a factor of 3.
 
 [*] Systems
 

@@ -1,29 +1,28 @@
-Subsystem: SupportMissileLauncher
-	Name: #MISSILELAUNCHER_NAME
-	Description: #SUPPORTMISSILELAUNCHER_DESC
-	BaseColor: #b746f9
-	TypeColor: #b746f9
-	Picture: SubsystemButtonArt::4
+Subsystem: ShockMissiles
+	Name: #S_SHOCKMISSILES
+	Description: #S_SHOCKMISSILES_DESC
+	BaseColor: #444ca0
+	TypeColor: #444ca0
 	Elevation: 2
 
-	Tags: WeaponBase, MissileBase, Category:Weapons, Rotatable, Homing
-	Tags: ExteriorCore, Weapon, DefaultUnlock, IsExplosiveWeapon, HasInternals
+	Tags: WeaponBase, MissileBase, Category:Weapons, Rotatable, Homing, HeraldsDLC
+	Tags: ExteriorCore, Weapon, IsExplosiveWeapon, HasInternals, SecondaryDPS
 	Hull: Support, Satellite
 
 	Size := HexSize * Hexes
-	Range := Size * 5.5 + 1400
-	Damage := Size * 10
-	Reload := 4.75 * min(1.0 + Size/512, 2.0)
-	Speed := max(80, Range / 20)
-	Tracking := 2.8
-	SupplyCost := Size * 6
+	Range := Size * 2 + 1600
+	Damage := Size * 22.0
+	Reload := 6.0 * min(1.0 + Size/512, 2.0)
+	Speed := 125
+	Tracking := 4
+	SupplyCost := Size * 2.0
 
 	Hex.HP := 18 * HexSize
 	Hex.Resistance := 0.2
 	Hex.Mass := HexSize
 
 	Hex.BuildCost := 0.75 * HexSize
-	Hex.LaborCost := 0.07 * HexSize
+	Hex.LaborCost := 0.05 * HexSize
 
 	Requires:
 		Command = 1
@@ -42,7 +41,7 @@ Subsystem: SupportMissileLauncher
 		Effect: DamageResist
 			Resist = Hex.DamageResist
 
-	Effector: Missile
+	Effector: ShockMissile
 		Range = Range
 		Damage = Damage
 		Reload = Reload
