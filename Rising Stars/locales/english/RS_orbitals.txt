@@ -12,6 +12,16 @@ ORB_TRADE_STATION_DESC: <<|
 	allow import and export of resources from planets in your distinct
 	territories. Only one commerce station can be constructed per system.[/i]
 >>
+ORB_STARPORT: Starport
+ORB_STARPORT_BLURB: Allows trade through its system. Generates income per owned planet.
+ORB_STARPORT_DESC: <<
+	[color=#aaa][i]A docking station for civilian ships and a transit point for interstellar trade greatly facilitating planetary exporting. It can also support a small fleet.[/i][/color]
+
+	Generates 10k income for each owned planet in the system, up to 50k.
+	Support ships assigned to a starport independently move across the system to attack enemy fleets.
+
+	[i]Only one Starport may be constructed per system.[/i]
+>>
 ORB_SHIELD_CHARGER: Power Transmitter
 ORB_SHIELD_CHARGER_BLURB: Recharges the shields of allied fleets in the system.
 ORB_SHIELD_CHARGER_DESC: <<

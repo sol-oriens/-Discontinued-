@@ -1,3 +1,11 @@
+BLD_SPACE_ELEVATOR_DESC: <<
+	[color=#aaa][i]A ribbon-like tether reaching vertically into space can be used to significantly increase the efficiency of transporting materials into space.[/i][/color]
+
+	Increases the construction speed of support ships on this planet by 40%.
+	Adds 2 money generation if a Starport is present in the system.
+
+	[i]Only one Space Elevator may be constructed per planet.[/i]
+>>
 BLD_ARCOLOGY: Arcology
 BLD_ARCOLOGY_DESC: <<
 	[color=#aaa][i]The ultimate settlement, designed for self-sufficiency. An arcology is a city-in-a-giant-building: residential areas, business and shopping centers, factories, parks, farms, water and waste processing units, all operating in a closed circuit. Nothing needs to enter an arcology to sustain it, and nothing needs to exit. Except tax...[/i][/color]
