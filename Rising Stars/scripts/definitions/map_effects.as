@@ -1848,9 +1848,9 @@ class ForceMakeCreepCamp : MapHook {
 #section all
 };
 
-//RS - Scaling: get a random point in the system but outside the radius of the star
+//RS - Scaling: get a random point in the system but outside the radius of the star(s)
 vec2d get2dPos(SystemDesc@ system, double radiusFactor = 1.0, double edgeOffset = 0.0) {
-	double minRadius = 2500.0;
+	double minRadius = 3500.0;
 
 	//Star radius data apparently is unreliable so a fixed value is mandatory
 	//minRadius = system.object.starRadius + 500.0;
