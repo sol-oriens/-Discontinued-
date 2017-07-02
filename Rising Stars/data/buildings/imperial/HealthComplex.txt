@@ -1,4 +1,4 @@
-Building: Healthcare Complex
+Building: HealthComplex
 	Name: #BLD_HEALTH_COMPLEX
 	Description: #BLD_HEALTH_COMPLEX_DESC
 	Sprite: BldHealthComplex
@@ -11,7 +11,9 @@ Building: Healthcare Complex
 	Base Maintenance: 20
 	Tile Maintenance: 5
 
-  ConsumeResearch(25)
+	TriggerStartConstruction( AddStatus(HealthComplexCost) )
+	TriggerCancelConstruction( RemoveStatusInstance(HealthComplexCost) )
+	ConsumeResearchStatusCount(HealthComplexCost, Base Amount = 25, Amount = 25)
 
   AddMaxPopulation(2)
 

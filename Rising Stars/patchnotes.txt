@@ -12,7 +12,7 @@ v1.2
 
 - Added Fuel Facility: Adds 1 energy pressure and 1 money pressure and increases the pressure given by native Natural Gas or Oil by 1. Base build and maintenance costs of 110 and 50k, respectively. Also costs 50 research to build.
 - Added Electronics Factory: Can replace a Level 1 resource and adds 3 money pressure. Consumes 8 ore per minute. Base build and maintenance costs of 40k and 30k, respectively. The building becomes inactive if there is no more ore left on the planet.
-- Added Healthcare Complex: Adds 2 population. Base build and maintenance costs of 85k and 20k, respectively. Also costs 25 research to build
+- Added Healthcare Complex: Adds 2 population. Base build and maintenance costs of 85k and 20k, respectively. Also costs 25 research to build and 25 more for each Healthcare Complex already built on the planet.
 - Added Arcology: Adds 5 population and replaces 5 cities. Costs 850k, 1k ore, 250 energy, and 50 labor.
 
 [*] FTL
