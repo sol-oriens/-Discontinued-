@@ -1290,8 +1290,11 @@ class MakeAdjacentAsteroid : MapHook {
 		int at = randomi(0, data.adjacentData.length - 1);
 		SystemData adjacent = data.adjacentData[at];
 		for(uint i = 0, cnt = distance.integer - 1; i < cnt; ++i) {
-			at = randomi(0, adjacent.adjacentData.length - 1);
-			adjacent = adjacent.adjacentData[at];
+			do {
+				at = randomi(0, adjacent.adjacentData.length - 1);
+				adjacent = adjacent.adjacentData[at];
+			}
+			while (adjacent is data && adjacent.adjacentData.length > 1);
 		}
 		SystemDesc@ other = getSystem(adjacent.sysIndex);
 		vec2d rpos = get2dPos(other, 0.8);
@@ -1849,10 +1852,17 @@ class ForceMakeCreepCamp : MapHook {
 };
 
 //RS - Scaling: get a random point in the system but outside the radius of the star(s)
+//All this complicated stuff is to attempt to stop objects to eventually spawn inside a star because of wrong radius data
 vec2d get2dPos(SystemDesc@ system, double radiusFactor = 1.0, double edgeOffset = 0.0) {
-	double minRadius = 3500.0;
+	double maxRadius = (system.radius - edgeOffset) * radiusFactor;
+	double minRadius = 0.25 * system.radius;
 
-	//Star radius data apparently is unreliable so a fixed value is mandatory
-	//minRadius = system.object.starRadius + 500.0;
-	return random2d(minRadius, max(minRadius, (system.radius - edgeOffset) * radiusFactor));
+	vec2d pos = random2d(minRadius, maxRadius);
+	if (pos.x <= 4000.0 && pos.y <= 4000.0)
+		if (maxRadius > 5000.0)
+			pos = random2d(4000.0, maxRadius);
+		else
+			pos = random2d(4000.0, 4500.0);
+
+	return pos;
 }
