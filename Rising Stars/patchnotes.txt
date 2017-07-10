@@ -33,6 +33,10 @@ v1.2
 - Disable Starting Fleets is now on by default.
 - Default asteroid and orbital labor cost step increased to 100% (up from 50%).
 
+[*] Lifestyles
+
+- Extragalactic colonizer speed multiplier changed to 0.5 (down from 2). The bonus speed combined with three starting systems was an extremely unfair advantage under the new balance.
+
 [*] Orbitals
 - Commerce Stations now give 50k income per friendly planet in the system excluding the owner's, up to 300k. Only one Commerce Station may now be built per system.
 - Added Starport. Generates 10k income for each owned planet in the system, up to 50k. Support ships assigned to a starport independently move across the system to attack enemy fleets. Only one Starport may be constructed per system.
