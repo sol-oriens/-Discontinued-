@@ -1107,7 +1107,7 @@ class SpawnAsteroids : BonusEffect {
 	Argument amount("Amount", AT_Integer, doc="Amount of asteroids to spawn.");
 	Argument offset("Distance", AT_Decimal, "80", doc="Radius to spread the asteroids out over.");
 	Argument cargo(AT_Cargo, EMPTY_DEFAULT, doc="Type of cargo to create on the asteroid.");
-	Argument cargo_amount(AT_Range, "500:10000", doc="Amount of cargo for the asteroid to have.");
+	Argument cargo_amount(AT_Range, "50:1250", doc="Amount of cargo for the asteroid to have.");
 	Argument distribution_chance(AT_Decimal, "0.4", doc="For distributed resources, chance to add additional resource. Repeats until failure.");
 	Argument resource_only(AT_Boolean, "False", doc="Whether to only spawn resource asteroids.");
 
