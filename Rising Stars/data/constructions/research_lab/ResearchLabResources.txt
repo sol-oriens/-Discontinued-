@@ -24,7 +24,7 @@ Construction: GenerateFTL
 
   ConsumeEnergy(750)
 
-  AddStoredFTL(100:200, Obey Capacity = True)
+  AddStoredFTL(25:250, Obey Capacity = True)
 
 	RequireOnOrbital(ResearchLab)
   RequireStatus(ResearchLabCrystallizer)

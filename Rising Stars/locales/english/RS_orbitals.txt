@@ -12,6 +12,18 @@ ORB_TRADE_STATION_DESC: <<|
 	allow import and export of resources from planets in your distinct
 	territories. Only one commerce station can be constructed per system.[/i]
 >>
+ORB_FTL_STORAGE_FLUX_DESC: <<
+	Stores 600 FTL Energy.
+>>
+ORB_FTL_HARVESTER: Hyperfield Harvester
+ORB_FTL_HARVESTER_BLURB: Generates and stores FTL Energy.
+ORB_FTL_HARVESTER_DESC: <<
+	[color=#aaa][i]A facility that can slowly tap into the hyperfield to extract its particles.[/i][/color]
+
+	Stores 250 [img=$FTL;22/] FTL Energy.
+	
+	[img=$FTL;22][b][color=#00c0ffff]FTL[/color][/b] [offset=120]0.15 /s[/offset][/img]
+>>
 ORB_STARPORT: Starport
 ORB_STARPORT_BLURB: Allows trade through its system. Generates income per owned planet.
 ORB_STARPORT_DESC: <<

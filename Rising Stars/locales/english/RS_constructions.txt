@@ -71,23 +71,25 @@ OUTPOST_WEAPONS_DESC: <<
 	Adds 10 missile tubes, each firing one missile per second for a damage of 50 per missile. May be modified by upgrades that improve stationary defense weapons. Subsequent missile launchers require increasingly large amounts of Ore to install.
 >>
 
-RESEARCH_LAB_HYPERCORE: Hypercore
+RESEARCH_LAB_HYPERCORE: Hyperfield Collision
 RESEARCH_LAB_HYPERCORE_DESC: <<
-	[color=#aaa][i]Fueling a nuclear fusion reactor with hyperfield particles produces a highly unstable form of energy stored in what is colloquially known as a hypercore.[/i][/color]
+	[color=#aaa][i]Projecting hyperfield particles at FTL speeds into a high powered particle collider produces a highly unstable form of energy stored in what is colloquially known as a hypercore.[/i][/color]
+
+	Generates 1 [img=ResourceIconsSmall::81*#26a980;22/] Hypercore.
 >>
 
 RESEARCH_LAB_CRYSTALLIZER: Hyperfield Crystallizer
 RESEARCH_LAB_CRYSTALLIZER_DESC: <<
 	[color=#aaa][i]This highly advanced device is able to artificially reproduce the FTL crystal formation process at an accelerated rate through a complex chain reaction.[/i][/color]
 
-	Unlocks the Synthetic FTL Crystals Project.
+	Unlocks the Hyperfield Crystallization Project.
 >>
 
-RESEARCH_LAB_FTL: FTL Crystals
+RESEARCH_LAB_FTL: Hyperfield Crystallization
 RESEARCH_LAB_FTL_DESC: <<
 	[color=#aaa][i]A method of creating limited quantities of FTL crystals at a high energy cost. Unfortunately, quantic instabilities make the process highly inaccurate and not likely to ever be industrialized.[/i][/color]
 
-	Generates up to 200 FTL energy.
+	Generates up to 250 [img=$FTL;22/] FTL Energy.
 >>
 
 STAGING_HUB_ASTEROID_MORPH: Core Mining
