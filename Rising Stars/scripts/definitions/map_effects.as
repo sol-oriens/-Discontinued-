@@ -378,7 +378,7 @@ class MakePlanet : MapHook {
 		//RS - Gas Giants: make gas giants giant
 		if (resource !is null && resource.ident == "RareGases") {
 			radius = radius * 2.0 + 70;
-			spacing += 500;
+			spacing += 2500;
 		}
 
 		system.radius += spacing;
@@ -457,10 +457,10 @@ class MakePlanet : MapHook {
 			planet.PlanetType = planetType.id;
 		}
 
-		//RS - Scaling: increased gravity well based on planet size
+		//RS - Scaling: increased orbit / gravity well based on planet size
 		if (resource !is null && resource.ident == "Ringworld")
 			//Ringworlds shouldn't have gravity wells as they have no core
-			//Gravity well is the star's
+			//Orbit size is the star's
 			planet.OrbitSize = system.radius;
 		else
 		{
@@ -633,7 +633,22 @@ class ExpandSystem : MapHook {
 
 #section server
 	void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
-		system.radius += arguments[0].fromRange();;
+		system.radius += arguments[0].fromRange();
+	}
+#section all
+};
+
+//ExpandSystemMinimum(<Radius> = 1000)
+// Expand the current system's size to <Radius> if its current radius is smaller.
+class ExpandSystemMinimum : MapHook {
+	Document doc("Expands the system boundary to a minimum radius if smaller.");
+	Argument radius("Radius", AT_Range, "17500", doc="Minimum system radius.");
+
+#section server
+	void trigger(SystemData@ data, SystemDesc@ system, Object@& current) const override {
+		double radius = arguments[0].fromRange();
+		if (system.radius < radius)
+			system.radius = radius;
 	}
 #section all
 };
@@ -958,11 +973,12 @@ class MakeAsteroid : MapHook {
 
 class MakeAsteroidBelt : MapHook {
 	Document doc("Creates an asteroid belt in the system.");
-	Argument count("Count", AT_Range, "30:60", doc="Number of asteroids in the belt.");
+	Argument count("Count", AT_Range, "50:100", doc="Number of asteroids in the belt.");
 	Argument cargo(AT_Cargo, "Ore", doc="Type of cargo to create on the asteroid belt.");
 	Argument cargo_amount(AT_Range, "50:500", doc="Amount of cargo for the asteroids to have.");
 	Argument distribution_chance(AT_Decimal, "0.4", doc="For distributed resources, chance to add additional resource. Repeats until failure.");
-	Argument radius(AT_Decimal, "0", doc="Radius of the belt. Random if 0.");
+	Argument radius(AT_Custom, "random", doc="Numeric radius of the belt. \"Random\" for random radius. \"Edge\" for radius near the edge.");
+	Argument layers(AT_Decimal, "0", doc="Number of successive layers of asteroids in the belt. Number of layers relative to asteroid count if 0.");
 
 	bool instantiate() {
 		if(arguments[0].fromRange() <= 0)
@@ -975,41 +991,67 @@ class MakeAsteroidBelt : MapHook {
 		if(config::ASTEROID_OCCURANCE == 0 && config::RESOURCE_ASTEROID_OCCURANCE == 0)
 			return;
 
-		//RS - Scaling: allow to specify a fixed radius for supermassive black holes
+		//Allow to specify a fixed radius or specific keywords
 		double beltRadius = 0;
-		if (radius.decimal == 0)
-			beltRadius = randomd(0.4, 1.5) * system.radius;
-		else
-			beltRadius = min(radius.decimal, 1.5 * system.radius);
-		double angle = randomd(0, twopi);
+		if (radius.str.equals_nocase("random"))
+			beltRadius = randomd(0.4, 1.0) * system.radius;
+			else if (radius.str.equals_nocase("inner"))
+				beltRadius = randomd(0.4, 0.7) * system.radius;
+		else if (radius.str.equals_nocase("outer"))
+			beltRadius = randomd(0.8, 1.0) * system.radius;
+		else {
+			beltRadius = toDouble(radius.str);
+			if (beltRadius == 0) {
+				error("Invalid radius value: "+ escape(radius.str));
+				return;
+			}
+			beltRadius = min(beltRadius, 1.0 * system.radius);
+		}
+
 		double totChance = config::ASTEROID_OCCURANCE + config::RESOURCE_ASTEROID_OCCURANCE;
 		double resChance = config::RESOURCE_ASTEROID_OCCURANCE / 30;
 
 		uint count = uint(arguments[0].fromRange());
-		for(uint i = 0, cnt = count; i < cnt; ++i) {
-			angle += twopi / double(cnt);
-			double ang = angle + randomd(-0.25,0.25) * twopi / double(cnt);
+		uint remaining = count;
+		uint layers = uint(arguments[5].fromRange());
+		if (layers == 0) {
+			uint lyrs = floor(count / randomi(15, 25));
+			layers = max(1, lyrs);
+		}
+		for(uint i = 0, cnt = layers; i < cnt; ++i) {
+			if (i > 0)
+				beltRadius += randomd(250.0, 500.0);
+			double angle = randomd(0, twopi);
+			//Uneven repartition between layers for a more natural look
+			uint layercnt = max(1, randomi((count / layers) * 0.8, (count / layers) * 1.2));
+			remaining -= layercnt;
+			if (i == layers - 1)
+				layercnt += remaining;
+			for(uint i = 0, cnt = layercnt; i < cnt; ++i) {
+				angle += twopi / double(cnt);
+				double ang = angle + randomd(-0.25,0.25) * twopi / double(cnt);
 
-			vec3d pos = system.position + vec3d(cos(ang) * beltRadius, randomd(-50.0, 50.0), sin(ang) * beltRadius);
+				vec3d pos = system.position + vec3d(cos(ang) * beltRadius, randomd(-50.0, 50.0), sin(ang) * beltRadius);
 
-			Asteroid@ roid = createAsteroid(pos, system.object, delay=true);
-			roid.orbitAround(system.position);
-			roid.orbitSpin(randomd(20.0, 60.0));
-			@current = roid;
+				Asteroid@ roid = createAsteroid(pos, system.object, delay=true);
+				roid.orbitAround(system.position);
+				roid.orbitSpin(randomd(20.0, 60.0));
+				@current = roid;
 
-			if(randomd(0, totChance) >= resChance && cargo.integer != -1) {
-				roid.addCargo(cargo.integer, cargo_amount.fromRange());
-			}
-			else {
-				do {
-					const ResourceType@ type = getDistributedAsteroidResource();
-					if(roid.getAvailableCostFor(type.id) < 0.0)
-						roid.addAvailable(type.id, type.asteroidCost);
+				if(randomd(0, totChance) >= resChance && cargo.integer != -1) {
+					roid.addCargo(cargo.integer, cargo_amount.fromRange());
 				}
-				while(randomd() < distribution_chance.decimal);
-			}
+				else {
+					do {
+						const ResourceType@ type = getDistributedAsteroidResource();
+						if(roid.getAvailableCostFor(type.id) < 0.0)
+							roid.addAvailable(type.id, type.asteroidCost);
+					}
+					while(randomd() < distribution_chance.decimal);
+				}
 
-			roid.initMesh();
+				roid.initMesh();
+			}
 		}
 	}
 #section all
@@ -1579,6 +1621,9 @@ class GuaranteeAdjacentResource : MapHook {
 			sources[i].distributedResources.remove(target);
 
 			target.addResource(resource.id);
+			auto@ node = cast<PlanetNode>(target.getNode());
+			if(node !is null)
+				resource.applyGraphics(target, node);
 		}
 		else {
 			warn("WARNING: Map guarantee '"+arguments[0].str+"' could not find planet around system '"+system.name+"'.");
@@ -1852,7 +1897,7 @@ class ForceMakeCreepCamp : MapHook {
 };
 
 //RS - Scaling: get a random point in the system but outside the radius of the star(s)
-//All this complicated stuff is to attempt to stop objects to eventually spawn inside a star because of wrong radius data
+//Make sure that objects do not spawn inside a star but can be relatively close whatever its radius and the system radius are
 vec2d get2dPos(SystemDesc@ system, double radiusFactor = 1.0, double edgeOffset = 0.0) {
 	double maxRadius = (system.radius - edgeOffset) * radiusFactor;
 	double minRadius = 0.25 * system.radius;

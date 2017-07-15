@@ -48,7 +48,8 @@ v1.2
 - FTL Storage orbitals for Star Children with Flux FTL now generate 0.5 FTL Energy per second and store 600 FTL Energy to make up for the impossibility to build FTL Breeders. They also additionally cost 500 ore to build.
 
 [*] Planets
-- Added gas giants, using unused vanilla low resolution textures. Gas giants can be colonized (more or less) and feature a new scalable resource designed to balance the increased scale of the game by providing increased propulsion speed and various pressure boosts without blatantly scaling engine thrust. They are commonly found in all kinds of systems, but they are more difficult to level up due to their mostly useless biome: imperial buildings cannot be built on it and civilian tile development is extremely slow. They have however a large number of moons where bases can be constructed.
+- Added gas giants, using unused vanilla low resolution textures. Gas giants can be colonized (more or less) and feature a new scalable resource designed to balance the increased scale of the game by providing increased propulsion speed and various pressure boosts. They are commonly found in all kinds of systems, but they are more difficult to level up due to their mostly useless biome: imperial buildings cannot be built on it and civilian tile development is extremely slow. They however have a large number of moons where bases can be constructed. Gas giants completely bypass resource scarcity and planet frequency options on purpose.
+- Fixed a vanilla bug with asteroid fields orbiting Local Asteroid Field Planets not being rendered in certain circumstances.
 - Local Asteroid Field planets now have more and bigger asteroids orbiting closer to them (this is a purely cosmetic change).
 - Destroyed planets now yield more asteroid with less ore.
 
@@ -66,8 +67,9 @@ v1.2
 - Increased default resource asteroid chance to 60% (up from 45%).
 - Renamed Electronics resource to Semiconductors.
 - Deuterium and Neutronium can now very rarely spawn as an asteroid resource.
+- Comets and Protoplanets now have a low chance of spawning in systems regardless of the artifact frequency option.
 - Welfare option base threshold is now 200k (down from 350k).
-- Empires now have an additional food planet in their home system, but one less in adjacent systems.
+- Empires now have an additional Food planet in their home system, but one less in adjacent systems.
 - Empires now have 6k worth of ore asteroids in their home system instead of one 6k ore asteroid.
 - Empires now have an additional an additional FTL crystals asteroid in their home system. A mine is prebuilt if the Quick Start game option is toggled on. This effectively reverts the starting FTL generation and FTL storage to vanilla values.
 - Empires now have an additional an additional Pekelm asteroid in an adjacent system.
@@ -75,6 +77,8 @@ v1.2
 - Empires now have an additional an additional Explosives asteroid in a neighboring system.
 - Empires now have an additional an additional Neutronium asteroid in a neighboring system.
 - Empires now have an additional anomaly in their home system.
+- Empires now have an additional Comet in their home system.
+- Empires now have one less Water planet in adjacent systems.
 - Empires no longer start with any FTL generation or FTL storage regardless of FTL trait choice.
 - Guaranteed resources on planets in systems adjacent to starting systems can now spawn farther in the neighborhood to counterbalance the addition of nebulae and planetless systems, which can deadlock the distribution.
 
@@ -103,7 +107,10 @@ v1.2
 *** The massive scale of the supermassive black holes accretion disks slightly impacts system performances. Consider turning this option off if you experience stuttering.
 - The guaranteed moon around the level 1 planet in the home system has moved to the homeworld.
 
+[*] User Interface
+
+- Reduced Ore Asteroid strategic icons by a factor of 3 so their sheer number does not disturb strategic icon system display when zoomed out.
+
 [*] Known issues
 
-- Asteroid fields on Local Asteroid Field Planets are sometimes not rendered. This is a vanilla bug.
 - Regular planets will sometimes have a gas giant atmosphere. This is most probably due to how the game distribute resources during map creation.

@@ -5,7 +5,7 @@ System: EmptySystem
 	//RS - Scaling
 	MakeStar(Temperature = 4000:12000, Radius = 650:1650)
 
-	ExpandSystem(1500:4000)
+	ExpandSystem(8000:10000)
 
 	RepeatChance(Chance = $ASTEROID_BELT_OCCURANCE, Repeat Modifier = 0.999999)
 		MakeAsteroidBelt()

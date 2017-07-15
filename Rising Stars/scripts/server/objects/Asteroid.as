@@ -185,7 +185,7 @@ tidy class AsteroidScript {
 
 		@icon = StrategicIconNode();
 		if(obj.cargoTypes != 0)
-			icon.establish(obj, 0.015, spritesheet::OreAsteroidIcon, 0);
+			icon.establish(obj, 0.005, spritesheet::OreAsteroidIcon, 0);
 		else
 			icon.establish(obj, 0.015, spritesheet::AsteroidIcon, 0);
 		icon.memorable = true;

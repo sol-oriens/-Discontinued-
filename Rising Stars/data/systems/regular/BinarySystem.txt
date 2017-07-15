@@ -12,7 +12,7 @@ System: BinarySystem
 	ExpandSystem(4000)
 		SetupOrbit(Radius = 2250:4500, Orbit Pct = 0.9)
 
-	ExpandSystem(1000:3000)
+	ExpandSystem(4000:6000)
 
 	RepeatModified(1:4, $PLANET_FREQUENCY)
 		MakePlanet()

@@ -9,7 +9,7 @@ System: BlackHole
 		//RS - Scaling
 		MakePlanet(Orbit Spacing = 600:800)
 
-	MakeAsteroidBelt(6)
+	MakeAsteroidBelt(Count = 90, Radius = 3000)
 
 	RepeatModified(1, $PLANET_FREQUENCY)
 		//RS - Scaling

@@ -9,10 +9,12 @@ System: RichAsteroidBelt
 	AddQuality(-300)
 
 	MakePlanet()
-	MakeAsteroidBelt(7)
+	MakeAsteroidBelt(Count = 90, Distribution Chance = 0.6, Radius = Inner, Layers = 2)
 
 	Repeat(2)
 		MakePlanet()
 
-	Repeat(2)
-		MakeAsteroid()
+	MakeAsteroidBelt(Count = 160, Distribution Chance = 0.6, Radius = Outer, Layers = 3)
+
+	Repeat(5)
+		MakeAsteroid(Resource = Distributed)
