@@ -93,7 +93,7 @@ v1.2
 - Added sensors back to the mod with a completely different approach. All ship and station hulls now have integrated basic sensors. Sight range is low and slightly scaled with size. Specific sensor subsystems can be added to designs to further enhance sight range but their design is now focused on handling high costs rather than competing with armor.
 - Added Sensor Dish. Increases sight range by a small amount. Adding more than one dish doesn't increase sight range more and only gives redundancy benefits.
 - Added Phasing Sensor. Increases sight range by a moderate amount, decreasing as the subsystem's size increases. High Power cost. Requires increasingly high amounts of Control as the subsystem's size increases. Sinew halves the Control requirements.
-- Increased most weapon ranges by a factor of 2. Energy Bomb, Plasma Thrower, Pulse Bolt and Subspace Shredder ranges are unchanged.
+- Increased most weapon ranges by a factor of 2. Energy Bomb, Plasma Thrower, Pulse Bolt and Subspace Shredder ranges are unchanged. The Flak Battery range formula has been tweaked to keep a much more linear and slow progression relative to ship size.
 - Increased Fleet Computer raiding range bonus (and base raiding range) by a factor of 3.
 
 [*] Systems
