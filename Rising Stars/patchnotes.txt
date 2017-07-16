@@ -22,3 +22,7 @@ v1.1.2
 - Re-added Carpet Bomb with supply cost doubled.
 - Railgun Battery is now enhanced in the same way as support Railgun when Muon Projectors are researched (bonus to damage, accuracy and armor penetration).
 - Fixed Support Shield Generators not being available after researching Shield Generator when not playing a technocracy government.
+
+[*] User Interface
+
+- Fixed a vanilla bug where the drydock construction menu would list different versions of a design under certain circumstances.
