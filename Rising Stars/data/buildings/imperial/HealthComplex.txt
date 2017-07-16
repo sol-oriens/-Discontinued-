@@ -13,8 +13,8 @@ Building: HealthComplex
 
 	TriggerStartConstruction( AddStatus(HealthComplexCost) )
 	TriggerCancelConstruction( RemoveStatusInstance(HealthComplexCost) )
-	ConsumeResearchStatusCount(HealthComplexCost, Base Amount = 25, Amount = 25)
+	ConsumeResearchStatusCount(HealthComplexCost, Base Amount = 50, Amount = 50)
 
-  AddMaxPopulation(2)
+  AddMaxPopulation(1)
 
   RequireNotTrait(Ancient)

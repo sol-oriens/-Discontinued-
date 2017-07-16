@@ -19,7 +19,7 @@ BLD_HEALTH_COMPLEX: Healthcare Complex
 BLD_HEALTH_COMPLEX_DESC: <<
 	[color=#aaa][i]Keeping people healthy leads to longer lifespans, ultimately increasing population. Featuring a top-notch hospital, a convalescent home and a disease research center, this complex greatly enhances a planet's capacity to keep local bacteria and viruses at bay and people at work.[/i][/color]
 
-	Adds 2 population.
+	Adds 1 population.
 >>
 
 BLD_ECX_FACTORY: Electronics Factory
