@@ -23,6 +23,7 @@ ORB_STARPORT_DESC: <<
 	[color=#aaa][i]A docking station for civilian and military ships and a transit point for interstellar trade greatly facilitating planetary exporting. A market area also allows small scale commerce with friendly planets.[/i][/color]
 
 	Provides 25k income for each owned and friendly planet, to each friendly empire including yours, in the system, up to 75k.
+	Support ships assigned to a Starport independently move across the system to attack enemy fleets.
 	Can be upgraded to allow global resource trade.
 
 	[i]Only one Starport may be constructed per system.[/i]
