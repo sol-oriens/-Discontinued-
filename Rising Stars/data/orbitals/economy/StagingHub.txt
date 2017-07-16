@@ -11,7 +11,7 @@ Module: StagingHub
 
 	Build Cost: 400
 	Maintenance: 70
-	Labor Cost: 30
+	Labor Cost: 20
 
 	Health: 5000
 	Armor: 1000
