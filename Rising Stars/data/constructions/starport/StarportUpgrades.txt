@@ -1,0 +1,15 @@
+Construction: StarportDockingBays
+	Name: #STARPORT_DOCKING_BAYS
+	Time Cost: 120
+	Icon: ActionBarIcons::2
+
+	Category: Infrastructure
+	Description: #STARPORT_DOCKING_BAYS_DESC
+
+  Build Cost: 200
+	ConsumeCargo(Ore, 1500)
+
+  AddStatus(StarportGlobalTrade)
+
+  RequireOnOrbital(Starport)
+	RequireNotStatus(StarportGlobalTrade)

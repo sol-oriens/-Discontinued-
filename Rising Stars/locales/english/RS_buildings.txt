@@ -1,8 +1,9 @@
+BLD_SPACE_ELEVATOR: Orbital Elevator
 BLD_SPACE_ELEVATOR_DESC: <<
 	[color=#aaa][i]A ribbon-like tether reaching vertically into space can be used to significantly increase the efficiency of transporting materials into space.[/i][/color]
 
 	Increases the construction speed of support ships on this planet by 40%.
-	Adds 2 money generation if a Starport is present in the system.
+	Adds 1 money generation per Planet Level starting from Level 1 if a Starport is present in the system.
 
 	[i]Only one Space Elevator may be constructed per planet.[/i]
 >>

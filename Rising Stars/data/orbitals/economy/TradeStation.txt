@@ -20,6 +20,7 @@ Module: TradeStation
 	Material: GenericPBR_CommerceStation
 
 	LimitOncePerSystem(CommerceFlag)
+	SetSystemFlag(CommerceStation)
 
 	GrantAbility(BuyInfluence) #version>=93
 	GrantAbility(BuyEnergy) #version>=93
@@ -28,4 +29,4 @@ Module: TradeStation
 
 	GiveTrade()
 	GlobalTradeNode()
-	FriendlyPlanetMoney(To Self = 50, To Other = 50, Count Self = False, Max Money = 300)
+	FriendlyPlanetMoney(To Self = 150, To Other = 150, Count Self = False, Max Money = 450)

@@ -8,13 +8,15 @@ Module: Starport
 	Core: True
 	Standalone: True
 
-	Build Cost: 375
-	Maintenance: 150
-	Labor Cost: 12
+	Build Cost: 200
+	Maintenance: 100
+	Labor Cost: 15
 	Size: 12
 
-	Health: 3750
-	Armor: 750
+	Health: 5000
+	Armor: 1000
+
+	AddCargoStorage(1000000)
 
 	Model: CommerceStation
 	Material: GenericPBR_CommerceStation
@@ -23,7 +25,9 @@ Module: Starport
 	SetSystemFlag(Starport)
 
 	AddFleetCommand(64)
+	AddFleetCommandEmpireAttribute(OutpostBoost, 64)
 	AllowFreeRaiding()
 
+	AllowConstruction()
 	GiveTrade()
-	FriendlyPlanetMoney(To Self = 10, Count Self = True, Max Money = 50)
+	FriendlyPlanetMoney(To Self = 25, To Other = 25, Count Self = True, Max Money = 75)

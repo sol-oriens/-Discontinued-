@@ -98,3 +98,10 @@ STAGING_HUB_ASTEROID_MORPH_DESC: <<
 
 	The targeted Ore asteroid is transformed into an asteroid containing one or more resources available to build a mining base on.
 >>
+
+STARPORT_DOCKING_BAYS: Long Haul Docking Bays
+STARPORT_DOCKING_BAYS_DESC: <<
+	[color=#aaa][i]Standard civilian trade ships are not suited for very long distance travels and an extensive infrastructure is required to maintain supply lines across multiple systems. These much bigger and specialized docking bays allow long distance superhaulers to dock at the starport, a privilege usually exclusive to huge commerce stations.[/i][/color]
+
+	Allows global resource trade between any territories with Commerce Stations or Starports with Long Haul Docking Bays.
+>>

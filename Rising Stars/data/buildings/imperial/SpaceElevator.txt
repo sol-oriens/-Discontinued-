@@ -14,7 +14,7 @@ Building: SpaceElevator
 	RequireNotTrait(Ancient)
 
 	ModSupportBuildSpeed(+0.4)
-	IfSystemFlag(Starport, AddResource(Money, 2))
+	IfSystemFlag(Starport, AddResourceFromLevel(Money, Factor = 1.0))
 
 	AddPlanetGfxFlag(SpaceElevator)
 	ConflictBuilding(SpaceElevator)
