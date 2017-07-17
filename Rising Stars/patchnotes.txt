@@ -25,4 +25,4 @@ v1.1.2
 
 [*] User Interface
 
-- Fixed a vanilla bug where the drydock construction menu would list different versions of a design under certain circumstances.
+- Fixed a vanilla bug where the dry dock construction menu would list different versions of a design under certain circumstances.
