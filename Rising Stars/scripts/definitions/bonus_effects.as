@@ -894,6 +894,46 @@ class SpawnOrbital : EmpireTrigger {
 #section all
 };
 
+class SpawnQuickStartOrbital : EmpireTrigger {
+	Document doc("Spawn an orbital.");
+	Argument type("Core", AT_OrbitalModule, doc="Type of orbital core to use.");
+	Argument add_status(AT_Status, EMPTY_DEFAULT, doc="Status effect to add to the orbital after it is created.");
+	Argument in_orbit(AT_Boolean, "False", doc="Whether to spawn somewhere in orbit around the target object.");
+
+#section server
+	void activate(Object@ obj, Empire@ emp) const override {
+		if(config::QUICK_START == 0)
+			return;
+
+		auto@ def = getOrbitalModule(arguments[0].integer);
+		vec3d pos;
+
+		Region@ region;
+		if(emp.Homeworld !is null) {
+			@region = emp.Homeworld.region;
+		}
+		else if(emp.HomeObj !is null) {
+			@region = emp.HomeObj.region;
+			if(region is null)
+				@region = getRegion(emp.HomeObj.position);
+		}
+		if(region is null)
+			return;
+		pos = region.position;
+		vec2d off = random2d(400.0, region.radius - 200.0);
+		pos.x += off.x;
+		pos.z += off.y;
+
+		auto@ orb = createOrbital(pos, def, emp);
+
+		if(add_status.integer != -1)
+			orb.addStatus(add_status.integer);
+	}
+
+	void init(Empire& emp, any@ data) const override {}
+	void postInit(Empire& emp, any@ data) const override { activate(null, emp); }
+#section all
+};
 
 class ReduceInfluenceIncome : EmpireTrigger {
 	Document doc("Reduce the empire's influence income by a factor for a duration.");
@@ -1529,6 +1569,73 @@ class SpawnShip : EmpireTrigger {
 				leader.addStatus(add_status.integer);
 			if(set_home.boolean)
 				@emp.HomeObj = leader;
+		}
+	}
+
+	void init(Empire& emp, any@ data) const override {}
+	void postInit(Empire& emp, any@ data) const override { activate(null, emp); }
+#section all
+};
+
+class SpawnQuickStartShip : EmpireTrigger {
+	Document doc("Spawn a ship at the location of the object.");
+	Argument design(AT_Custom);
+	Argument design_from(AT_Custom, "Player");
+	Argument supports(AT_VarArgs, AT_Custom);
+	Argument add_status(AT_Status, EMPTY_DEFAULT, doc="A status to add to the ship after it is spawned.");
+	Argument offset(AT_Decimal, "0", doc="Offset from the object position to spawn.");
+
+#section server
+	void activate(Object@ obj, Empire@ emp) const override {
+		if(config::QUICK_START == 0)
+			return;
+
+		Empire@ designEmp = emp;
+		if(design_from.str.length != 0) {
+			if(design_from.str.equals_nocase("Creeps")
+					|| design_from.str.equals_nocase("Remnants")) {
+				@designEmp = Creeps;
+			}
+		}
+
+		vec3d pos;
+		if(emp !is null && (emp.Homeworld !is null || emp.HomeObj !is null)) {
+			Region@ region;
+			if(emp.Homeworld !is null) {
+				@region = emp.Homeworld.region;
+			}
+			else {
+				@region = emp.HomeObj.region;
+				if(region is null)
+					@region = getRegion(emp.HomeObj.position);
+			}
+			vec2d offset = random2d(200.0, region.radius * 0.5);
+			pos = region.position + vec3d(offset.x, 0, offset.y);
+		}
+		else {
+			return;
+		}
+
+		auto@ dsg = designEmp.getDesign(design.str);
+		if(dsg !is null) {
+			Ship@ leader = createShip(pos, dsg, emp, free=true);
+
+			for(uint i = 2, cnt = arguments.length; i < cnt; ++i) {
+				string arg = arguments[i].str;
+				int pos = arg.findFirst("x ");
+				if(pos != -1) {
+					uint count = toUInt(arg.substr(0, pos));
+					string dsgName = arg.substr(pos+2).trimmed();
+					@dsg = designEmp.getDesign(dsgName);
+					if(dsg !is null) {
+						for(uint n = 0; n < count; ++n)
+							createShip(leader.position, dsg, emp, leader, free=true);
+					}
+				}
+			}
+
+			if(add_status.integer != -1)
+				leader.addStatus(add_status.integer);
 		}
 	}
 

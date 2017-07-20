@@ -11,9 +11,9 @@ Trait: Slipstream
 
 	UnlockSubsystem(Slipstream)
 
-	IfNotHaveTrait(Technicists,LoadDesigns(default) ,LoadDesigns(technicist/default))
-	IfNotHaveTrait(Technicists,LoadDesigns(not_hyperdrive) ,LoadDesigns(technicist/not_hyperdrive))
-	
+	IfNotHaveTrait(Technicists, LoadDesigns(default), LoadDesigns(technicist/default))
+	IfNotHaveTrait(Technicists, LoadDesigns(not_hyperdrive), LoadDesigns(technicist/not_hyperdrive))
+
 	LoadDesigns(slipstream)
 
 	IfHaveTrait(Verdant, LoadDesigns(verdant/default))
@@ -28,4 +28,4 @@ Trait: Slipstream
 	IfHaveTrait(Ancient, LoadDesigns(ancient/not_hyperdrive))
 	IfHaveTrait(Ancient, LoadDesigns(ancient/slipstream))
 
-	IfNotHaveTrait(StarChildren, SpawnShip(Slipstream Generator))
+	IfNotHaveTrait(StarChildren, SpawnQuickStartShip(Slipstream Generator))

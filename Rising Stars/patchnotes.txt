@@ -18,14 +18,14 @@ v1.2
 
 [*] FTL
 
-*** FTL has been completely rebalanced with several objectives in mind. First: to make long distances matter more, especially in the beginning of a game. Costs are balanced to make FTL a luxury at first and more common later, as more FTL sources and storage become available, but needs to be carefully planned and managed until very late game. Second: to take into account the possibility to research more FTL methods. Some flaws have been exaggerated to even more clearly make
-different methods preferable in different situations. Third: To tone down the advantages over sublight, while still retaining a clear advantage. This is mainly accomplished with high costs that will empty FTL reserves if overused.
+*** FTL has been completely rebalanced with several objectives in mind. First: to make long distances matter more, especially in the beginning of a game. Costs are balanced to make FTL a luxury at first and more common later, as more FTL sources and storage become available, but needs to be carefully planned and managed until very late game. Second: to take into account the possibility to research more FTL methods and even more clearly make
+different methods preferable in different situations. Third: To tone down the advantages over sublight, while still retaining a clear advantage.
 
 - Increased hyperdrive speed by a factor of 20. Hyperdrive speed ratio is identical to vanilla to make up for its decreased effectiveness over very long distances. Cost is unchanged, meaning it costs more FTL to get from system A to system B.
 - Increased fling beacon range by a factor of 4 and fling cost by a factor of 2. Fling cost is increased to make up for its increasing effectiveness the longer the distance is (travel time is constant, meaning that speed increases with distance). The range of beacons is reduced compared to vanilla.
-- Increased slipstream cost by a factor of 1.4, optimal range by a factor of 5 and inaccuracy by a factor of 10. Effects of inaccuracy now start only beyond optimal range. Opening a slipstream to very far away location will require either a ship-sized generator or a lot of FTL. Opening it around the intended location and not 3 systems away will require a big ship.
+- Increased slipstream cost by a factor of 1.4, optimal range by a factor of 5 and inaccuracy by a factor of 10. Effects of inaccuracy now start only beyond optimal range. Opening a slipstream to a very distant location will require either a ship-sized generator or a lot of FTL. Opening it around the intended location and not 3 systems away will require a big ship.
 - Increased jump drive range by a factor of 10. Jump drive is still the fastest and cheapest, but the safe range is half of vanilla.
-- Increased gate maintenance cost to 0.25 FTL/s.
+- Increased gate maintenance cost to 0.25 FTL/s. More gates are needed to get a good territory coverage, and juggling with gate activation and deactivation is an absolute must.
 
 [*] Game Options
 
