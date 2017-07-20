@@ -3,8 +3,8 @@ from regions.regions import getRegion;
 #section all
 import orbitals;
 
-const double HYPERDRIVE_COST = 0.1;
-const double HYPERDRIVE_START_COST = 12.5;
+const double HYPERDRIVE_COST = 0.08;
+const double HYPERDRIVE_START_COST = 25.0;
 const double HYPERDRIVE_CHARGE_TIME = 15.0;
 
 bool canHyperdrive(Object& obj) {
@@ -199,8 +199,14 @@ void slipstreamModifyPosition(Object& obj, vec3d& position) {
 }
 
 double slipstreamInaccuracy(Object& obj, const vec3d& position) {
+	Ship@ ship = cast<Ship>(obj);
+
+	double optDist = ship.blueprint.design.total(SV_SlipstreamOptimalDistance);
 	double dist = obj.position.distanceTo(position);
-	return dist * 0.01;
+
+	if(dist <= optDist)
+		return 0;
+	return (dist - optDist) * 0.1;
 }
 
 bool canSlipstreamTo(Object& obj, const vec3d& point) {
