@@ -47,7 +47,9 @@ different methods preferable in different situations. Third: To tone down the ad
 - Added Staging Hub. Allows trade through its system. Can import and sell resources and store cargo. Planets can be ordered to export their labor to this orbital. Designed to fill various support roles, notably for use as a proximity mining base, as the new balance makes tractoring ore asteroids a pain. Build and maintenance costs of 400k and 125k, respectively.
 - Added Zero-G Lab. Gives 1 research generation and allows access to special projects. Build and maintenance costs of 400k and 100k, respectively.
 - Added Hyperfield Harvester. Generates 0.15 FTL Energy per second and stores 250 FTL Energy. Build and maintenance costs of 450k and 75k, respectively.
+- Added Tachyon Uplink. Unlocks the Tachyon Sensor subsystem. Requires 0.5 FTL maintenance. Can only be built in a Tachyon Nebula. Only one Tachyon Uplink may be constructed per system.
 - FTL Storage orbitals for Star Children with Flux FTL now generate 0.5 FTL Energy per second and store 600 FTL Energy to make up for the impossibility to build FTL Breeders. They also additionally cost 500 ore to build.
+- All orbitals now have a base sensor range of 10.000 units which can be upgraded through research.
 
 [*] Planets
 
@@ -55,10 +57,12 @@ different methods preferable in different situations. Third: To tone down the ad
 - Fixed a vanilla bug with asteroid fields orbiting Local Asteroid Field Planets not being rendered in certain circumstances.
 - Local Asteroid Field planets now have more and bigger asteroids orbiting closer to them (this is a purely cosmetic change).
 - Destroyed planets now yield more asteroid with less ore.
+- Planets now have a base sensor range of 20.000 units which can be upgraded through research.
 
 [*] Research
 
 - Orbital Command and Orbital Command 2 now also grant 64 and 128 additional support capacity, respectively, to Starports.
+- Added 8 Sensors and 1 Sensors 2 node. Increases all sensor ranges by 10% and 20%, respectively. Only available in the WotH regular grid for now.
 
 [*] Resources
 
@@ -91,9 +95,11 @@ different methods preferable in different situations. Third: To tone down the ad
 
 [*] Subsystems
 
-- Added sensors back to the mod with a completely different approach. All ship and station hulls now have integrated basic sensors. Sight range is low and slightly scaled with size. Specific sensor subsystems can be added to designs to further enhance sight range but their design is now focused on handling high costs rather than competing with armor.
+*** Sensors are back to the mod with a completely different approach. All flagship and station hulls now have integrated basic sensors. Sight range is moderate, slightly scaled with size and can be upgraded through research.
+Specific sensor subsystems can be added to flagship	and station designs to further enhance sight range but their design is now focused on handling high costs rather than competing with armor.
 - Added Sensor Dish. Increases sight range by a small amount. Adding more than one dish doesn't increase sight range more and only gives redundancy benefits.
-- Added Phasing Sensor. Increases sight range by a moderate amount, decreasing as the subsystem's size increases. High Power cost. Requires increasingly high amounts of Control as the subsystem's size increases. Sinew halves the Control requirements.
+- Added Phasing Sensor. Increases sight range by a moderate amount, decreasing as the subsystem's size increases. Requires Power. Requires increasingly high amounts of Power and Control as the subsystem's size increases. Sinew halves the Control requirements.
+- Added Tachyon Sensor back. Increases sight range by a high amount, decreasing as the subsystem's size increases. Requires an active Tachyon Uplink orbital to function. Requires increasingly high amounts of Control as the subsystem's size increases. Sinew halves the Control requirements.
 - Increased most weapon ranges by a factor of 2. Energy Bomb, Plasma Thrower, Pulse Bolt and Subspace Shredder ranges are unchanged. The Flak Battery range formula has been tweaked to keep a much more linear and slow progression relative to ship size.
 - Increased Fleet Computer raiding range bonus (and base raiding range) by a factor of 3.
 

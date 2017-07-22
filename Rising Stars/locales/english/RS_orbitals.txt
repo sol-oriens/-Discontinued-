@@ -60,9 +60,9 @@ ORB_FTL_HARVESTER_DESC: <<
 ORB_TELESCOPE: Telescope Array
 ORB_TELESCOPE_BLURB: Allows temporary vision of nearby star systems.
 ORB_TELESCOPE_DESC: <<|
-	[color=#aaa][i]Telescopes have been used for millennia to look at the stars around. This station is equipped with an array of the most advanced models available which can provide a high fidelity computer enhanced view of an entire system in the vicinity.[/i][/color]
+	[color=#aaa][i]Telescopes have been used for millennia to look at the stars around. This facility is equipped with an array of the most advanced models available which can provide a high fidelity computer enhanced view of an entire system in the vicinity.[/i][/color]
 
-	Has the 'Telescope' ability. Costs energy based on target distance to activate.
+	Has the 'Telescope' ability. Costs Energy based on target distance to activate.
 
 	[i][bbloc=#ABL_TELESCOPE_ARRAY_DESC:400000/][/i]
 >>
@@ -71,9 +71,21 @@ ORB_QUANTUM_TELESCOPE_BLURB: Allows temporary vision of nearby or distant star s
 ORB_QUANTUM_TELESCOPE_DESC: <<|
 	[color=#aaa][i]The combination of huge telescopes and oversized quantic computer systems allows an almost perfect virtual rendering of very distant star systems.[/i][/color]
 
-	Has the 'Telescope' ability. Costs energy and FTL energy based on target distance to activate.
+	Has the 'Telescope' ability. Costs Energy and FTL Energy based on target distance to activate.
 
 	[i][bbloc=#ABL_TELESCOPE_ARRAY_DESC:1000000/][/i]
+>>
+ORB_TACHYON_UPLINK: Tachyon Uplink Facility
+ORB_TACHYON_UPLINK_BLURB: Unlocks Tachyon Sensors.
+ORB_TACHYON_UPLINK_DESC: <<
+	[color=#aaa][i]This specialized facility harnesses the massive tachyonic fields found in eponymous nebulae and redirects tachyons in the underlying hyperfield towards specialized sensors that can use them to obtain tremendous detection ranges.[/i][/color]
+
+	Unlocks the Tachyon Sensor subsystem.
+
+	[i]Can only be built in a Tachyon Nebula.[/i]
+	[i]Only one Tachyon Uplink may be constructed per system.[/i]
+
+	[img=$FTL;22][b][color=#00c0ffff]FTL[/color][/b] [offset=120]0.5 /s[/offset][/img]
 >>
 ORB_SHIELD_CHARGER: Power Transmitter
 ORB_SHIELD_CHARGER_BLURB: Recharges the shields of allied fleets in the system.

@@ -1591,6 +1591,10 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		if(node !is null)
 			node.visible = obj.isVisibleTo(playerEmpire);
 
+		//Update sight ranges
+		if(obj.isPlanet || obj.isOrbital)
+			calculateSightRange(obj);
+
 		//Refresh formations
 		if(formationDelta && !obj.inCombat) {
 			if(!obj.hasMover || !obj.isMoving) {
@@ -2606,16 +2610,10 @@ tidy class LeaderAI : Component_LeaderAI, Savable {
 		}
 
 		double sightRange = 0;
-		//Not used anymore: ship and station base sight ranges are set in base hulls
-		/*if(obj.isShip) {
-			sightRange = SHIP_BASESIGHTRANGE;
-			if(cast<Ship>(obj).isStation)
-				sightRange *= STATION_SIGHTMULTIPLIER;
-		}
-		else */if(obj.isOrbital)
-			sightRange = ORBITAL_BASESIGHTRANGE;
+		if(obj.isOrbital)
+			sightRange = ORBITAL_BASESIGHTRANGE * obj.owner.StaticSensorFactor;
 		else if(obj.isPlanet)
-			sightRange = PLANET_BASESIGHTRANGE;
+			sightRange = PLANET_BASESIGHTRANGE * obj.owner.StaticSensorFactor;
 
 //		print("Calculating sight range... base range is " + sightRange);
 		uint prevPriority = 0;

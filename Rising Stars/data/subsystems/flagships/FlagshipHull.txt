@@ -1,5 +1,5 @@
 Subsystem: FlagshipHull
-	Tags: DefaultUnlock, NoCore, HullSystem, Ability:ScuttleDerelict
+	Tags: DefaultUnlock, NoCore, HullSystem, Sensor, Ability:ScuttleDerelict
 	Hull: Flagship
 	EvaluationOrder: -100
 

@@ -10,6 +10,15 @@ R_IMP_PLANET_SUPPORT_DESC: <<
 	Also increases the [img=Plus;20/] Health and the rate of local defense ship production of [b][img=GuiOrbitalIcons::0;20/] Outpost[/b] orbitals.
 >>
 
+R_IMP_SENSORS: Sensors
+R_IMP_SENSORS2: Sensors 2
+R_IMP_SENSORS_BLURB: Sensor Range +$1
+R_IMP_SENSORS_DESC: <<
+	[i][color=#aaa]Research on how to improve the maximum range of identification of blips.[/color][/i]
+
+	Increases all sensor ranges by $1.
+>>
+
 R_SYS_SHIELDED_AMGEN_BLURB: In-Combat Resupply
 R_SYS_SHIELDED_AMGEN_DESC: <<
 	[color=#aaa][i]New advances in shield compacting unlock the Shielded Antimatter Generator subsystem.[/i][/color]

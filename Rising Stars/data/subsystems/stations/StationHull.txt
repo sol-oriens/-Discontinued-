@@ -1,5 +1,5 @@
 Subsystem: StationHull
-	Tags: DefaultUnlock, NoCore, HullSystem, Ability:ScuttleDerelict
+	Tags: DefaultUnlock, NoCore, HullSystem, Sensor, Ability:ScuttleDerelict
 	Hull: Station
 	EvaluationOrder: -100
 

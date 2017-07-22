@@ -5,11 +5,11 @@ Subsystem: PhasingSensor
 	Elevation: 1
 
 	Tags: LowMaint, IsSensor, Category:Sensors, HasInternals, ExteriorCore
-  Tags: DefaultUnlock
+  Tags: Sensor, DefaultUnlock
 	Hull: Flagship, Station
 
 	Size := HexSize * Hexes
-	SensorPower := sqrt(Size) * 1000
+	SensorPower := sqrt(Size) * 500
 	SensorRange := 1000 + HexSize * 100 + SensorPower
 	SensorPriority := 100
 	Hex.Mass := HexSize / 2

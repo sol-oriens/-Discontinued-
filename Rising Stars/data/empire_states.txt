@@ -36,7 +36,7 @@ Empire {
 	int mutualDefenseMask = 0
 	Region$ HomeSystem
 	int cheatLevel = 0
-	
+
 	synced locked_double ModHP = 1
 	synced locked_double ModArmor = 1
 	synced locked_double ModShield = 1
@@ -85,6 +85,7 @@ visible:
 	attribute double OrbitalShieldMod = 1
 	attribute double EnergyGenerationFactor = 1
 	attribute double StaticDamageFactor = 1
+	attribute double StaticSensorFactor = 1
 	attribute double ArtifactsActivated = 0
 	attribute double CivBldConstructionRate = 1
 	attribute double ImperialBldConstructionRate = 1

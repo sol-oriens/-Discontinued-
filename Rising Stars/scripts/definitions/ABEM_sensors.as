@@ -47,6 +47,7 @@ class AddSightModifier : GenericEffect {
 
 class SubsystemSightData {
 	bool hasLeader = false;
+	bool isVoided = false;
 	uint id;
 	float workingPercent;
 	any data;
@@ -57,6 +58,7 @@ class AddSensor : SubsystemEffect {
 	Argument priority(AT_Integer, "100", doc="The order in which the modifier is executed. The lower the number, the sooner it is executed. NOTE: Only use positive integers here!");
 	Argument multiplier(AT_Decimal, "1.0", doc="The number by which the ship's base sight range and all previously executed modifiers are multiplied. NOTE: Same-priority modifiers do not multiply each other, they just combine their results when they're done!");
 	Argument addedRange(AT_Decimal, "0.0", doc="The amount of extra sight range to add, expressed in units. For reference, the sides of the biggest squares on the system grid are 500 units.");
+	Argument attribute(AT_EmpAttribute, "", doc="Attribute to check for the change to apply. Ignored if empty.");
 
 #section server
 	void start(SubsystemEvent& event) const override {
@@ -69,7 +71,12 @@ class AddSensor : SubsystemEffect {
 		if(event.obj.hasLeaderAI) {
 //			print("Proper initialization done.");
 			info.hasLeader = true;
-			info.id = event.obj.addSightModifier(uint(priority.integer), multiplier.decimal, addedRange.decimal);
+			if(attribute.integer != 0 && event.obj.owner.getAttribute(attribute.integer) <= 0.0001) {
+				info.id = event.obj.addSightModifier(uint(priority.integer), 1, 0);
+				info.isVoided = true;
+			}
+			else
+				info.id = event.obj.addSightModifier(uint(priority.integer), multiplier.decimal, addedRange.decimal);
 //			print(info.hasLeader);
 //			print(event.workingPercent);
 //			print(uint(priority.integer) + "/" + priority.integer);
@@ -88,26 +95,41 @@ class AddSensor : SubsystemEffect {
 			return;
 		}
 		if(event.obj.hasLeaderAI) {
-			if(!info.hasLeader) {
+			if(attribute.integer != 0) {
+				double value = event.obj.owner.getAttribute(attribute.integer);
+				if (!info.isVoided && value <= 0.0001) {
+					//Sight range is applied and shouldn't anymore
+					event.obj.modifySightModifier(info.id, 1, 0);
+					info.isVoided = true;
+				}
+				else if (info.isVoided && value > 0.0001) {
+					//Sight range is not applied and should
+					event.obj.modifySightModifier(info.id, multiplier.decimal, addedRange.decimal);
+					info.isVoided = false;
+				}
+			}
+			if (!info.isVoided) {
+				if(!info.hasLeader) {
 //				print("Backup initialization done.");
-				double finalMult = multiplier.decimal * event.workingPercent;
-				if(finalMult < 1.0)
-					finalMult += 1;
-				info.hasLeader = true;
-				info.id = event.obj.addSightModifier(uint(priority.integer), finalMult, addedRange.decimal * event.workingPercent);
+					double finalMult = multiplier.decimal * event.workingPercent;
+					if(finalMult < 1.0)
+						finalMult += 1;
+					info.hasLeader = true;
+					info.id = event.obj.addSightModifier(uint(priority.integer), finalMult, addedRange.decimal * event.workingPercent);
 //				print(info.hasLeader);
 //				print(event.workingPercent);
 //				print(uint(priority.integer) + "/" + priority.integer);
 //				print(finalMult + "/" + multiplier.decimal);
 //				print(addedRange.decimal);
-				info.workingPercent = event.workingPercent;
-			}
-			else if(info.workingPercent != event.workingPercent) {
-				double finalMult = multiplier.decimal * event.workingPercent;
-				if(finalMult < 1.0)
-					finalMult += 1;
-				event.obj.modifySightModifier(info.id, finalMult, addedRange.decimal * event.workingPercent);
-				info.workingPercent = event.workingPercent;
+					info.workingPercent = event.workingPercent;
+				}
+				else if(info.workingPercent != event.workingPercent) {
+					double finalMult = multiplier.decimal * event.workingPercent;
+					if(finalMult < 1.0)
+						finalMult += 1;
+					event.obj.modifySightModifier(info.id, finalMult, addedRange.decimal * event.workingPercent);
+					info.workingPercent = event.workingPercent;
+				}
 			}
 		}
 		else
@@ -129,17 +151,17 @@ class AddSensor : SubsystemEffect {
 		SubsystemSightData@ info;
 		event.data.retrieve(@info);
 
-		if(info !is null) {  
-			file << info.hasLeader;  
-			file << info.id;  
-			file << info.workingPercent;  
-		}  
-		else {  
-			uint nil = 0xffffffff;  
-			file << false;  
-			file << nil;  
-			file << event.workingPercent;  
-		}  
+		if(info !is null) {
+			file << info.hasLeader;
+			file << info.id;
+			file << info.workingPercent;
+		}
+		else {
+			uint nil = 0xffffffff;
+			file << false;
+			file << nil;
+			file << event.workingPercent;
+		}
 	}
 
 	void load(SubsystemEvent& event, SaveFile& file) const override {

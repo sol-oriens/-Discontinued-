@@ -87,7 +87,7 @@ Grid: Heralds
 	PowerGeneration: -7,6
 	Energy: -7,5
 	Megacity: 4,0
-	SolarPanel: 6,-3
+	Sensors: 6,-3
 	SupplyStorage: 5,-3
 	GravityEngine: -6,-6
 	SupportCap: 3,5
@@ -105,7 +105,7 @@ Grid: Heralds
 	ParticleLance: 10,-9
 	PulseBolt: 8,-10
 	Disruptor: 8,-5
-	SubspaceShredder: -7,12
+	Sensors2: -7,12
 	SkipDrive: -10,12
 	TroopPods: 8,-13
 	ProjTracking: -5,12
@@ -168,7 +168,6 @@ Grid: Heralds
 	Health: -8,10
 	Damage: -9,9
 	Defense: -9,8
-	VacuumTelescope: 11,-4
 	OrbitalConstruction: 10,-3
 	FactoryLabor: 11,-2
 	Damage: 8,-4
@@ -291,3 +290,13 @@ Grid: Heralds
 	EnergyHurdle: -19,-13
 	PiercingDrones: -19,-14
 	MinerHull: -1,5
+	Sensors: 0,-1
+	VacuumTelescope: 11,-5
+	Sensors: 7,0
+	Sensors: 11,-4
+	Sensors: -11,12
+	SubspaceShredder: -7,13
+	Sensors: 3,-11
+	Sensors: -4,0
+	SolarPanel: 7,-3
+	Sensors: -3,-2

@@ -201,6 +201,7 @@ class VanguardVictoryAdjuster : VictoryAdjuster {
 }
 
 // Data entries for baseline sight ranges for ships, stations (multiplies SHIP_BASESIGHTRANGE), orbitals and planets.
+//Not used anymore: ship and station sensors are integrated in the base hull
 /*const double SHIP_BASESIGHTRANGE = 5000;
 const double STATION_SIGHTMULTIPLIER = 1;*/
 const double ORBITAL_BASESIGHTRANGE = 10000;
