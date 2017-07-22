@@ -13,7 +13,7 @@ v1.2
 - Space Elevator has been renamed to Orbital Elevator and now adds 1 money generation per Planet Level starting from Level 1 if a Starport is present in the system and additionally costs 1k ore and 50 labor to build.
 - Added Fuel Facility: Adds 1 energy pressure and 1 money pressure and increases the pressure given by native Natural Gas or Oil by 1. Base build and maintenance costs of 110 and 50k, respectively. Also costs 50 research to build.
 - Added Electronics Factory: Can replace a Level 1 resource and adds 3 money pressure. Consumes 8 ore per minute. Base build and maintenance costs of 40k and 30k, respectively. The building becomes inactive if there is no more ore left on the planet.
-- Added Healthcare Complex: Adds 1 population. Base build and maintenance costs of 85k and 20k, respectively. Also costs 50 research to build and 50 more for each Healthcare Complex already built or building on the planet.
+- Added Healthcare Complex: Adds 1 population and increases population growth by 10%. Base build and maintenance costs of 85k and 20k, respectively. Also costs 50 research to build and 50 more for each Healthcare Complex already built or building on the planet.
 - Added Arcology: Adds 5 population and replaces 5 cities. Costs 2.5M, 2k ore, 20 influence, and 50 labor.
 
 [*] FTL
@@ -36,7 +36,8 @@ different methods preferable in different situations. Third: To tone down the ad
 
 [*] Lifestyles
 
-- Extragalactic colonizer speed multiplier changed to 0.5 (down from 2). The bonus speed combined with three starting systems was an extremely unfair advantage under the new balance.
+- Somewhat flattened the Extragalactic free colonizer frequency exponential curve with a nerf hammer. Early to mid game frequency is unchanged.
+
 
 [*] Orbitals
 
@@ -61,6 +62,9 @@ frequency options on purpose.
 - Local Asteroid Field planets now have more and bigger asteroids orbiting closer to them (this is a purely cosmetic change).
 - Destroyed planets now yield more asteroid with less ore.
 - Planets now have a base sensor range of 20.000 units which can be upgraded through research.
+- Slightly reduced pressure capacity of planets per level.
+- Reduced population growth by approximately 33%.
+- Level 6 planets now require 2 Level 1 resources (up from 0).
 
 [*] Research
 

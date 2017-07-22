@@ -3,7 +3,7 @@ Level: 0
 	Name: Fringe
 	Icon: PlanetIcon0
 	Population: 1
-	PopGrowth: 0.75
+	PopGrowth: 0.5
 	BasePressure: 0
 	BaseIncome: -80
 	BaseLoyalty: 2
@@ -16,7 +16,7 @@ Level: 1
 	Icon: PlanetIcon1
 	Required: 1 WaterType, 1 Food
 	Population: 3
-	PopGrowth: 1.2
+	PopGrowth: 0.8
 	RequiredPop: 2
 	BasePressure: 1
 	BaseIncome: 80
@@ -30,10 +30,10 @@ Level: 2
 	Name: Renowned
 	Icon: PlanetIcon2
 	Required: 1 WaterType, 2 Food, 1 Level1
-	PopGrowth: 1.6
+	PopGrowth: 1.0
 	Population: 8
 	RequiredPop: 6
-	BasePressure: 12
+	BasePressure: 9
 	ExportPressurePenalty: 6
 	BaseIncome: 350
 	ResourceIncome: 150
@@ -46,10 +46,10 @@ Level: 3
 	Name: Capital
 	Icon: PlanetIcon3
 	Required: 1 WaterType, 3 Food, 2 Level1, 1 Level2
-	PopGrowth: 1.7
+	PopGrowth: 1.1
 	Population: 16
 	RequiredPop: 8
-	BasePressure: 22
+	BasePressure: 18
 	ExportPressurePenalty: 9
 	BaseIncome: 500
 	ResourceIncome: 300
@@ -62,11 +62,11 @@ Level: 4
 	Name: Master
 	Icon: PlanetIcon4
 	Required: 1 WaterType, 4 Food, 4 Level1, 2 Level2
-	PopGrowth: 1.8
+	PopGrowth: 1.2
 	Population: 24
 	RequiredPop: 14
-	BasePressure: 40
-	ExportPressurePenalty: 10
+	BasePressure: 36
+	ExportPressurePenalty: 12
 	BaseIncome: 1000
 	BaseLoyalty: 16
 	NeighbourLoyalty: 2.5
@@ -77,28 +77,28 @@ Level: 5
 	Name: Unique
 	Icon: PlanetIcon5
 	Required: 1 WaterType, 5 Food, 6 Level1, 4 Level2
-	PopGrowth: 1.8
+	PopGrowth: 1.2
 	Population: 36
 	RequiredPop: 20
-	BasePressure: 65
+	BasePressure: 54
 	ExportPressurePenalty: 16
 	BaseIncome: 1600
 	BaseLoyalty: 20
 	NeighbourLoyalty: 3
 	BaseSupport: 1500
 	Points: 2600
-	
+
 Level: 6
 	Name: Mythical
 	Icon: PlanetIcon5
-	Required: 1 WaterType, 6 Food, 6 Level1, 6 Level2, 1 Level3
-	PopGrowth: 2
+	Required: 1 WaterType, 6 Food, 8 Level1, 6 Level2, 1 Level3
+	PopGrowth: 1.2
 	Population: 60
 	RequiredPop: 30
-	BasePressure: 95
-	ExportPressurePenalty: 16
+	BasePressure: 82
+	ExportPressurePenalty: 20
 	BaseIncome: 3000
 	BaseLoyalty: 30
 	NeighbourLoyalty: 3.0
 	BaseSupport: 2500
-	Points: 6000
+	Points: 4000

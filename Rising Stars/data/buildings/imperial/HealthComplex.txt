@@ -16,5 +16,6 @@ Building: HealthComplex
 	ConsumeResearchStatusCount(HealthComplexCost, Base Amount = 50, Amount = 50)
 
   AddMaxPopulation(1)
+	ModPopulationGrowth(0.1)
 
   RequireNotTrait(Ancient)
