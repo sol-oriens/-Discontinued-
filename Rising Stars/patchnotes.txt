@@ -40,7 +40,7 @@ different methods preferable in different situations. Third: To tone down the ad
 
 [*] Orbitals
 
-- Commerce Stations now provide 150k income for each friendly planet in the system excluding the owner's, up to 450k. Only one Commerce Station may now be built per system.
+- Commerce Stations now additionally cost 5 influence and provide income, for each friendly planet in the system excluding the owner's, equal to 100k per planet Level starting from 1 and up to 300k. Only one Commerce Station may now be built per system.
 - Added Starport. Provides 25k income for each owned and friendly planet in the system, up to 75k. Support ships assigned to a Starport independently move across the system to attack enemy fleets. Can be upgraded to allow global resource trade. Only one Starport may be constructed per system.
 - Subspace Telescope Array has been renamed to Quantum Telescope Array, has no maintenance cost anymore and can no longer move. Its Telescope ability now has a range of 1 million units and it now costs an amount of energy and FTL energy linearly relative to the target distance.
 - Added Telescope Array, which has 40% size, cost and Telescope power than the quantum version. Requires no ore but has a 40k maintenance cost. Primarily designed for early scouting, when interstellar travel is a problem, and border control. Its Telescope ability only costs enrergy (and no FTL energy).

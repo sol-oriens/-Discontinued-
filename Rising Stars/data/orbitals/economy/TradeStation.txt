@@ -11,6 +11,8 @@ Module: TradeStation
 	Build Cost: 500
 	Maintenance: 200
 	Labor Cost: 15
+	ConsumeInfluence(5)
+
 	Size: 16
 
 	Health: 5000
@@ -29,4 +31,5 @@ Module: TradeStation
 
 	GiveTrade()
 	GlobalTradeNode()
-	FriendlyPlanetMoney(To Self = 150, To Other = 150, Count Self = False, Max Money = 450)
+
+	FriendlyPlanetMoney(To Self = 100, To Other = 100, Count Self = True, Max Money = 300, Per Level = True)

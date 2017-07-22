@@ -1549,6 +1549,7 @@ class FriendlyPlanetMoney : GenericEffect {
 	Argument to_other(AT_Integer, "0", doc="Amount of money to give to the owners of the friendly planets.");
 	Argument count_self(AT_Boolean, "False", doc="Whether to count planets owned by the effect's owner as well as friendly empires.");
 	Argument max_money(AT_Integer, "-1", doc="Maximum amount of extra money income, regardless of the number of planets. -1 indicates no maximum extra money.");
+	Argument per_level(AT_Boolean, "False", doc="Whether to give the specified amounts per Level of the planets.");
 
 	bool getData(Orbital& obj, string& txt, bool enabled) const override {
 		if(!enabled)
@@ -1566,16 +1567,31 @@ class FriendlyPlanetMoney : GenericEffect {
 					continue;
 				if(!arguments[2].boolean && other is owner)
 					continue;
-				int planets = 0;
+				int factor = 0;
 				if(!other.isHostile(owner))
-					planets = region.getPlanetCount(other);
-				money += planets * arguments[0].integer;
+					//planets = region.getPlanetCount(other);
+					factor = getFactor(region, other);
+				money += factor * arguments[0].integer;
 			}
 			if (maxMoney > -1)
 				money = min(money, maxMoney);
 		}
 		txt = format("$1: [color=#d1cb6a]$2[/color]", locale::TRADE, formatMoney(money));
 		return true;
+	}
+
+	int getFactor(Region& region, Empire& emp) const {
+		if (!per_level.boolean)
+			return region.getPlanetCount(emp);
+
+		uint planetCount = region.planetCount;
+		uint totalLevels = 0;
+		for (uint i = 0, cnt = planetCount; i < planetCount; ++i) {
+			Planet@ pl = region.planets[i];
+			if (pl.owner is emp)
+				totalLevels += pl.level;
+		}
+		return totalLevels;
 	}
 
 #section server
@@ -1601,12 +1617,13 @@ class FriendlyPlanetMoney : GenericEffect {
 				if(!arguments[2].boolean && other is owner)
 					continue;
 
-				int planets = 0;
+				int factor = 0;
 				if(!other.isHostile(owner))
-					planets = region.getPlanetCount(other);
+					//planets = region.getPlanetCount(other);
+					factor = getFactor(region, other);
 
 				int prevAmount = amounts[other.index];
-				int newAmount = planets * arguments[1].integer;
+				int newAmount = factor * arguments[1].integer;
 				if (maxMoney > -1)
 					newAmount = min(selfAmount, maxMoney);
 				if(newAmount != prevAmount) {
@@ -1614,7 +1631,7 @@ class FriendlyPlanetMoney : GenericEffect {
 					amounts[other.index] = newAmount;
 				}
 
-				selfAmount += planets * arguments[0].integer;
+				selfAmount += factor * arguments[0].integer;
 			}
 			if (maxMoney > -1)
 				selfAmount = min(selfAmount, maxMoney);
