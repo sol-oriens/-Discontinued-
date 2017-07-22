@@ -39,6 +39,6 @@ Module: StagingHub
 	AddStatusToOrbitingPlanet(StagingHub)
 	MatchOrbitingOwner(Destroy None = False)
 
-	AddCargoStorage(1000000)
+	AddCargoStorage(100000)
 
 	RequireNotTrait(Ancient)

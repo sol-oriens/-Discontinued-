@@ -16,7 +16,7 @@ Module: Starport
 	Health: 5000
 	Armor: 1000
 
-	AddCargoStorage(1000000)
+	AddCargoStorage(100000)
 
 	Model: CommerceStation
 	Material: GenericPBR_CommerceStation
