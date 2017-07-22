@@ -31,10 +31,13 @@ Module: StagingHub
 
 	AllowResourceImport()
 	RepeatPressure(Labor, AddLaborIncome(1.0))
-	RepeatPressure(Influence, TriggerPeriodic(AddMoney(10), Interval = 60.0))
-	RepeatPressure(Energy, TriggerPeriodic(AddMoney(10), Interval = 60.0))
-	RepeatPressure(Research, TriggerPeriodic(AddMoney(10), Interval = 60.0))
-	RepeatPressure(Defense, TriggerPeriodic(AddMoney(10), Interval = 60.0))
+	RepeatPressure(Influence, TriggerPeriodic(AddMoney(5), Interval = 60.0))
+	RepeatPressure(Energy, TriggerPeriodic(AddMoney(5), Interval = 60.0))
+	RepeatPressure(Research, TriggerPeriodic(AddMoney(5), Interval = 60.0))
+	RepeatPressure(Defense, TriggerPeriodic(AddMoney(5), Interval = 60.0))
+
+	AddStatusToOrbitingPlanet(StagingHub)
+	MatchOrbitingOwner(Destroy None = False)
 
 	AddCargoStorage(1000000)
 

@@ -27,6 +27,7 @@ Module: Starport
 	AddFleetCommand(64)
 	AddFleetCommandEmpireAttribute(OutpostBoost, 64)
 	AllowFreeRaiding()
+	AddRaidRange(-10000000) //Negative range resolves to "in the current system"
 
 	AllowConstruction()
 	GiveTrade()
