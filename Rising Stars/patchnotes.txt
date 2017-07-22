@@ -36,7 +36,7 @@ different methods preferable in different situations. Third: To tone down the ad
 
 [*] Lifestyles
 
-- Somewhat flattened the Extragalactic free colonizer frequency exponential curve with a nerf hammer. Early to mid game frequency is unchanged.
+- Somewhat flattened the Extragalactic free colonizer frequency exponential curve with a nerf hammer. Early game frequency is unchanged.
 
 
 [*] Orbitals

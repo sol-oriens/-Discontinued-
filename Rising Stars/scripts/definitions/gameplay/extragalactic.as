@@ -134,7 +134,7 @@ final class Coordinate : Savable {
 
 		//Send colonizations
 		double speed = 1.0;
-		speed *= max(pow(emp.TotalPopulation / 10.0, 0.4), 1.0);
+		speed *= max(pow(emp.TotalPopulation / 10.0, 0.3), 1.0);
 
 		//Slow down expansion speed for lower difficulty AIs
 		if(emp.isAI) {
