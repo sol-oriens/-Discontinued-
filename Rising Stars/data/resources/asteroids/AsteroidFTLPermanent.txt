@@ -3,7 +3,7 @@ Resource: AsteroidFTLPermanent
 	Description: #ASTEROID_FTL_PERMANENT_DESC
 
 	Icon: ResourceIcons::22
-	Small Icon: ResourceIconsSmall::47
+	Small Icon: ResourceIconsSmall::21
 
 	Rarity: Uncommon
 	Exportable: False

@@ -2,7 +2,7 @@ System: RadioactiveNebula
 	Frequency: 0
 
 	//RS - Scaling
-	ExpandSystem(10000:40000)
+	ExpandSystem(30000:40000)
 
 	Repeat(3:7)
 		MakeAnomaly()
