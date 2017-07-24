@@ -4267,7 +4267,7 @@ class MatchOrbitingOwner : GenericEffect {
 			return;
 		}
 
-		if(orbit.owner !is obj.owner)
+		if(orbit !is null && orbit.owner !is obj.owner)
 			@obj.owner = orbit.owner;
 	}
 #section all
