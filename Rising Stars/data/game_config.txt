@@ -93,6 +93,9 @@ ARTIFACT_FREQUENCY: 0.25
 //System size modifier
 SYSTEM_SIZE: 1.0
 
+//Orbit speed modifier
+ORBIT_SPEED: 1.0
+
 //Whether black holes at the center of galaxies are supermassive.
 SUPERMASSIVE_BLACK_HOLES: 1.0
 

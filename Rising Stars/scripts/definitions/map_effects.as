@@ -132,7 +132,7 @@ class MakeBlackhole : MapHook {
 		//RS - Scaling: make supermassive black holes supermassive
 		double healthFactor = 1.0;
 		if(config::SUPERMASSIVE_BLACK_HOLES > 0 && getSystemType(data.systemType) is getSystemType("CoreBlackhole")) {
-			radius = radius * 25;
+			radius *= 25;
 			system.radius += 75000;
 			healthFactor = 25.0;
 		}
@@ -464,10 +464,10 @@ class MakePlanet : MapHook {
 			planet.OrbitSize = system.radius;
 		else
 		{
-			// Planet volume is generally related to mass which governs gravity well size
-			// Get the planet volume
+			//Planet volume is generally related to mass which governs gravity well size
+			//Get the planet volume
 			double volume = pow(radius, 3.0) * 4 / 3 * pi;
-			// Apply a cube root and a clever factor
+			//Apply a cube root and a "clever" factor
 			planet.OrbitSize = pow(volume, 1.0/3.0) * 5.5;
 		}
 
@@ -518,10 +518,7 @@ class MakePlanet : MapHook {
 		//Setup moons
 		//RS - Gas Giants: gas giants should have at least 4 moons
 		if (resource !is null && resource.ident == "RareGases") {
-			//for (uint i = 0, cnt = randomi(4, 8); i < cnt; ++i) {
-			uint i = 0;
-			uint cnt = randomi(4, 8);
-			for (i = 0; i < cnt; ++i) {
+			for (uint i = 0, cnt = randomi(4, 8); i < cnt; ++i) {
 				planet.addMoon();
 				planet.addStatus(getStatusID("Moon"));
 			}
