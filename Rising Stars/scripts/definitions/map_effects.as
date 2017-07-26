@@ -324,7 +324,7 @@ class MakePlanet : MapHook {
 
 	//RS - Scaling
 	Argument radius(AT_Range, "60:140", doc="Size of the planet, can be a random range.");
-	Argument orbit_spacing(AT_Range, "2800:4000", doc="Distance from the previous planet.");
+	Argument orbit_spacing(AT_Range, "2800:3500", doc="Distance from the previous planet.");
 
 	Argument grid_size(AT_Position2D, "(-1, -1)", doc="Size of the planet's surface grid. (-1,-1) to randomize based on radius.");
 	Argument conditions(AT_Boolean, "True", doc="Whether to let the planet randomly generate a condition.");
@@ -378,7 +378,7 @@ class MakePlanet : MapHook {
 		//RS - Gas Giants: make gas giants giant
 		if (resource !is null && resource.ident == "RareGases") {
 			radius = radius * 2.0 + 70;
-			spacing += 2500;
+			spacing = randomd(5300, 5500);
 		}
 
 		system.radius += spacing;
@@ -432,8 +432,17 @@ class MakePlanet : MapHook {
 
 		//Figure out planet size
 		//RS - Scaling: rescale radius for grid size calculation
-		//min_planet_radius + 100 * (radius - min_planet_radius) / (max_planet_radius - min_planet_radius)
-		double scaledradius = 60 + 100 * (radius - 60) / 80;
+		double scaledradius = 0;
+
+		//RS - Gas Giants: apply a specific formula scaling down the grid more to avoid a big surface displaying a scroll bar before even displaying moon bases
+		//The loss of space is not a problem since the biome is useless anyway
+		if (resource !is null && resource.ident == "RareGases") {
+			//min_planet_radius + 100 * (radius / 2 - min_planet_radius) / (max_planet_radius - min_planet_radius)
+			scaledradius = 190 + 100 * (radius / 2 - 190) / 160;
+		}
+		else
+			//min_planet_radius + 100 * (radius - min_planet_radius) / (max_planet_radius - min_planet_radius)
+	 		scaledradius = 60 + 100 * (radius - 60) / 80;
 
 		double sizeFact = clamp(scaledradius / 100.0, 0.1, 5.0);
 
