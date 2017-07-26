@@ -1,5 +1,5 @@
-//RS - Scaling: orbit speed accelerated 200 times by default
-const double orbitSpeedFactor = 400.0 * config::ORBIT_SPEED;
+//RS - Scaling: orbit speed accelerated 30 times
+const double orbitSpeedFactor = 60.0;
 
 tidy class Orbit : Component_Orbit, Savable {
 	Object@ center_obj;
