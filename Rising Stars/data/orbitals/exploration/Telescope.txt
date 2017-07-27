@@ -9,8 +9,8 @@ Module: Telescope
 	Core: True
 	Standalone: True
 
-	Build Cost: 300
-	Labor Cost: 20
+	Build Cost: 200
+	Labor Cost: 15
 	Maintenance: 40
 
 	Health: 2000
