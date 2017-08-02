@@ -18,6 +18,7 @@ tidy class PlanetScript {
 	bool hpDelta = false;
 	uint ringStyle = 0;
 	array<MoonData@>@ moons;
+	array<Anomaly@> anomalies;
 
 	void init(Planet& planet) {
 		timer = -float(uint8(planet.id)) / 255.0;
@@ -585,5 +586,23 @@ tidy class PlanetScript {
 		if(moons is null)
 			return 0;
 		return moons.length;
+	}
+
+	void addAnomaly(Planet& planet, Anomaly@ anomaly) {			
+		anomalies.insertLast(anomaly);
+	}
+
+	void removeAnomaly(Planet& planet, Anomaly@ anomaly) {
+		anomalies.remove(anomaly);
+	}
+
+	uint get_anomalyCount() {
+		return anomalies.length;
+	}
+
+	Anomaly@ getAnomaly(uint index) {
+		if (index < anomalies.length)
+			return anomalies[index];
+		return null;
 	}
 };

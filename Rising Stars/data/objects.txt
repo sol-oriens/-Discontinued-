@@ -36,7 +36,7 @@ visible:
 	int lastHit = 0
 
 	local safe bool get_isStation();
-	
+
 remote restricted:
 	void scuttle();
 
@@ -75,13 +75,13 @@ server:
 	void startRetrofit(Object@ from, const Design@ to);
 	void stopRetrofit(Object@ from);
 	void completeRetrofit(Object@ from);
-	
+
 	void suppress(double amount);
 	void mangle(double amount);
 	void startFire();
 
 	void triggerLeaderChange(Object@ prevLeader, Object@ newLeader);
-	
+
 	safe Empire@ getKillCredit();
 }
 
@@ -120,13 +120,17 @@ visible:
 	double MaxHealth = 1000000000
 
 	local safe uint get_moonCount() const;
-	
+	local safe uint get_anomalyCount() const;
+	local Anomaly@ getAnomaly(uint index);
+
 server:
 	void giveHistoricMemory(Empire@ emp);
 	void dealPlanetDamage(double amount);
 	void setRing(uint ring);
 	void destroyQuiet();
 	void addMoon(float size = 0, uint style = 0);
+	void addAnomaly(Anomaly@ anomaly);
+	void removeAnomaly(Anomaly@ anomaly);
 }
 
 ColonyShip : objects.ColonyShip::ColonyShipScript {
@@ -310,9 +314,12 @@ local safe:
 	string get_narrative() const;
 	string get_model() const;
 	string get_material() const;
+	string get_sprite() const;
 	uint get_anomalyType() const;
 	uint get_optionCount() const;
 	uint get_option(uint index) const;
+	Planet@ get_planet();
+	void set_planet(Planet& value);
 
 remote:
 	relocking async void choose(uint option, Object@ target = null);

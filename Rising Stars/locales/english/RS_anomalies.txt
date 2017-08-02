@@ -48,3 +48,39 @@ A_GUARDIAN_ARMOR: Download the data on the flagship's advanced armor.
 A_GUARDIAN_COMPUTER: Download the schematics for the flagship's radiation-resistant computer core.
 A_GUARDIAN_DRONE: Download the data on the flagship's powerful drone weapons.
 A_ERROR_DESC: If you see this, there is something terribly wrong with this anomaly. Contact one of the Rising Stars developers and tell them how you caused this text to appear.
+
+////////////////////
+//PLANET ANOMALIES//
+////////////////////
+
+ANOMALY_P_ANCIENT_RUINS: Ancient Ruins
+ANOMALY_NOTIFICATION: Anomaly in $1 has been fully scanned.
+
+ANOMALY_NAR_ANCIENT_RUINS: <<|
+	Far from civilization, ruins from a forgotten era lie silent, only testimony
+	of their long gone builders.
+>>
+
+ANOMALY_NAR_RESEARCH_CENTER: <<|
+	Somewhere in the vast expanse of what used to be a bustling metropolis, you discover an ancient research center. Among collapsed rooms and gutted machinery, remains of beings alien to you lie in awkward stances. Clearly, something wrong happened here. Something very wrong.
+
+	Though badly damaged, some of the databanks are still online.
+>>
+ANOMALY_RESEARCH_CENTER_READ: <<|
+	Analyze the content of the databanks.
+
+	[b][color=#842cdb][right]Gain research points.[/right][/color][/b]
+>>
+ANOMALY_RESEARCH_CENTER_RECOVER: <<|
+	Try to upload the data to the capital city so the scientists over there can use it and cross-reference it with their own data.
+
+	[b][color=#d1966a][right]May lose some data.[/right][/color][/b]
+>>
+ANOMALY_RESEARCH_CENTER_RECOVER_SUCCESS: <<|
+	You successfully uploaded the whole content of the databanks. Scientists reported that it would be an invaluable source of knowledge to study for the years to come.
+
+	[color=#af0baf]+$1/s Research Income[/color][/b]
+>>
+ANOMALY_RESEARCH_CENTER_RECOVER_FAIL: <<|
+	The alien network protocols turned out to be completely incompatible with ours. The connection attempts generated a strong electrostatic feedbacks that fried the circuitry of the databanks and shut them down for good.
+>>

@@ -1,0 +1,16 @@
+Construction: ExplorePlanet
+	Name: #C_EXPLORE_PLANET
+	Time Cost: 1
+	Icon: PlanetType::2
+
+	Category: Planetary Exploration
+	Description: #C_EXPLORE_PLANET_DESC
+
+  Build Cost: 100
+
+  //AddStatus(ExploredPlanet)
+	ABEM_planet_anomalies::AddPlanetAnomaly(Start Scanned = True)
+  RequirePlanet()
+	//RequireNotStatus(ExploredPlanet)
+	RequireNotStatus(Ringworld)
+	RequireNotStatus(ArtificialPlanetoid)

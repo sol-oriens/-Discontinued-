@@ -1,7 +1,7 @@
 Construction: DevelopSurface
 	Labor Cost: 50
 	Description: #C_TERRAFORMING_DESC
-	Category: Infrastructure
+	Category: Planetary Development
 
 	Name: #C_TERRAFORMING
 	Icon: SequesteredSociety

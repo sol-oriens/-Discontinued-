@@ -36,6 +36,12 @@ C_EXPAND_SUBSURFACE_DESC: <<
 
 	[bbloc=#C_SUBSURFACE_NO_FLOATING_CONTINENT/]
 >>
+C_EXPLORE_PLANET: Planet Exploration
+C_EXPLORE_PLANET_DESC: <<
+	[color=#aaa][i]Every new planet discovered is in itself a potential little universe of wonders.[/i][/color]
+
+	May yield a random bonus or event.
+>>
 C_FLING_UNLOCK: Refined Beacon Architecture
 C_FLING_UNLOCK_DESC: <<
 	Use the data collected during the construction and use of this fling beacon to improve your beacon designs, allowing for smaller, cheaper fling beacons to be constructed.
