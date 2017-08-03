@@ -1,4 +1,3 @@
-BLD_SPACE_ELEVATOR: Orbital Elevator
 BLD_SPACE_ELEVATOR_DESC: <<
 	[color=#aaa][i]A ribbon-like tether reaching vertically into space can be used to significantly increase the efficiency of transporting materials into space.[/i][/color]
 
@@ -7,6 +6,7 @@ BLD_SPACE_ELEVATOR_DESC: <<
 
 	[i]Only one Space Elevator may be constructed per planet.[/i]
 >>
+
 BLD_ARCOLOGY: Arcology
 BLD_ARCOLOGY_DESC: <<
 	[color=#aaa][i]The ultimate settlement, designed for self-sufficiency. An arcology is a city-in-a-giant-building: residential areas, business and shopping centers, factories, parks, farms, water and waste processing units, all operating in a closed circuit. Nothing needs to enter an arcology to sustain it, and nothing needs to exit. Except tax...[/i][/color]
@@ -31,6 +31,16 @@ BLD_ECX_FACTORY_DESC: <<
 	Adds 3 money pressure.
 
 	[bbloc=#TIP_CONSUME_ORE:8/]
+>>
+
+BLD_MINE: Mining Complex
+BLD_MINE_DESC: <<
+	[color=#aaa][i]An enormous installation blanketed with unending underground galleries and deep bore holes, some of them extending down to the core of the planet, used to extract ore, construction materials and any other useful resource. While not nearly as effective as asteroid mining, planet mining is an order of magnitude easier from a logistical standpoint.[/i][/color]
+
+	Adds an Ore resource that can be exported and generates [b]10 ore per minute[/b] at its destination.
+	Adds 2 labor pressure.
+	Increases the pressure given by native Aluminium, Iron, Titanium or Supercarbons by 2.
+	Increases the pressure given by native Coal or Native Gold by 1.
 >>
 
 BLD_NRG_FACTORY: Fuel Facility

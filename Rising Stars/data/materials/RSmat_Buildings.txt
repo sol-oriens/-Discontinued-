@@ -6,7 +6,10 @@ Material: RSBuilding
 	Lighting: False
 
 	//Production
-
+Material: Mine
+	Inherit: Image2D
+	Texture: data/images/buildings/Mine.png
+		
 Material: NrgFactory
 	Inherit: Image2D
 	Texture: data/images/buildings/nrgfactory.png

@@ -236,6 +236,10 @@ RAREGASES_DESC: <<
 
 	[i][color=#aaa]This resource is a scalable resource and cannot be exported or used to level up. Its bonuses depend on the level of the planet.[/color][/i]
 >>
+R_ORE_RATE_MINE: Ore
+R_ORE_RATE_MINE_DESC: <<
+	Generates 10 Ore per minute. Can be exported to other planets.
+>>
 ASTEROID_FTL: FTL Shards
 ASTEROID_FTL_DESC: <<|
 	Generates 0.5 FTL per second for a limited time and permanently adds 500 FTL storage.
