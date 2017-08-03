@@ -5,11 +5,6 @@ Material: RSBuilding
 	Mipmap: False
 	Lighting: False
 
-	//Production
-Material: Mine
-	Inherit: Image2D
-	Texture: data/images/buildings/Mine.png
-
 	//Artificial Resources
 Material: lvl1r
 	Inherit: RSBuilding
