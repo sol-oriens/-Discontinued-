@@ -226,17 +226,17 @@ class ConstructionDisplay : DisplayBox {
 		repeatButton.setIcon(icons::Repeat);
 		setMarkupTooltip(repeatButton, locale::TT_REPEAT_QUEUE, width=300);
 
-		@studyButton = GuiButton(queueBox, Alignment(Right-8-32-34, Bottom-32, Width=30, Height=30));
-		studyButton.style = SS_IconButton;
-		studyButton.color = Color(0x0080ffff);
-		studyButton.setIcon(Sprite(spritesheet::PlanetType, 2));
-		setMarkupTooltip(studyButton, locale::TT_EXPLORE_PLANET, width=300);
-
-		@drydockButton = GuiButton(queueBox, Alignment(Right-8-32-34-36, Bottom-32, Width=30, Height=30));
+		@drydockButton = GuiButton(queueBox, Alignment(Right-8-32-34, Bottom-32, Width=30, Height=30));
 		drydockButton.style = SS_IconButton;
 		drydockButton.color = Color(0x0080ffff);
 		drydockButton.setIcon(Sprite(spritesheet::GuiOrbitalIcons, 3, playerEmpire.color));
 		setMarkupTooltip(drydockButton, locale::TT_DRY_DOCK, width=300);
+
+		@studyButton = GuiButton(queueBox, Alignment(Right-8-32-34-36, Bottom-32, Width=30, Height=30));
+		studyButton.style = SS_IconButton;
+		studyButton.color = Color(0x0080ffff);
+		studyButton.setIcon(Sprite(spritesheet::PlanetType, 2));
+		setMarkupTooltip(studyButton, locale::TT_EXPLORE_PLANET, width=300);
 
 		//Build panel buttons
 		@buttonBox = BaseGuiElement(this, Alignment(Left+8, Top+Q_HEIGHT+8, Right-8, Top+Q_HEIGHT+44));
@@ -968,33 +968,10 @@ class ConstructionDisplay : DisplayBox {
 
 			auto@ drydock = getOrbitalModule("DryDock");
 			drydockButton.visible = obj.owner is playerEmpire && obj.canBuildShips && obj.canBuildOrbitals && drydock !is null && drydock.canBuildBy(obj);
-			studyButton.visible = obj.owner is playerEmpire;
+			auto@ planet = cast<Planet@>(obj);
+			studyButton.visible = obj.owner is playerEmpire && planet !is null && planet.anomalyCount > 0;
 
 			updateAbsolutePosition();
-		}
-	}
-
-	void openStudyMenu() {
-		Planet@ pl = cast<Planet@>(obj);
-		if (pl is null)
-			return;
-
-		GuiContextMenu menu(mousePos);
-		menu.itemHeight = 36;
-		menu.flexWidth = false;
-		menu.width = 400;
-
-		if (pl.anomalyCount > 0) {
-			print("anomalyCount = " + pl.anomalyCount);
-			uint cnt = pl.anomalyCount;
-			for(uint i = 0; i < cnt; ++i) {
-				Anomaly@ anomaly = pl.getAnomaly(i);
-
-				menu.addOption(AnomalyStudy(obj, anomaly, overlay));
-			}
-
-			menu.list.sortDesc();
-			menu.updateAbsolutePosition();
 		}
 	}
 
@@ -1020,6 +997,27 @@ class ConstructionDisplay : DisplayBox {
 
 		menu.list.sortDesc();
 		menu.updateAbsolutePosition();
+	}
+
+	void openStudyMenu() {
+		Planet@ pl = cast<Planet@>(obj);
+		if (pl is null)
+			return;
+
+		GuiContextMenu menu(mousePos);
+		menu.itemHeight = 36;
+		menu.flexWidth = false;
+		menu.width = 400;
+
+		if (pl.anomalyCount > 0) {
+			uint cnt = pl.anomalyCount;
+			for(uint i = 0; i < cnt; ++i) {
+				Anomaly@ anomaly = pl.getAnomaly(i);
+				menu.addOption(AnomalyStudy(obj, anomaly, overlay));
+			}
+
+			menu.updateAbsolutePosition();
+		}
 	}
 
 	bool onGuiEvent(const GuiEvent& evt) override {
@@ -2046,36 +2044,6 @@ class SupportItem : BaseGuiElement {
 	}
 };
 
-class AnomalyStudy : GuiMarkupContextOption {
-	Anomaly@ anomaly;
-	const AnomalyType@ anomType;
-	Object@ fromObj;
-	IGuiElement@ parent;
-
-	AnomalyStudy(Object@ obj, Anomaly@ anomaly, IGuiElement@ parent) {
-		print("anomaly.type = " + anomaly.anomalyType);
-		@this.anomaly = anomaly;
-		@this.fromObj = obj;
-		@this.parent = parent;
-		const AnomalyType@ type = anomType;
-		@type = getAnomalyType(anomaly.anomalyType);
-		super(format("[offset=10][b]$2[/b][/offset]",
-				toString(colors::White),
-				type.name,
-				getSpriteDesc(Sprite(spritesheet::PlanetType, 2)),
-				toString(colors::White)),
-				FT_Subtitle);
-	}
-
-	void call(GuiContextMenu@ menu) {
-		AnomalyOverlay(ActiveTab, anomaly);
-	}
-
-	int opCmp(const GuiListElement@ other) const {
-		return 0;
-	}
-};
-
 class FlagshipDrydock : GuiMarkupContextOption {
 	const Design@ dsg;
 	Empire@ forEmpire;
@@ -2106,6 +2074,34 @@ class FlagshipDrydock : GuiMarkupContextOption {
 			return 1;
 		if(cmp.dsg.size > dsg.size)
 			return -1;
+		return 0;
+	}
+};
+
+class AnomalyStudy : GuiMarkupContextOption {
+	Anomaly@ anomaly;
+	const AnomalyType@ anomType;
+	Object@ fromObj;
+	IGuiElement@ parent;
+
+	AnomalyStudy(Object@ obj, Anomaly@ anomaly, IGuiElement@ parent) {
+		@this.anomaly = anomaly;
+		@this.fromObj = obj;
+		@this.parent = parent;
+		const AnomalyType@ type = anomType;
+		@type = getAnomalyType(anomaly.anomalyType);
+		super(format("[offset=10][b]$2[/b][/offset]",
+				toString(colors::White),
+				type.name,
+				getSpriteDesc(Sprite(spritesheet::PlanetType, 2))),
+				FT_Subtitle);
+	}
+
+	void call(GuiContextMenu@ menu) {
+		AnomalyOverlay(ActiveTab, anomaly);
+	}
+
+	int opCmp(const GuiListElement@ other) const {
 		return 0;
 	}
 };

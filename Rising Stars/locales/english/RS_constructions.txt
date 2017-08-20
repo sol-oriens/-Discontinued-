@@ -40,7 +40,7 @@ C_EXPLORE_PLANET: Planet Exploration
 C_EXPLORE_PLANET_DESC: <<
 	[color=#aaa][i]Every new planet discovered is in itself a potential little universe of wonders.[/i][/color]
 
-	May yield a random bonus or event.
+	Sends an exploration team around the planet. May yield a random discovery.
 >>
 C_FLING_UNLOCK: Refined Beacon Architecture
 C_FLING_UNLOCK_DESC: <<

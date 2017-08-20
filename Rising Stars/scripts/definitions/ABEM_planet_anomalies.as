@@ -1,7 +1,6 @@
 import hooks;
 import generic_hooks;
 import anomalies;
-import RS_notifications;
 
 #section server
 import objects.Anomaly;
@@ -41,9 +40,6 @@ class AddPlanetAnomaly : BonusEffect {
 			while(type.unique);
 		}
 
-		double rad = obj.radius + 20.0;
-		vec3d pos = obj.position + random3d(rad*1.2, rad*2.0);
-    print("creating anomaly of type: " + type.id);
 		Anomaly@ anomaly = createPlanetAnomaly(pl, type.id);
 		if(start_scanned.boolean && emp !is null)
 			anomaly.addProgress(emp, 10000000000.f);

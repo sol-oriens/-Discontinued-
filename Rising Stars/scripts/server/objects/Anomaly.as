@@ -213,7 +213,10 @@ tidy class AnomalyScript {
 				p += amount / type.scanTime;
 				delta = true;
 				if(p >= 1.f) {
-					emp.notifyAnomaly(obj);
+					if (planet is null)
+						emp.notifyAnomaly(obj);
+					else
+						emp.notifyPlanetAnomaly(obj);
 					progresses[index] = 1.f;
 
 					if(emp.valid && !getCheatsEverOn()) {

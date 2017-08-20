@@ -54,11 +54,11 @@ A_ERROR_DESC: If you see this, there is something terribly wrong with this anoma
 ////////////////////
 
 ANOMALY_P_ANCIENT_RUINS: Ancient Ruins
-ANOMALY_NOTIFICATION: Anomaly in $1 has been fully scanned.
+ANOMALY_P_NOTIFICATION: A site of interest has been discovered on $1.
 
 ANOMALY_NAR_ANCIENT_RUINS: <<|
 	Far from civilization, ruins from a forgotten era lie silent, only testimony
-	of their long gone builders.
+	of their builders long gone.
 >>
 
 ANOMALY_NAR_RESEARCH_CENTER: <<|
@@ -72,7 +72,7 @@ ANOMALY_RESEARCH_CENTER_READ: <<|
 	[b][color=#842cdb][right]Gain research points.[/right][/color][/b]
 >>
 ANOMALY_RESEARCH_CENTER_RECOVER: <<|
-	Try to upload the data to the capital city so the scientists over there can use it and cross-reference it with their own data.
+	Try to upload the data to the capital city so the scientists over there can use it and cross-reference it with their own.
 
 	[b][color=#d1966a][right]May lose some data.[/right][/color][/b]
 >>
