@@ -154,9 +154,6 @@ tidy class AnomalyScript {
 		const PlanetAnomalyType@ planetType = cast<const PlanetAnomalyType@>(type);
 		if (planetType is null)
 			makeMesh(obj);
-		else {
-				print("planetType");
-		}
 	}
 
 	void progressToState(Anomaly& obj, uint stateID) {

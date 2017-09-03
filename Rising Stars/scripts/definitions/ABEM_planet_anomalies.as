@@ -1,6 +1,7 @@
 import hooks;
 import generic_hooks;
 import anomalies;
+from anomalies import IAnomalyHook, AnomalyHook;
 
 #section server
 import objects.Anomaly;
@@ -43,6 +44,31 @@ class AddPlanetAnomaly : BonusEffect {
 		Anomaly@ anomaly = createPlanetAnomaly(pl, type.id);
 		if(start_scanned.boolean && emp !is null)
 			anomaly.addProgress(emp, 10000000000.f);
+	}
+#section all
+};
+
+//TriggerOnPlanet(<Hook>(...))
+// Run <Hook> as a single-time effect hook on the planet containing this anomaly.
+class TriggerOnPlanet : AnomalyHook {
+	Document doc("Runs another type of hook on the target when activated.");
+	Argument hookID("Hook", AT_Hook, "planet_effects::GenericEffect", doc="Hook to run.");
+	GenericEffect@ hook;
+
+	bool instantiate() override {
+		@hook = cast<GenericEffect>(parseHook(hookID.str, "planet_effects::"));
+		if(hook is null) {
+			error("GenericEffect(): could not find inner hook: "+escape(hookID.str));
+			return false;
+		}
+		return AnomalyHook::instantiate();
+	}
+
+#section server
+	void choose(Anomaly@ obj, Empire@ emp, Targets@ targets) const override {
+		if (obj.planet is null)
+			return;
+		hook.enable(obj.planet, null);
 	}
 #section all
 };

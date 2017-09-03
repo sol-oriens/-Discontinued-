@@ -231,13 +231,13 @@ void loadAnomaly(const string& filename) {
 			string line = file.line;
 			parseLine(line, anomaly, result, file);
 		}
-		else if(key == "Anomaly" || key == "PlanetAnomaly") {
+		else if(key == "Anomaly" || key == "Site") {
 			if(anomaly !is null)
 				addAnomalyType(anomaly);
 			@state = null;
 			@opt = null;
 			@result = null;
-			if (key == "PlanetAnomaly")
+			if (key == "Site")
 				@anomaly = PlanetAnomalyType();
 			else
 				@anomaly = AnomalyType();

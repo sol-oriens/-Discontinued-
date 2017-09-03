@@ -1,0 +1,105 @@
+SITE_P_ANCIENT_RUINS: Ancient Ruins
+SITE_P_MINERAL_VEIN: Mineral Vein
+SITE_P_NOTIFICATION: A site of interest has been discovered on $1.
+
+SITE_NAR_ANCIENT_RUINS: <<|
+	Far from civilization, ruins from a forgotten era lie silent, only testimony of their builders long gone.
+>>
+
+SITE_NAR_RESEARCH_CENTER: <<|
+	Somewhere in the vast expanse of what used to be a bustling metropolis, your exploration team discovers an ancient research center. Among collapsed rooms and gutted machinery, remains of beings alien to you lie in awkward stances. Clearly, something wrong happened here. Something very wrong.
+
+	Though badly damaged, some of the databanks are still online.
+>>
+SITE_RESEARCH_CENTER_READ: <<|
+	Analyze the content of the databanks.
+
+	[b][color=#842cdb][right]Gain research points.[/right][/color][/b]
+>>
+SITE_RESEARCH_CENTER_RECOVER: <<|
+	Try to upload the data to the capital city so the scientists over there can use it and cross-reference it with their own.
+
+	[b][color=#d1966a][right]May lose some data.[/right][/color][/b]
+>>
+SITE_RESEARCH_CENTER_RECOVER_SUCCESS: <<|
+	You successfully uploaded the whole content of the databanks. Scientists reported that it would be an invaluable source of knowledge to study for the years to come.
+
+	[color=#af0baf]+$1/s Research Income[/color][/b]
+>>
+SITE_RESEARCH_CENTER_RECOVER_FAIL: <<|
+	The alien network protocols turned out to be completely incompatible with ours. The connection attempts generated strong electrostatic feedbacks that fried the circuitry of the databanks and shut them down for good.
+>>
+
+SITE_NAR_TEMPLE_REMAINS: <<|
+  Your exploration team discovers a patchwork of ruined walls, dismembered statues and eroded headstones sitting in the middle of nowhere. From the looks of it, this most likely used to be a religious site for a primitive pre-space civilization.
+>>
+SITE_TEMPLE_REMAINS_PROTECT: <<|
+	Declare the site as a planetary heritage and set it up as a museum.
+
+	[b][color=#4141ff][right]Gain Influence Points[/right][/color]
+>>
+SITE_TEMPLE_REMAINS_DISMANTLE: <<|
+	These old stones have little value. Dismantle the temple and sell the pieces to collectors.
+
+	[b][color=#d1cb6a][right]Gain §$1k[/right][/color][/b]
+>>
+
+SITE_NAR_GRANARY: <<|
+  A gigantic building in poor but functional condition was located in an isolated region of the planet. Exploration reveals that it is a technologically very advanced granary designed to keep huge grain reserves safe in suspended animation. For an unknown reason, those were never used but they have been perfectly preserved. However, further analysis determined that the conservation system has recently failed ; this means that they will soon be lost if left alone.
+>>
+
+SITE_GRANARY_USE: <<|
+  Those grain reserves can be planted and provide a permanent source of food for the planet.
+
+  [b][color=#e072c9][right]Add a native Grain to the planet.[/right][/color][/b]
+>>
+
+SITE_GRANARY_RECOVER: <<|
+  The grain can probably be stored in space and exported on a more suitable world. Safely transporting a cargo amount of this magnitude will be difficult and may damage it, though.
+
+  [b][color=#e072c9][right]May gain one Harvest influence card.[/right][/color][/b]
+>>
+
+SITE_GRANARY_RECOVER_FAIL: <<|
+  Despite taking all necessary precautions, a significant portion of the transport convoy was not able to keep the grain in useable condition. Unfortunately, the remaining reserves are not sufficient to durably sustain an entire population.
+>>
+
+SITE_NAR_MINERAL_VEIN: <<|
+	There is an unusually strong concentration of natural resources here.
+>>
+
+SITE_NAR_IRON_VEIN: <<|
+	You discover a site with particularly rich iron deposits.
+>>
+SITE_IRON_VEIN_MINE: <<|
+	Build a mine on the site and commence extraction.
+
+	[b][color=#d1966a][right]+$1 Labor generation.[/right][/color][/b]
+>>
+SITE_IRON_VEIN_BORE: <<|
+	Sensors detect even richer deposits in deeper layers. Prepare the site for deep mining operations.
+
+	[b][color=#d1966a][right]+$1 Labor pressure.[/right][/color][/b]
+>>
+
+SITE_NAR_GOLD_VEIN: <<|
+	Sensors indicate that a gold vein seem to lie in this area. However, heavy material resonance in the underground layers may falsify readings.
+>>
+SITE_GOLD_VEIN_DIG: <<|
+	Dig a hole in the ground and check.
+
+	[b][color=#ff0000][right]Unknown results.[/right][/color][/b]
+>>
+SITE_GOLD_VEIN_DIG_FAIL: <<|
+	The resonance fooled the sensors into a false positive. There is nothing underground but worthless rock.
+>>
+SITE_GOLD_VEIN_DIG_POOR: <<|
+	There is indeed a gold vein here, but it is tiny and will deplete very quickly.
+
+	[b][color=#d1cb6a]You have gained §$1k[/color][/b]
+>>
+SITE_GOLD_VEIN_DIG_RICH: <<|
+	The sensors were correct, there is a rich gold vein underground. Mining is underway.
+
+	[b][color=#d1cb6a]+$1 Money pressure[/color][/b]
+>>

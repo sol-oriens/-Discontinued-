@@ -1,0 +1,23 @@
+Site: IronVein
+	Name: #SITE_P_MINERAL_VEIN
+	Description: #SITE_NAR_MINERAL_VEIN
+
+	State:
+		Narrative: #SITE_NAR_IRON_VEIN
+
+		Sprite: ResourceIcons::7
+
+		Choice: Mine
+		Choice: Bore = 40%
+
+	Option: Mine
+		Icon: ResourceIcon::6
+		Description: #SITE_IRON_VEIN_MINE:1
+
+		ABEM_planet_anomalies::TriggerOnPlanet(AddResource(Labor, +1))
+
+	Option: Bore
+		Icon: BuildingSprites::4
+		Description: #SITE_IRON_VEIN_BORE:2
+
+		ABEM_planet_anomalies::TriggerOnPlanet(AddPressure(Labor, 2))

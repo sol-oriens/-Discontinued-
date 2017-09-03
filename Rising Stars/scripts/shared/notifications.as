@@ -732,8 +732,8 @@ class PlanetAnomalyNotification : Notification {
 	string formatClass() const override {
 		Anomaly@ anomaly = cast<Anomaly@>(obj);
 		if(anomaly !is null && anomaly.planet !is null)
-			return format(locale::ANOMALY_P_NOTIFICATION, anomaly.planet.name);
-		return format(locale::ANOMALY_P_NOTIFICATION, "???");
+			return format(locale::SITE_P_NOTIFICATION, anomaly.planet.name);
+		return format(locale::SITE_P_NOTIFICATION, "???");
 	}
 
 	Sprite get_icon() const override {

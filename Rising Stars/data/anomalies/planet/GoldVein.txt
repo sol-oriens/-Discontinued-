@@ -1,0 +1,31 @@
+Site: GoldVein
+	Name: #SITE_P_MINERAL_VEIN
+	Description: #SITE_NAR_MINERAL_VEIN
+
+	State:
+		Narrative: #SITE_NAR_GOLD_VEIN
+
+		Sprite: ResourceIcons::30
+
+		Choice: Mine
+
+	Option: Mine
+		Icon: ResourceIcon::6
+		Description: #SITE_GOLD_VEIN_DIG
+
+		Result: 25%
+			SendMessage(#SITE_GOLD_VEIN_DIG_FAIL)
+
+		Result: 25%
+			SendMessage(#SITE_GOLD_VEIN_DIG_POOR:200)
+
+			AddMoney(200)
+
+		Result: 25%
+			SendMessage(#SITE_GOLD_VEIN_DIG_POOR:400)
+
+			AddMoney(400)
+
+		Result: 25%
+			SendMessage(#SITE_GOLD_VEIN_DIG_RICH:1)
+			ABEM_planet_anomalies::TriggerOnPlanet(AddPressure(Money, +1))
