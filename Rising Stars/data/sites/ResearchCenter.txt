@@ -11,7 +11,7 @@ Site: ResearchCenter
 		Choice: Recover
 
 	Option: Read
-		Icon: AffinityIcons::5
+		Icon: ResourceIcon::4
 		Description: #SITE_RESEARCH_CENTER_READ
 
 		AddResearchPoints(50:100, Modified = False, Penalized = False)
