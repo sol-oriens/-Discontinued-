@@ -10,11 +10,11 @@ import elements.GuiButton;
 import elements.GuiPanel;
 import elements.GuiSprite;
 from dialogs.MessageDialog import message;
-import anomalies;
+import sites;
 import targeting.ObjectTarget;
 
 class Option : GuiButton {
-	const AnomalyOption@ option;
+	const SiteOption@ option;
 	GuiSprite@ icon;
 	GuiMarkupText@ content;
 	uint index;
@@ -26,7 +26,7 @@ class Option : GuiButton {
 		style = SS_ChoiceBox;
 	}
 
-	int set(const AnomalyOption@ option, int y, uint index) {
+	int set(const SiteOption@ option, int y, uint index) {
 		@this.option = option;
 		this.index = index;
 		position = vec2i(4, y);
@@ -40,23 +40,33 @@ class Option : GuiButton {
 	}
 };
 
-class AnomalyOverlay : GuiOverlay {
-	Anomaly@ anomaly;
+class SiteOverlay : GuiOverlay {
+	Site@ site;
+	Object@ obj;
 	GuiBackgroundPanel@ bg;
 	GuiBackgroundPanel@ choices;
 
 	GuiPanel@ descPanel;
 	GuiMarkupText@ description;
 	GuiText@ progressLabel;
-	Gui3DObject@ model;
 	GuiSprite@ icon;
 	GuiProgressbar@ bar;
 
 	GuiPanel@ choicePanel;
 	array<Option@> options;
 
-	AnomalyOverlay(IGuiElement@ parent, Anomaly@ obj) {
-		@anomaly = obj;
+	SiteOverlay(IGuiElement@ parent, Object@ obj, uint siteId) {
+		@this.obj = obj;
+		Site s;
+		Planet@ planet = cast<Planet>(obj);
+		if (planet !is null) {
+			if (!receive(planet.selectSite(siteId), s))
+				return;
+		}
+		else
+			return;
+
+		@site = s;
 
 		super(parent);
 
@@ -65,11 +75,11 @@ class AnomalyOverlay : GuiOverlay {
 		uint total = left + 12 + right;
 
 		@bg = GuiBackgroundPanel(this, Alignment(Left+0.5f-total/2, Top+0.5f-200, Left+0.5f-total/2+left, Top+0.5f+200));
-		bg.title = obj.name;
+		bg.title = site.type.name;
 		bg.titleColor = Color(0x00ff00ff);
 
 		@choices = GuiBackgroundPanel(this, Alignment(Left+0.5f-total/2+left+12, Top+0.5f-300, Left+0.5f+total/2, Top+0.5f+300));
-		choices.title = locale::ANOMALY_CHOICES;
+		choices.title = locale::SITE_CHOICES;
 		choices.titleColor = Color(0xff8000ff);
 
 		@progressLabel = GuiText(choices, Alignment(Left+8, Top+0.4f-30, Right-8, Top+0.4f-3), locale::SCAN_PROGRESS);
@@ -80,12 +90,9 @@ class AnomalyOverlay : GuiOverlay {
 
 		@descPanel = GuiPanel(bg, Alignment(Left+4, Top+36, Left+left-4, Bottom-8));
 
-		@description = GuiMarkupText(descPanel, recti_area(4, 0, left-8, 100), obj.narrative);
+		@description = GuiMarkupText(descPanel, recti_area(4, 0, left-8, 100), site.narrative);
 		description.fitWidth = true;
-		if (anomaly.planet is null)
-			@model = Gui3DObject(descPanel, recti_area(7, 250, 100, 100), obj);
-		else
-			@icon = GuiSprite(descPanel, recti_area(200, 150, 100, 100), getSprite(obj.sprite));
+		@icon = GuiSprite(descPanel, recti_area(200, 150, 100, 100), getSprite(site.sprite));
 
 		@choicePanel = GuiPanel(choices, Alignment(Left, Top+38, Right, Bottom));
 		choicePanel.visible = true;
@@ -109,36 +116,42 @@ class AnomalyOverlay : GuiOverlay {
 				{
 					Option@ opt = cast<Option>(evt.caller);
 					if(opt !is null) {
-						if(opt.option.targets.length == 0) {
-							anomaly.choose(opt.index);
-						}
-						else {
-							targetObject(AnomalyTargeting(anomaly, opt.option, opt.index, 0));
-							GuiOverlay::close();
-						}
+						site.chooseOption(opt.index);
 						timer = 0.05f;
 					}
 				}
+				refreshState();
 			break;
 		}
 		return GuiOverlay::onGuiEvent(evt);
 	}
 
+	void refreshState() {
+		Site s;
+		Planet@ pl = cast<Planet>(obj);
+		if (pl !is null) {
+			if (receive(pl.refreshCurrentSite(), s)) {
+				@site = s;
+				return;
+			}
+		}
+
+		@site = null;
+	}
+
 	float timer = 0.f;
 	void update() {
-		if(!anomaly.valid) {
+		if (site is null) {
 			GuiOverlay::close();
 			return;
 		}
-
 		timer -= frameLength;
 		if(timer <= 0.f) {
-			float progress = anomaly.progress;
+			float progress = site.progress;
 			if(progress >= 1.f) {
-				description.text = anomaly.narrative;
+				description.text = site.narrative;
 
-				const AnomalyType@ type = getAnomalyType(anomaly.anomalyType);
-				uint optCount = anomaly.optionCount;
+				uint optCount = site.optionCount;
 
 				choicePanel.visible = true;
 				progressLabel.visible = false;
@@ -150,7 +163,7 @@ class AnomalyOverlay : GuiOverlay {
 				options.length = optCount;
 				int y = 0;
 				for(uint i = 0; i < optCount; ++i) {
-					AnomalyOption@ option = type.options[anomaly.option[i]];
+					SiteOption@ option = site.type.options[site.option[i]];
 
 					if(options[i] is null)
 						@options[i] = Option(choicePanel);
@@ -169,10 +182,7 @@ class AnomalyOverlay : GuiOverlay {
 				bar.text = toString(floor(progress * 100.0),0) + "%";
 			}
 
-			if (anomaly.planet is null)
-				@model.drawMode = makeDrawMode(anomaly);
-			else
-				icon.draw();
+			icon.draw();
 			updateAbsolutePosition();
 			timer += 1.f;
 		}
@@ -180,46 +190,10 @@ class AnomalyOverlay : GuiOverlay {
 
 	void updateAbsolutePosition() {
 		GuiOverlay::updateAbsolutePosition();
-		if(model !is null) {
-			int mh = max(128, descPanel.size.height - description.size.height - 42);
-			model.rect = recti_area(8, description.size.height+42, descPanel.size.width-16, mh);
-		}
 	}
 };
 
-class AnomalyTargeting : ObjectTargeting {
-	Anomaly@ obj;
-	const AnomalyOption@ option;
-	Targets@ targets;
-	uint optIndex;
-	uint targIndex;
-
-	AnomalyTargeting(Anomaly@ obj, const AnomalyOption@ opt, uint optIndex, uint targIndex, Targets@ targets = null) {
-		if(targets is null)
-			@targets = Targets(opt.targets);
-		@this.obj = obj;
-		this.optIndex = optIndex;
-		this.targIndex = targIndex;
-		@this.option = opt;
-		@this.targets = targets;
-	}
-
-	bool valid(Object@ obj) override {
-		@targets[targIndex].obj = obj;
-		targets[targIndex].filled = true;
-		return option.checkTargets(playerEmpire, targets);
-	}
-
-	void call(Object@ targ) override {
-		obj.choose(optIndex, targ);
-	}
-
-	string message(Object@ obj, bool valid) override {
-		return option.blurb;
-	}
-};
-
-array<AnomalyOverlay@> overlays;
+array<SiteOverlay@> overlays;
 void tick(double time) {
 	for(uint i = 0, cnt = overlays.length; i < cnt; ++i)
 		overlays[i].update();

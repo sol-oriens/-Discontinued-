@@ -18,7 +18,6 @@ tidy class PlanetScript {
 	bool hpDelta = false;
 	uint ringStyle = 0;
 	array<MoonData@>@ moons;
-	array<Anomaly@> anomalies;
 
 	void init(Planet& planet) {
 		timer = -float(uint8(planet.id)) / 255.0;
@@ -45,6 +44,7 @@ tidy class PlanetScript {
 		file << cast<Savable>(planet.LeaderAI);
 		file << cast<Savable>(planet.Statuses);
 		file << cast<Savable>(planet.Cargo);
+		file << cast<Savable>(planet.Sites);
 		file << planet.ResearchRate;
 		file << planet.OrbitSize;
 		file << planet.Population;
@@ -92,6 +92,7 @@ tidy class PlanetScript {
 			file >> cast<Savable>(planet.Cargo);
 		else
 			planet.modCargoStorage(+INFINITY);
+		file >> cast<Savable>(planet.Sites);
 		file >> planet.ResearchRate;
 		file >> planet.OrbitSize;
 		file >> planet.Population;
@@ -412,6 +413,7 @@ tidy class PlanetScript {
 		planet.writeLeaderAI(msg);
 		planet.writeStatuses(msg);
 		planet.writeCargo(msg);
+		planet.writeSites(msg);
 
 		msg.writeBit(planet.hasAbilities);
 		if(planet.hasAbilities)
@@ -510,6 +512,7 @@ tidy class PlanetScript {
 		planet.writeConstruction(msg);
 		planet.writeStatuses(msg);
 		planet.writeCargo(msg);
+		planet.writeSites(msg);
 
 		msg.writeBit(planet.hasAbilities);
 		if(planet.hasAbilities)
@@ -586,23 +589,5 @@ tidy class PlanetScript {
 		if(moons is null)
 			return 0;
 		return moons.length;
-	}
-
-	void addAnomaly(Planet& planet, Anomaly@ anomaly) {			
-		anomalies.insertLast(anomaly);
-	}
-
-	void removeAnomaly(Planet& planet, Anomaly@ anomaly) {
-		anomalies.remove(anomaly);
-	}
-
-	uint get_anomalyCount() {
-		return anomalies.length;
-	}
-
-	Anomaly@ getAnomaly(uint index) {
-		if (index < anomalies.length)
-			return anomalies[index];
-		return null;
 	}
 };

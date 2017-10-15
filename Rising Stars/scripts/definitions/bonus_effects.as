@@ -2293,7 +2293,6 @@ class SetNeedPopulationForLevel : BonusEffect {
 #section all
 };
 
-
 class AddResearchPoints : EmpireTrigger {
 	Document doc("Add research points to the empire.", hidden=true);
 	Argument points(AT_Range, doc="Amount of research points to add when triggered.");

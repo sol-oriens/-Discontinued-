@@ -1,6 +1,6 @@
 Site: GoldVein
-	Name: #SITE_P_MINERAL_VEIN
-	Description: #SITE_NAR_MINERAL_VEIN
+	Name: #SITE_P_RESOURCE_DEPOSITS
+	Description: #SITE_NAR_RESOURCE_DEPOSITS
 
 	State:
 		Narrative: #SITE_NAR_GOLD_VEIN
@@ -28,4 +28,4 @@ Site: GoldVein
 
 		Result: 25%
 			SendMessage(#SITE_GOLD_VEIN_DIG_RICH:1)
-			ABEM_planet_anomalies::TriggerOnPlanet(AddPressure(Money, +1))
+			AddPressure(Money, +1)

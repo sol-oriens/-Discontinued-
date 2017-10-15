@@ -111,6 +111,7 @@ Planet : objects.Planet::PlanetScript {
 	Statuses statuses
 	Mover@ mover = null
 	Cargo cargo
+	Sites sites
 visible:
 	double OrbitSize = 100
 	double Population
@@ -120,8 +121,6 @@ visible:
 	double MaxHealth = 1000000000
 
 	local safe uint get_moonCount() const;
-	local safe uint get_anomalyCount() const;
-	local Anomaly@ getAnomaly(uint index);
 
 server:
 	void giveHistoricMemory(Empire@ emp);
@@ -129,8 +128,6 @@ server:
 	void setRing(uint ring);
 	void destroyQuiet();
 	void addMoon(float size = 0, uint style = 0);
-	void addAnomaly(Anomaly@ anomaly);
-	void removeAnomaly(Anomaly@ anomaly);
 }
 
 ColonyShip : objects.ColonyShip::ColonyShipScript {
@@ -314,12 +311,9 @@ local safe:
 	string get_narrative() const;
 	string get_model() const;
 	string get_material() const;
-	string get_sprite() const;
 	uint get_anomalyType() const;
 	uint get_optionCount() const;
 	uint get_option(uint index) const;
-	Planet@ get_planet();
-	void set_planet(Planet& value);
 
 remote:
 	relocking async void choose(uint option, Object@ target = null);

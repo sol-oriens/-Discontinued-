@@ -8,7 +8,7 @@ server:
 	void notifyWarEvent(Object@ forObject, uint type);
 	void notifyRename(Object@ forObject, string fromName, string toName);
 	void notifyAnomaly(Object@ forObject);
-	void notifyPlanetAnomaly(Object@ forObject);
+	void notifySite(Object@ forObject, uint id, uint type);
 	void notifyFlagship(Object@ forObject);
 	void notifyStructure(Object@ atObject, uint type);
 	void notifyEmpireMet(Object@ atObject, Empire@ empire, bool gainsBonus = false);

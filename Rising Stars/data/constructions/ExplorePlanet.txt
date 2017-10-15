@@ -8,9 +8,14 @@ Construction: ExplorePlanet
 
   Build Cost: 100
 
-  //AddStatus(ExploredPlanet)
-	ABEM_planet_anomalies::AddPlanetAnomaly(Start Scanned = True)
+	OnStart(AddStatus(Exploring))
+	OnCancel(RemoveStatusInstance(Exploring))
+
+	ABEM_sites::AddSite(Start Scanned = True, Chance = 1.0, Status = ExploredPlanet)
+	RemoveStatusInstance(Exploring)
+
   RequirePlanet()
-	//RequireNotStatus(ExploredPlanet)
+	RequireNotStatus(Exploring)
+	RequireNotStatus(ExploredPlanet)
 	RequireNotStatus(Ringworld)
 	RequireNotStatus(ArtificialPlanetoid)

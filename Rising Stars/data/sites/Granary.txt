@@ -14,7 +14,7 @@ Site: Granary
 		Icon: ResourceIcons::3
 		Description: #SITE_GRANARY_USE
 
-		ABEM_planet_anomalies::TriggerOnPlanet(AddPlanetResource(Grain))
+		AddPlanetResource(Grain)
 
 	Option: Recover
 	Icon: CardCategoryIcons::1

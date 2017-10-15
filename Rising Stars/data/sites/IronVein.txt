@@ -1,6 +1,6 @@
 Site: IronVein
-	Name: #SITE_P_MINERAL_VEIN
-	Description: #SITE_NAR_MINERAL_VEIN
+	Name: #SITE_P_RESOURCE_DEPOSITS
+	Description: #SITE_NAR_RESOURCE_DEPOSITS
 
 	State:
 		Narrative: #SITE_NAR_IRON_VEIN
@@ -14,10 +14,10 @@ Site: IronVein
 		Icon: ResourceIcon::6
 		Description: #SITE_IRON_VEIN_MINE:1
 
-		ABEM_planet_anomalies::TriggerOnPlanet(AddResource(Labor, +1))
+		AddResource(Labor, +1)
 
 	Option: Bore
 		Icon: BuildingSprites::4
 		Description: #SITE_IRON_VEIN_BORE:2
 
-		ABEM_planet_anomalies::TriggerOnPlanet(AddPressure(Labor, 2))
+		AddPressure(Labor, 2)

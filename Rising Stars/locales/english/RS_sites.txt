@@ -1,5 +1,7 @@
+SITE: Site
+SITE_CHOICES: Options
 SITE_P_ANCIENT_RUINS: Ancient Ruins
-SITE_P_MINERAL_VEIN: Mineral Vein
+SITE_P_RESOURCE_DEPOSITS: Mineral Vein
 SITE_P_NOTIFICATION: A site of interest has been discovered on $1.
 
 SITE_NAR_ANCIENT_RUINS: <<|
@@ -64,7 +66,7 @@ SITE_GRANARY_RECOVER_FAIL: <<|
   Despite taking all necessary precautions, a significant portion of the transport convoy was not able to keep the grain in useable condition. Unfortunately, the remaining reserves are not sufficient to durably sustain an entire population.
 >>
 
-SITE_NAR_MINERAL_VEIN: <<|
+SITE_NAR_RESOURCE_DEPOSITS: <<|
 	There is an unusually strong concentration of natural resources here.
 >>
 
@@ -83,7 +85,7 @@ SITE_IRON_VEIN_BORE: <<|
 >>
 
 SITE_NAR_GOLD_VEIN: <<|
-	Sensors indicate that a gold vein seem to lie in this area. However, heavy material resonance in the underground layers may falsify readings.
+	Sensors indicate that a gold vein seems to lie in this area. However, heavy material resonance in the underground layers may induce false readings.
 >>
 SITE_GOLD_VEIN_DIG: <<|
 	Dig a hole in the ground and check.
@@ -102,4 +104,8 @@ SITE_GOLD_VEIN_DIG_RICH: <<|
 	The sensors were correct, there is a rich gold vein underground. Mining is underway.
 
 	[b][color=#d1cb6a]+$1 Money pressure[/color][/b]
+>>
+
+SITE_NAR_OIL_DEPOSITS: <<|
+	Sensors revealed multiple large oil deposits.
 >>

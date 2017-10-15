@@ -8,7 +8,7 @@ export WonderNotification;
 export CardNotification;
 export RenameNotification;
 export AnomalyNotification;
-export PlanetAnomalyNotification;
+export SiteNotification;
 export FlagshipBuiltNotification;
 export StructureBuiltNotification;
 export EmpireMetNotification;
@@ -21,6 +21,7 @@ from influence import ICardNotification, TreatyEventType;
 import saving;
 import util.formatting;
 import buildings;
+import sites;
 import icons;
 
 enum NotifyType {
@@ -31,7 +32,7 @@ enum NotifyType {
 	NT_Card,
 	NT_Renamed,
 	NT_Anomaly,
-	NT_PlanetAnomaly,
+	NT_Site,
 	NT_FlagshipBuilt,
 	NT_StructureBuilt,
 	NT_Generic,
@@ -721,26 +722,21 @@ class AnomalyNotification : Notification {
 	}
 };
 // }}}
-// {{{ PlanetAnomaly Notification
-class PlanetAnomalyNotification : Notification {
+// {{{ Site Notification
+class SiteNotification : Notification {
+	uint siteId;
+	const SiteType@ site;
 	Object@ obj;
 
 	NotifyType get_type() const override {
-		return NT_PlanetAnomaly;
+		return NT_Site;
 	}
 
 	string formatClass() const override {
-		Anomaly@ anomaly = cast<Anomaly@>(obj);
-		if(anomaly !is null && anomaly.planet !is null)
-			return format(locale::SITE_P_NOTIFICATION, anomaly.planet.name);
+		Planet@ planet = cast<Planet>(obj);
+		if (planet !is null)
+			return format(locale::SITE_P_NOTIFICATION, planet.name);
 		return format(locale::SITE_P_NOTIFICATION, "???");
-	}
-
-	Sprite get_icon() const override {
-		Anomaly@ anomaly = cast<Anomaly@>(obj);
-		if(anomaly !is null)
-			return getSprite(anomaly.sprite);
-		return Sprite();
 	}
 
 	Object@ get_relatedObject() const override {
@@ -751,22 +747,32 @@ class PlanetAnomalyNotification : Notification {
 	void write(Message& msg) override {
 		Notification::write(msg);
 		msg << obj;
+		msg.writeSmall(siteId);
+		msg.writeSmall(site.id);
 	}
 
 	void read(Message& msg) override {
 		Notification::read(msg);
 		msg >> obj;
+		uint tid = msg.readSmall();
+		@site = getSiteType(tid);
+		siteId = msg.readSmall();
 	}
 
 	//Saving and loading
 	void save(SaveFile& file) override {
 		Notification::save(file);
 		file << obj;
+		file.writeIdentifier(SI_Site, site.id);
+		file << siteId;
 	}
 
 	void load(SaveFile& file) override {
 		Notification::load(file);
 		file >> obj;
+		uint tid = file.readIdentifier(SI_Site);
+		@site = getSiteType(tid);
+		file >> siteId;
 	}
 };
 // }}}
@@ -1120,7 +1126,7 @@ Notification@ createNotification(uint type) {
 		case NT_Card: return CardNotification();
 		case NT_Renamed: return RenameNotification();
 		case NT_Anomaly: return AnomalyNotification();
-		case NT_PlanetAnomaly: return PlanetAnomalyNotification();
+		case NT_Site: return SiteNotification();
 		case NT_FlagshipBuilt: return FlagshipBuiltNotification();
 		case NT_StructureBuilt: return StructureBuiltNotification();
 		case NT_MetEmpire: return EmpireMetNotification();

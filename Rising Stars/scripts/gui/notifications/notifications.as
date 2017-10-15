@@ -12,6 +12,7 @@ import util.formatting;
 from util.draw_model import drawLitModel;
 from obj_selection import selectObject;
 from overlays.AnomalyOverlay import AnomalyOverlay;
+from overlays.SiteOverlay import SiteOverlay;
 from gui import animate_speed, animate_time;
 import hooks;
 
@@ -820,25 +821,31 @@ class AnomalyDisplay : ClassDisplay {
 	}
 };
 
-class PlanetAnomalyDisplay : ClassDisplay {
+class SiteDisplay : ClassDisplay {
 
-	PlanetAnomalyDisplay(Notification@ n) {
+	SiteDisplay(Notification@ n) {
 		super(n);
 	}
 
 	bool update(NotifyClass@ cls, double time) override {
-		PlanetAnomalyNotification@ n = cast<PlanetAnomalyNotification>(cls.base);
-		if(!n.obj.valid)
-			return false;
+		SiteNotification@ n = cast<SiteNotification>(cls.base);
+		Planet@ pl = cast<Planet>(n.obj);
+		if (pl !is null) {
+			if (!pl.hasSite(n.siteId))
+				return false;
+		}
 		return true;
 	}
 
 	bool goto(Notification@ evt, bool bg = false) override {
-		PlanetAnomalyNotification@ n = cast<PlanetAnomalyNotification>(evt);
-		if(bg)
-			zoomTabTo(cast<Anomaly>(n.obj).planet);
+		SiteNotification@ n = cast<SiteNotification>(evt);
+		if(bg){
+			Planet@ pl = cast<Planet>(n.obj);
+			if (pl !is null)
+				zoomTabTo(pl);
+		}
 		else
-			AnomalyOverlay(ActiveTab, cast<Anomaly>(n.obj));
+			SiteOverlay(ActiveTab, n.obj, n.siteId);
 		return true;
 	}
 };
@@ -849,7 +856,7 @@ ClassDisplay@ createClassDisplay(Notification@ n) {
 		case NT_Vote: @cls = VoteDisplay(n); break;
 		case NT_WarEvent: @cls = ContestDisplay(n); break;
 		case NT_Anomaly: @cls = AnomalyDisplay(n); break;
-		case NT_PlanetAnomaly: @cls = PlanetAnomalyDisplay(n); break;
+		case NT_Site: @cls = SiteDisplay(n); break;
 	}
 	if(cls is null)
 		@cls = ClassDisplay(n);

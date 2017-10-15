@@ -2,6 +2,7 @@ import notifications;
 from notifications import NotificationStore;
 import influence;
 import buildings;
+import sites;
 from influence_global import getInfluenceVoteByID, getTreatyDesc;
 
 tidy class Notifications : Component_Notifications, Savable, NotificationStore {
@@ -110,9 +111,11 @@ tidy class Notifications : Component_Notifications, Savable, NotificationStore {
 		addNotification(emp, n);
 	}
 
-	void notifyPlanetAnomaly(Empire& emp, Object@ obj) {
-		PlanetAnomalyNotification n;
+	void notifySite(Empire& emp, Object@ obj, uint id, uint type) {
+		SiteNotification n;
+		n.siteId = id;
 		@n.obj = obj;
+		@n.site = getSiteType(type);
 		addNotification(emp, n);
 	}
 

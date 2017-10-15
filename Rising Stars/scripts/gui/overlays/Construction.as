@@ -17,14 +17,14 @@ import ship_groups;
 import buildings;
 import constructions;
 import orbitals;
-import anomalies;
+import sites;
 import targeting.PointTarget;
 import targeting.ObjectTarget;
 import systems;
 import cargo;
 from obj_selection import hoveredObject;
 from gui import animate_time;
-from overlays.AnomalyOverlay import AnomalyOverlay;
+from overlays.SiteOverlay import SiteOverlay;
 from overlays.ContextMenu import FinanceDryDock;
 
 export ConstructionParent, ConstructionDisplay;
@@ -969,7 +969,7 @@ class ConstructionDisplay : DisplayBox {
 			auto@ drydock = getOrbitalModule("DryDock");
 			drydockButton.visible = obj.owner is playerEmpire && obj.canBuildShips && obj.canBuildOrbitals && drydock !is null && drydock.canBuildBy(obj);
 			auto@ planet = cast<Planet@>(obj);
-			studyButton.visible = obj.owner is playerEmpire && planet !is null && planet.anomalyCount > 0;
+			studyButton.visible = obj.owner is playerEmpire && planet !is null && planet.siteCount > 0;
 
 			updateAbsolutePosition();
 		}
@@ -1000,8 +1000,8 @@ class ConstructionDisplay : DisplayBox {
 	}
 
 	void openStudyMenu() {
-		Planet@ pl = cast<Planet@>(obj);
-		if (pl is null)
+		Planet@ planet = cast<Planet>(obj);
+		if (planet is null)
 			return;
 
 		GuiContextMenu menu(mousePos);
@@ -1009,11 +1009,12 @@ class ConstructionDisplay : DisplayBox {
 		menu.flexWidth = false;
 		menu.width = 400;
 
-		if (pl.anomalyCount > 0) {
-			uint cnt = pl.anomalyCount;
+		if (planet.siteCount > 0) {
+			uint cnt = planet.siteCount;
 			for(uint i = 0; i < cnt; ++i) {
-				Anomaly@ anomaly = pl.getAnomaly(i);
-				menu.addOption(AnomalyStudy(obj, anomaly, overlay));
+				uint siteId = planet.getSiteId(i);
+				uint typeId = planet.getSiteTypeId(siteId);
+				menu.addOption(SiteStudy(obj, siteId, typeId, overlay));
 			}
 
 			menu.updateAbsolutePosition();
@@ -2078,27 +2079,30 @@ class FlagshipDrydock : GuiMarkupContextOption {
 	}
 };
 
-class AnomalyStudy : GuiMarkupContextOption {
-	Anomaly@ anomaly;
-	const AnomalyType@ anomType;
+class SiteStudy : GuiMarkupContextOption {
+	uint siteId;
+	const SiteType@ siteType;
 	Object@ fromObj;
 	IGuiElement@ parent;
 
-	AnomalyStudy(Object@ obj, Anomaly@ anomaly, IGuiElement@ parent) {
-		@this.anomaly = anomaly;
+	SiteStudy(Object@ obj, uint siteId, uint typeId, IGuiElement@ parent) {
+		this.siteId = siteId;
+		@this.siteType = getSiteType(typeId);
 		@this.fromObj = obj;
 		@this.parent = parent;
-		const AnomalyType@ type = anomType;
-		@type = getAnomalyType(anomaly.anomalyType);
-		super(format("[offset=10][b]$2[/b][/offset]",
+		//super(format("[offset=10][b]$2[/b][/offset]",
+		super(format("[offset=10][color=$5][b]$2[/b][/color] [offset=260]([loc=SIZE/] $3)[/offset][/offset]",
 				toString(colors::White),
-				type.name,
-				getSpriteDesc(Sprite(spritesheet::PlanetType, 2))),
+				siteType.name,
+				standardize(1, true),
+				//getSpriteDesc(Sprite(spritesheet::PlanetType, 2)),
+				getSpriteDesc(getSprite(siteType.spriteName)),
+				toString(colors::White.interpolate(colors::White, 0.5))),
 				FT_Subtitle);
 	}
 
 	void call(GuiContextMenu@ menu) {
-		AnomalyOverlay(ActiveTab, anomaly);
+		SiteOverlay(ActiveTab, fromObj, siteId);
 	}
 
 	int opCmp(const GuiListElement@ other) const {
