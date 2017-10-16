@@ -88,5 +88,5 @@ ABL_GUARDIAN_FINISH_DESC: <<
 
 ABL_HYPERBEAM: Hypersail Beam
 ABL_HYPERBEAM_DESC: <<
-	An beam focusing energy extracted from a hypercore to heat exchangers on the engines of a ship, resulting in a thermo-hyperspatial reaction and granting them an acceleration boost defying conventional physics. Energy consumption rate and overheating prevent the beam to be maintained for extended periods of time. Pilots must be aware of newtonian physics limitations once back into conventional thrust.
+	An beam injecting energy extracted from a hypercore into the engines of a ship, granting them an acceleration boost defying conventional physics. Energy consumption rate and overheating prevent the beam to be maintained for extended periods of time. Pilots must be aware of newtonian physics limitations once back into conventional thrust.
 >>
