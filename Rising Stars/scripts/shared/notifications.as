@@ -747,8 +747,8 @@ class SiteNotification : Notification {
 	void write(Message& msg) override {
 		Notification::write(msg);
 		msg << obj;
-		msg.writeSmall(siteId);
 		msg.writeSmall(site.id);
+		msg.writeSmall(siteId);
 	}
 
 	void read(Message& msg) override {
