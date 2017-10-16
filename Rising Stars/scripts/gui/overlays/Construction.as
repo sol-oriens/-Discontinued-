@@ -981,6 +981,7 @@ class ConstructionDisplay : DisplayBox {
 		menu.flexWidth = false;
 		menu.width = 400;
 
+		ReadLock lock(playerEmpire.designMutex);
 		uint cnt = playerEmpire.designCount;
 		for(uint i = 0; i < cnt; ++i) {
 			auto@ dsg = playerEmpire.designs[i];
