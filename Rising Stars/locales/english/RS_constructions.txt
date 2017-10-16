@@ -77,13 +77,6 @@ OUTPOST_WEAPONS_DESC: <<
 	Adds 10 missile tubes, each firing one missile per second for a damage of 50 per missile. May be modified by upgrades that improve stationary defense weapons. Subsequent missile launchers require increasingly large amounts of Ore to install.
 >>
 
-RESEARCH_LAB_HYPERCORE: Hyperfield Collision
-RESEARCH_LAB_HYPERCORE_DESC: <<
-	[color=#aaa][i]Projecting hyperfield particles at FTL speeds into a high powered particle collider produces a highly unstable form of energy stored in what is colloquially known as a hypercore.[/i][/color]
-
-	Generates 1 [img=ResourceIconsSmall::81*#26a980;22/] Hypercore.
->>
-
 RESEARCH_LAB_CRYSTALLIZER: Hyperfield Crystallizer
 RESEARCH_LAB_CRYSTALLIZER_DESC: <<
 	[color=#aaa][i]This highly advanced device is able to artificially reproduce the FTL crystal formation process at an accelerated rate through a complex chain reaction.[/i][/color]
@@ -91,11 +84,39 @@ RESEARCH_LAB_CRYSTALLIZER_DESC: <<
 	Unlocks the Hyperfield Crystallization Project.
 >>
 
+RESEARCH_LAB_HYPERCHARGER: Hypercharger
+RESEARCH_LAB_HYPERCHARGER_DESC: <<
+	[color=#aaa][i]A canon projecting a constant beam of energy extracted from a hypercore, able to tremendously boost engine thrust for a short duration. This effect is nicknamed "hypersail", though there is no physical sail per se.[/i][/color]
+
+	Unlocks the Hypercharge Project.
+>>
+
+RESEARCH_LAB_HYPERCHARGE: Hypercharge
+RESEARCH_LAB_HYPERCHARGE_DESC: <<
+	[color=#aaa][i]Load this lab's hypercharger with one hypercore charge.[/i][/color]
+
+	Grants one use of the Hypersail Beam ability.
+>>
+
+RESEARCH_LAB_HYPERCORE: Hyperfield Collision
+RESEARCH_LAB_HYPERCORE_DESC: <<
+	[color=#aaa][i]Projecting hyperfield particles at FTL speeds into a high powered particle collider produces a highly unstable form of energy stored in what is colloquially known as a hypercore.[/i][/color]
+
+	Generates 1 [img=ResourceIconsSmall::81*#26a980;22/] Hypercore.
+>>
+
 RESEARCH_LAB_FTL: Hyperfield Crystallization
 RESEARCH_LAB_FTL_DESC: <<
 	[color=#aaa][i]A method of creating limited quantities of FTL crystals at a high energy cost. Unfortunately, quantic instabilities make the process highly inaccurate and not likely to ever be industrialized.[/i][/color]
 
 	Generates up to 250 [img=$FTL;22/] FTL Energy.
+>>
+
+RESEARCH_LAB_FTL_HYPER: Hyperfield Megacrystallization
+RESEARCH_LAB_FTL_HYPER_DESC: <<
+	[color=#aaa][i]The hyperfield crystallization technique used in conjunction with the peculiar energy provided by a hypercore yields much better results, though still somewhat unreliable.[/i][/color]
+
+	Generates up to 1k [img=$FTL;22/] FTL Energy.
 >>
 
 STAGING_HUB_ASTEROID_MORPH: Core Mining

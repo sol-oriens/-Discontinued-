@@ -56,3 +56,11 @@ STATUS_EXPLORED_PLANET: Explored
 STATUS_EXPLORED_PLANET_DESC: <<
 	This planet has been fully explored.
 >>
+STATUS_HYPERCHARGE: Hypercharge
+STATUS_HYPERCHARGE_DESC: <<
+	A hypercharge granting one use of the Hypersail Beam ability.
+>>
+STATUS_HYPERSAIL: Hypersail
+STATUS_HYPERSAIL_DESC: <<
+	This ship is under the effect of a hypercharge beam boosting its engine thrust, an effect nicknamed "hypersail".
+>>
