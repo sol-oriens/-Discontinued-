@@ -6,7 +6,7 @@ Construction: ExplorePlanet
 	Category: Planetary Exploration
 	Description: #C_EXPLORE_PLANET_DESC
 
-  Build Cost: 100
+  Build Cost: 50
 
 	OnStart(AddStatus(Exploring))
 	OnCancel(RemoveStatusInstance(Exploring))

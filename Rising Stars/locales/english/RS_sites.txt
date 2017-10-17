@@ -1,6 +1,7 @@
 SITE: Site
 SITE_CHOICES: Options
 SITE_P_ANCIENT_RUINS: Ancient Ruins
+SITE_P_ODDITY: Oddity
 SITE_P_RESOURCE_DEPOSITS: Mineral Vein
 SITE_P_NOTIFICATION: A site of interest has been discovered on $1.
 
@@ -138,21 +139,39 @@ SITE_TEMPLE_REMAINS_DISMANTLE: <<|
 SITE_NAR_GRANARY: <<|
   A gigantic building in poor but functional condition was located in an isolated region of the planet. Exploration reveals that it is a technologically very advanced granary designed to keep huge grain reserves safe in suspended animation. For an unknown reason, those were never used but they have been perfectly preserved. However, further analysis determined that the conservation system has recently failed ; this means that they will soon be lost if left alone.
 >>
-
 SITE_GRANARY_USE: <<|
   Those grain reserves can be planted and provide a permanent source of food for the planet.
 
   [right][b][color=#e072c9]Add a native Grain to the planet.[/color][/b][/right]
 >>
-
 SITE_GRANARY_RECOVER: <<|
   The grain can probably be stored in space and exported on a more suitable world. Safely transporting a cargo amount of this magnitude will be difficult and may damage it, though.
 
   [right][b][color=#e072c9]May gain one Harvest influence card.[/color][/b][/right]
 >>
-
 SITE_GRANARY_RECOVER_FAIL: <<|
   Despite taking all necessary precautions, a significant portion of the transport convoy was not able to keep the grain in useable condition. Unfortunately, the remaining reserves are not sufficient to durably sustain an entire population.
+>>
+
+SITE_NAR_ODDITY: <<|
+	An unusual planetary feature stands out in this region. What secrets does it hide?
+>>
+
+SITE_NAR_CRYSTALLINE_FORMATION: <<|
+	In the middle of a large open area, a tall crystalline formation stands up like a shimmering, twisted tower coveting the sky. Its many faces reflecting ambient light seem to slightly vary in color over time. Some members of your exploration team swear they even move imperceptibly. Sensors indicate that some sort of slowly pulsating vibration emanates from the base of the formation, many times larger.
+>>
+SITE_CRYSTALLINE_FORMATION_DRAW: <<|
+	Applying conductive materials to the base transmits a strong electric current. Completely covering it with a conductive layer will allow us to use the site as a potent source of energy.
+
+	[right][b][color=#42b4bd]+$1 Energy generation.[/color][/b][/right]
+>>
+SITE_CRYSTALLINE_FORMATION_ENERGIZE: <<|
+	One of your scientists believes that directing a powerful energy burst towards the base may trigger a self-sufficient chain reaction, essentially transforming the structure into a extremely powerful reactor.
+
+	[right][b][color=#42b4bd]+$1 Energy generation.[/color][color=#ff0000] May be dangerous.[/color][/b][/right]
+>>
+SITE_CRYSTALLINE_FORMATION_ENERGIZE_FAIL: <<|
+	Unfortunately, the triggered reaction went completely out of control and made the structure into a bomb whose explosion vaporized everything across a large distance, including the crystalline formation itself and your unfortunate team.
 >>
 
 SITE_NAR_RESOURCE_DEPOSITS: <<|

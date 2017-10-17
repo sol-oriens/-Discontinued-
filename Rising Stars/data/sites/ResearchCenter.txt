@@ -21,8 +21,8 @@ Site: ResearchCenter
 		Description: #SITE_RESEARCH_CENTER_RECOVER
 
 		Result: 50%
-			SendMessage(#SITE_RESEARCH_CENTER_RECOVER_SUCCESS:0.1)
-			AddResearchIncome(0.1)
+			SendMessage(#SITE_RESEARCH_CENTER_RECOVER_SUCCESS:0.5)
+			AddResearchIncome(0.5)
 
 		Result: 50%
 			SendMessage(#SITE_RESEARCH_CENTER_RECOVER_FAIL)
